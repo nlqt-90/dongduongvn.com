@@ -1,35 +1,17 @@
 ---
-import BaseLayout from "@layouts/BaseLayout.astro";
-import Header from "@components/Header.astro";
-import Footer from "@components/Footer.astro";
+import PageLayout from "@layouts/PageLayout.astro";
+import { Fragment } from "astro/jsx-runtime";
 
 ---
 
-<BaseLayout title="Services | Axial Construct">
-
-  <!-- CSS RIÊNG CỦA SERVICES -->
-<link rel="stylesheet" href="/assets/css/services.min.css" />
-
-  <Header />
-
-    <header class="page primary-bg">
-        <div class=container>
-            <div class=section_header><span class="subtitle subtitle--extended">Building communities</span>
-                <h1 class=title>Services</h1>
-                <ul class=breadcrumbs>
-                    <li class=breadcrumbs_item><a href=index.html>Home</a></li>
-                    <li class="breadcrumbs_item breadcrumbs_item--current"><span>Services</span></li>
-                </ul>
-            </div>
-        </div>
-        <div class=media>
-            <picture>
-                <source data-srcset=/assets/img/plan.png srcset=/assets/img/plan.png type=image/webp><img class=lazy
-                    data-src=/assets/img/plan.png src=/assets/img/plan.png alt=media>
-            </picture>
-        </div>
-    </header>
-    <main>
+<PageLayout 
+  title="Services | Axial Construct"
+  pageSubtitle="Building communities"
+  pageTitle="Services"
+>
+  <Fragment slot="head">
+    <link rel="stylesheet" href="/assets/css/services.min.css" />
+  </Fragment>
         <section class="services section">
             <div class=container>
                 <div class="services_header section_header"><span class=subtitle>What we do</span>
@@ -313,9 +295,8 @@ import Footer from "@components/Footer.astro";
                 </div>
             </div>
         </section>
-    </main>
-<script src="/assets/js/services.min.js" defer></script>
 
-  <Footer />
-
-</BaseLayout>
+  <Fragment slot="scripts">
+    <script src="/assets/js/services.min.js" defer></script>
+  </Fragment>
+</PageLayout>
