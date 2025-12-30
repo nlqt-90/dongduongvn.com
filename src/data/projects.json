@@ -1,0 +1,138 @@
+[
+  {
+    "slug": "food-factory-design-and-construction",
+    "title": "Food Factory Design and Construction",
+    "location": "Karli Turnpike Apt. 993 Port Valentine",
+    "thumbnail": "/assets/img/projects/05.jpg",
+    "mainImage": "/assets/img/singleproject.jpg",
+
+    "description": [
+      "Congue eu consequat ac felis donec et odio pellentesque. Nullam ac tortor vitae purus.",
+      "Aenean sed adipiscing diam donec adipiscing tristique risus. Nunc pulvinar sapien et ligula."
+    ],
+
+    "checklist": [
+      "Building the future with ideas",
+      "Designing future with excellence",
+      "Discovering possibility in concrete",
+      "Engineering the better way"
+    ],
+
+    "info": {
+      "location": "California, US",
+      "sector": "Buildings, civil",
+      "technology": "Monolithicas",
+      "scope": "12 000",
+      "completionDate": "Jan 1, 2021"
+    },
+
+    "gallery": [
+      "/assets/img/gallery/01.jpg",
+      "/assets/img/gallery/08.jpg",
+      "/assets/img/gallery/02.jpg",
+      "/assets/img/gallery/09.jpg"
+    ]
+  },
+
+  {
+    "slug": "fresh-concept-construction-renovation",
+    "title": "Fresh Concept Construction Renovation",
+    "location": "Daphne Way New Reaganmouth",
+    "thumbnail": "/assets/img/projects/02.jpg",
+    "headerImage": "/assets/img/plan.png",
+    "mainImage": "/assets/img/singleproject.jpg",
+
+    "description": [
+      "Fresh renovation concept focused on sustainable materials and modern architecture."
+    ],
+
+    "checklist": [
+      "Sustainable materials",
+      "Modern construction",
+      "Cost efficiency"
+    ],
+
+    "info": {
+      "location": "New York, US",
+      "sector": "Renovation",
+      "technology": "Hybrid",
+      "scope": "9 500",
+      "completionDate": "Aug 12, 2021"
+    },
+
+    "gallery": [
+      "/assets/img/gallery/02.jpg",
+      "/assets/img/gallery/01.jpg",
+      "/assets/img/gallery/05.jpg",
+      "/assets/img/gallery/06.jpg"
+    ]
+  },
+
+  {
+    "slug": "reconstruction-of-old-factory-building",
+    "title": "Reconstruction of Old Factory Building",
+    "location": "Schoen Ramp Suite 607 Borerton",
+    "thumbnail": "/assets/img/projects/06.jpg",
+    "headerImage": "/assets/img/plan.png",
+    "mainImage": "/assets/img/singleproject.jpg",
+
+    "description": [
+      "Complete reconstruction of an old industrial facility with updated safety standards."
+    ],
+
+    "checklist": [
+      "Structural reinforcement",
+      "Industrial safety upgrade",
+      "Energy efficiency"
+    ],
+
+    "info": {
+      "location": "Texas, US",
+      "sector": "Industrial",
+      "technology": "Steel Frame",
+      "scope": "15 300",
+      "completionDate": "Mar 5, 2022"
+    },
+
+    "gallery": [
+      "/assets/img/gallery/02.jpg",
+      "/assets/img/gallery/01.jpg",
+      "/assets/img/gallery/05.jpg",
+      "/assets/img/gallery/06.jpg"
+    ]
+  },
+
+  {
+    "slug": "installation-and-creation-of-a-supply-system",
+    "title": "Installation and Creation of a Supply System",
+    "location": "Ernest Mount Bartonstad",
+    "thumbnail": "/assets/img/projects/03.jpg",
+    "headerImage": "/assets/img/plan.png",
+    "mainImage": "/assets/img/singleproject.jpg",
+
+    "description": [
+      "Installation of a modern supply system ensuring reliability and scalability."
+    ],
+
+    "checklist": [
+      "System planning",
+      "Professional installation",
+      "Long-term maintenance"
+    ],
+
+    "info": {
+      "location": "Illinois, US",
+      "sector": "Infrastructure",
+      "technology": "Automation",
+      "scope": "7 800",
+      "completionDate": "Nov 18, 2022"
+    },
+
+    "gallery": [
+      "/assets/img/gallery/02.jpg",
+      "/assets/img/gallery/01.jpg",
+      "/assets/img/gallery/05.jpg",
+      "/assets/img/gallery/06.jpg"
+    ]
+  }
+]

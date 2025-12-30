@@ -1,0 +1,119 @@
+---
+// 1. Lấy đường dẫn hiện tại một cách an toàn
+const { pathname } = Astro.url;
+
+// 2. Xử lý logic để xác định tên trang hiện tại (slug)
+// Loại bỏ dấu gạch chéo đầu/cuối: "/" -> "home", "/about/" -> "about"
+const currentPath = pathname === "/" 
+  ? "home" 
+  : pathname.replace(/^\/|\/$/g, "").split('/')[0];
+
+// 3. Hàm helper để thêm class 'active' vào thẻ <a>
+const activeClass = (path: string) => (currentPath === path ? "active" : "");
+
+---
+
+<header class="header" data-page={currentPath} data-page-parent={currentPath}>
+  <div class="container d-flex">
+    
+<a class="brand" href="/">
+      <img 
+        class="brand_logo" 
+        src="/assets/svg/logo-dong-duong.svg" 
+        alt="Axial Construct Logo" 
+      />
+    </a>
+
+    <nav class="header_nav collapse" id="headerMenu">
+      <ul class="header_nav-list">
+        
+        <li class="header_nav-list_item">
+          <a 
+            class={`nav-link nav-item ${activeClass("home")}`} 
+            href="/" 
+            data-page="home"
+          >
+            <span class="nav-item_text">Trang chủ</span>
+          </a>
+        </li>
+
+        <li class="header_nav-list_item">
+          <a 
+            class={`nav-link nav-item ${activeClass("about")}`} 
+            href="/about" 
+            data-page="about"
+          >
+            <span class="nav-item_text">Giới thiệu</span>
+          </a>
+        </li>
+
+        <li class="header_nav-list_item dropdown">
+          <a
+            class={`nav-link nav-item dropdown-toggle ${activeClass("services")}`}
+            href="/services"
+            data-page="services"
+            data-bs-toggle="collapse"
+            data-bs-target="#servicesMenu"
+            data-trigger="dropdown"
+            data-main-link="true"
+            aria-expanded="false"
+            aria-controls="servicesMenu"
+          >
+            <span class="nav-item_text">Dịch vụ</span>
+            <span class="icon icon-chevron_right"></span>
+          </a>
+          <div class="dropdown-menu collapse" id="servicesMenu">
+            <ul class="dropdown-list">
+              <li class="list-item">
+                <a class="dropdown-item nav-item" href="/services/tower-crane">Cho thuê cẩu tháp</a>
+              </li>
+              <li class="list-item">
+                <a class="dropdown-item nav-item" href="/services/hoist">Cho thuê vận thăng</a>
+              </li>
+              <li class="list-item">
+                <a class="dropdown-item nav-item" href="/services/scaffolding">Cho thuê giàn giáo – cốp pha</a>
+              </li>
+              <li class="list-item">
+                <a class="dropdown-item nav-item" href="https://khandaivn.com" target="_blank" rel="noopener noreferrer">Cho thuê khán đài</a>
+              </li>
+            </ul>
+          </div>
+        </li>
+
+        <li class="header_nav-list_item">
+          <a 
+            class={`nav-link nav-item ${activeClass("projects")}`} 
+            href="/projects" 
+            data-page="projects"
+          >
+            <span class="nav-item_text">Dự án</span>
+          </a>
+        </li>
+
+        <li class="header_nav-list_item">
+          <a 
+            class={`nav-link nav-item ${activeClass("contact")}`} 
+            href="/contact" 
+            data-page="contact"
+          >
+            <span class="nav-item_text">Liên hệ</span>
+          </a>
+        </li>
+
+      </ul>
+    </nav>
+
+    <button
+      class="header_trigger"
+      data-bs-toggle="collapse"
+      data-bs-target="#headerMenu"
+      aria-controls="headerMenu"
+      aria-expanded="false"
+    >
+      <span class="line line--short"></span>
+      <span class="line"></span>
+      <span class="line line--short"></span>
+      <span class="line"></span>
+    </button>
+  </div>
+</header>

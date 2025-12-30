@@ -1,0 +1,309 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Header from "@components/Header.astro";
+import Footer from "@components/Footer.astro";
+import projects from "../../data/projects.json";
+
+export function getStaticPaths() {
+  return projects.map(p => ({
+    params: { slug: p.slug }
+  }));
+}
+
+const project = projects.find(p => p.slug === Astro.params.slug);
+
+if (!project) {
+  return Astro.redirect("/404");
+}
+---
+
+<link rel="stylesheet" href="/assets/css/single-project.min.css" />
+
+
+<BaseLayout title="Projects | Axial Construct">
+
+  <Header />
+
+<header class="page primary-bg">
+  <div class="container">
+    <div class="section_header">
+      <span class="subtitle subtitle--extended">Project details</span>
+      <h1 class="title">{project.title}</h1>
+
+      <ul class="breadcrumbs">
+        <li class="breadcrumbs_item">
+          <a href="/">Home</a>
+        </li>
+        <li class="breadcrumbs_item breadcrumbs_item--current">
+          <span>{project.title}</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="media">
+    <picture>
+      <img src={project.headerImage} alt={project.title} />
+    </picture>
+  </div>
+</header>
+
+<main>
+  <!-- ABOUT -->
+     <div class="about section-nopb">
+      <div class="container">
+        <div class="about_content">
+          <article class="about_article">
+            <div class="media">
+              <picture>
+                <source data-srcset={project.mainImage} srcset={project.mainImage} type="image/webp" />
+                <img
+                  class="lazy"
+                  data-src={project.mainImage}
+                  src={project.mainImage}
+                  alt={project.title}
+                />
+              </picture>
+            </div>
+
+            <h3 class="about_article-header">Description</h3>
+
+            {/* ✅ theme demo: 1 đoạn dài, nhưng ta render list đoạn để CMS */}
+            {project.description.map((text: string) => (
+              <p class="about_article-text">{text}</p>
+            ))}
+
+            <h3 class="about_article-header">Building better development</h3>
+            <p class="about_article-text">
+              Aenean sed adipiscing diam donec adipiscing tristique risus. Nunc pulvinar sapien et ligula
+              ullamcorper malesuada. Venenatis urna cursus eget nunc scelerisque viverra mauris in.
+            </p>
+
+            <ul class="checklist">
+              {project.checklist.map((item: string) => (
+                <li class="checklist_item">
+                  <i class="icon-check icon"></i> {item}
+                </li>
+              ))}
+            </ul>
+
+            <h3 class="about_article-header">Engineering With Style</h3>
+            <p class="about_article-text">
+              Aliquet nec ullamcorper sit amet risus nullam eget felis. Ligula ullamcorper malesuada proin libero.
+              Viverra mauris in aliquam sem. Sem viverra aliquet eget sit amet.
+            </p>
+          </article>
+
+          <div class="about_aside">
+            <div class="about_info about_aside-item">
+              <div class="wrapper">
+                <div class="wrapper--helper">
+                  <h3 class="about_info-title title">Information About the Project</h3>
+
+                  <table class="about_info-table">
+                    <tbody>
+                      <tr class="about_info-table_row">
+                        <td class="property">Location</td>
+                        <td class="value">{project.info.location}</td>
+                      </tr>
+                      <tr class="about_info-table_row">
+                        <td class="property">Sector</td>
+                        <td class="value">{project.info.sector}</td>
+                      </tr>
+                      <tr class="about_info-table_row">
+                        <td class="property">Technology</td>
+                        <td class="value">{project.info.technology}</td>
+                      </tr>
+                      <tr class="about_info-table_row">
+                        <td class="property">Scope of Work</td>
+                        <td class="value">{project.info.scope}</td>
+                      </tr>
+                      <tr class="about_info-table_row">
+                        <td class="property">Completion Date</td>
+                        <td class="value">{project.info.completionDate}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                {/* ✅ theme demo: href="#" */}
+                <a class="link link-arrow" href="#">
+                  Order service <i class="icon-arrow_right icon"></i>
+                </a>
+              </div>
+            </div>
+
+            <div class="about_contact about_aside-item primary-bg">
+              <div class="wrapper">
+                <h3 class="about_contact-title title">Are You Going to Implement Project?</h3>
+
+                <ul class="contact-info">
+                  <li class="contact-info_group">
+                    <span class="name">Address</span>
+                    <span class="content">2047 Cyrus Viaduct East Jadynchester</span>
+                  </li>
+                  <li class="contact-info_group">
+                    <span class="name">Email</span>
+                    <span class="content d-inline-flex flex-column">
+                      <a class="link" href="mailto:example.com">info@construct.com</a>
+                      <a class="link" href="mailto:example.com">support@construct.com</a>
+                    </span>
+                  </li>
+                  <li class="contact-info_group">
+                    <span class="name">Phone</span>
+                    <span class="content d-inline-flex flex-column">
+                      <a class="link" href="tel:+13136453395">1 - 313 - 645 - 3395</a>
+                      <a class="link" href="tel:+14699702609">1 - 469 - 970 - 2609</a>
+                    </span>
+                  </li>
+                </ul>
+
+                <ul class="socials">
+                  <li class="socials_item">
+                    <a class="socials_item-link" href="#" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                      <i class="icon-facebook"></i>
+                    </a>
+                  </li>
+                  <li class="socials_item">
+                    <a class="socials_item-link" href="#" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                      <i class="icon-instagram"></i>
+                    </a>
+                  </li>
+                  <li class="socials_item">
+                    <a class="socials_item-link" href="#" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+                      <i class="icon-twitter"></i>
+                    </a>
+                  </li>
+                  <li class="socials_item">
+                    <a class="socials_item-link" href="#" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+                      <i class="icon-whatsapp"></i>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div><!-- /.about_aside -->
+        </div><!-- /.about_content -->
+      </div>
+    </div>
+
+  <!-- GALLERY -->
+  <div class="gallery presentation" data-role="gallery">
+    {project.gallery.map((img) => (
+      <div class="gallery_item">
+        <a class="media" data-role="gallery-link">
+          <picture>
+            <img src={img} alt={project.title} />
+          </picture>
+
+          <div class="overlay">
+            <div class="overlay_header section_header">
+              <span class="subtitle">Our gallery</span>
+            </div>
+            <h4 class="overlay_caption">{project.title}</h4>
+            <span class="overlay_label">Special Projects</span>
+          </div>
+        </a>
+      </div>
+    ))}
+  </div>
+
+  <!-- FEEDBACK (BỊ THIẾU TRƯỚC ĐÂY) -->
+        <section class="feedback section">
+            <div class=container>
+                <div class="feedback_header section_header"><span class=subtitle>Feedback</span>
+                    <h2 class=title>What <span class=highlight>Our Clients</span> Say About Us</h2>
+                    <p class=text>Non curabitur gravida arcu ac tortor dignissim convallis aenean. Dui id ornare arcu
+                        odio. Sodales ut eu sem integer vitae justo eget magna. Duis tristique sollicitudin nibh sit
+                        amet commodo nulla facilisi nullam</p><a class=btn href=contacts.html>Consult now</a>
+                </div>
+                <div class="feedback_slider swiper">
+                    <div class=swiper-wrapper>
+                        <div class="feedback_slider-slide swiper-slide">
+                            <p class=main>Consequat nisl vel pretium lectus quam id leo. Mauris augue neque gravida in
+                                fermentum et sollicitudin ac orci. Blandit libero volutpat sed cras ornare</p>
+                            <div class=media>
+                                <div class=avatar>
+                                    <picture>
+                                        <source data-srcset=/assets/img/avatars/female01.jpg
+                                            srcset=/assets/img/avatars/female01.jpg type=image/webp><img class=lazy
+                                            data-src=assets/img/avatars/female01.jpg src=assets/img/avatars/female01.jpg
+                                            alt="Rene Rodriguez">
+                                    </picture>
+                                </div>
+                                <div class=media_info><span class=name>Rene Rodriguez</span> <span
+                                        class=company>Acelerisque</span></div>
+                            </div>
+                        </div>
+                        <div class="feedback_slider-slide swiper-slide">
+                            <p class=main>Consequat nisl vel pretium lectus quam id leo. Mauris augue neque gravida in
+                                fermentum et sollicitudin ac orci. Blandit libero volutpat sed cras ornare</p>
+                            <div class=media>
+                                <div class=avatar>
+                                    <picture>
+                                        <source data-srcset=/assets/img/avatars/male01.jpg
+                                            srcset=/assets/img/avatars/male01.jpg type=image/webp><img class=lazy
+                                            data-src=assets/img/avatars/male01.jpg src=assets/img/avatars/male01.jpg
+                                            alt="John Smith">
+                                    </picture>
+                                </div>
+                                <div class=media_info><span class=name>John Smith</span> <span
+                                        class=company>Loremipsum</span></div>
+                            </div>
+                        </div>
+                        <div class="feedback_slider-slide swiper-slide">
+                            <p class=main>Consequat nisl vel pretium lectus quam id leo. Mauris augue neque gravida in
+                                fermentum et sollicitudin ac orci. Blandit libero volutpat sed cras ornare</p>
+                            <div class=media>
+                                <div class=avatar>
+                                    <picture>
+                                        <source data-srcset=/assets/img/avatars/female02.jpg
+                                            srcset=/assets/img/avatars/female02.jpg type=image/webp><img class=lazy
+                                            data-src=assets/img/avatars/female02.jpg src=assets/img/avatars/female02.jpg
+                                            alt="Marta Diaz">
+                                    </picture>
+                                </div>
+                                <div class=media_info><span class=name>Marta Diaz</span> <span
+                                        class=company>Qwerty</span></div>
+                            </div>
+                        </div>
+                        <div class="feedback_slider-slide swiper-slide">
+                            <p class=main>Consequat nisl vel pretium lectus quam id leo. Mauris augue neque gravida in
+                                fermentum et sollicitudin ac orci. Blandit libero volutpat sed cras ornare</p>
+                            <div class=media>
+                                <div class=avatar>
+                                    <picture>
+                                        <source data-srcset=/assets/img/avatars/male02.jpg
+                                            srcset=/assets/img/avatars/male02.jpg type=image/webp><img class=lazy
+                                            data-src=assets/img/avatars/male02.jpg src=assets/img/avatars/male02.jpg
+                                            alt="Victor Adams">
+                                    </picture>
+                                </div>
+                                <div class=media_info><span class=name>Victor Adams</span> <span
+                                        class=company>Dolorsitamet</span></div>
+                            </div>
+                        </div>
+                        <div class="feedback_slider-slide swiper-slide">
+                            <p class=main>Consequat nisl vel pretium lectus quam id leo. Mauris augue neque gravida in
+                                fermentum et sollicitudin ac orci. Blandit libero volutpat sed cras ornare</p>
+                            <div class=media>
+                                <div class=avatar>
+                                    <picture>
+                                        <source data-srcset=/assets/img/avatars/female03.jpg
+                                            srcset=/assets/img/avatars/female03.jpg type=image/webp><img class=lazy
+                                            data-src=assets/img/avatars/female03.jpg src=assets/img/avatars/female03.jpg
+                                            alt="Sarah Doe">
+                                    </picture>
+                                </div>
+                                <div class=media_info><span class=name>Sarah Doe</span> <span
+                                        class=company>Companyname</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="feedback_slider-pagination swiper-pagination"></div>
+                </div>
+            </div>
+        </section>
+</main>
+    <script src=/assets/js/singleproject.min.js defer></script>
+<Footer />
