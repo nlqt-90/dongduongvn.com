@@ -1,37 +1,21 @@
 ---
-import BaseLayout from "@layouts/BaseLayout.astro";
-import Header from "@components/Header.astro";
-import Footer from "@components/Footer.astro";
+import PageLayout from "@layouts/PageLayout.astro";
+import { Fragment } from "astro/jsx-runtime";
 import projects from "../../data/projects.json";
 
 const featuredProjects = projects.slice(0, 4);
 ---
-<link rel="stylesheet" href="/assets/css/projects.min.css" />
 
-<BaseLayout title="Projects | Axial Construct">
+<PageLayout 
+  title="Projects | Axial Construct"
+  pageSubtitle="Building communities"
+  pageTitle="Our Projects"
+>
+  <Fragment slot="head">
+    <link rel="stylesheet" href="/assets/css/projects.min.css" />
+  </Fragment>
 
-  <Header />
-<header class="page primary-bg">
-  <div class="container">
-    <div class="section_header">
-      <span class="subtitle subtitle--extended">Building communities</span>
-      <h1 class="title">Our Projects</h1>
-
-      <ul class="breadcrumbs">
-        <li class="breadcrumbs_item"><a href="/">Home</a></li>
-        <li class="breadcrumbs_item breadcrumbs_item--current">
-          <span>Our Projects</span>
-        </li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="media">
-    <img src="/assets/img/plan.png" alt="Projects" />
-  </div>
-</header>
-
-<main class="projects section">
+  <section class="projects section">
   <div class="container">
     <ul class="projects_list">
       {featuredProjects.map(project => (
@@ -64,6 +48,5 @@ const featuredProjects = projects.slice(0, 4);
       ))}
     </ul>
   </div>
-</main>
-
-<Footer />
+</section>
+</PageLayout>
