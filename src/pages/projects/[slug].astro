@@ -1,7 +1,6 @@
 ---
-import BaseLayout from "@layouts/BaseLayout.astro";
-import Header from "@components/Header.astro";
-import Footer from "@components/Footer.astro";
+import PageLayout from "@layouts/PageLayout.astro";
+import { Fragment } from "astro/jsx-runtime";
 import projects from "../../data/projects.json";
 
 export function getStaticPaths() {
@@ -17,39 +16,14 @@ if (!project) {
 }
 ---
 
-<link rel="stylesheet" href="/assets/css/single-project.min.css" />
-
-
-<BaseLayout title="Projects | Axial Construct">
-
-  <Header />
-
-<header class="page primary-bg">
-  <div class="container">
-    <div class="section_header">
-      <span class="subtitle subtitle--extended">Project details</span>
-      <h1 class="title">{project.title}</h1>
-
-      <ul class="breadcrumbs">
-        <li class="breadcrumbs_item">
-          <a href="/">Home</a>
-        </li>
-        <li class="breadcrumbs_item breadcrumbs_item--current">
-          <span>{project.title}</span>
-        </li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="media">
-            <picture>
-                <source data-srcset=/assets/img/plan.png srcset=/assets/img/plan.png type=image/webp><img class=lazy
-                    data-src=/assets/img/plan.png src=/assets/img/plan.png alt=media>
-            </picture>
-  </div>
-</header>
-
-<main>
+<PageLayout 
+  title={`${project.title} | Projects | Axial Construct`}
+  pageSubtitle="Project details"
+  pageTitle={project.title}
+>
+  <Fragment slot="head">
+    <link rel="stylesheet" href="/assets/css/single-project.min.css" />
+  </Fragment>
   <!-- ABOUT -->
      <div class="about section-nopb">
       <div class="container">
@@ -303,6 +277,8 @@ if (!project) {
                 </div>
             </div>
         </section>
-</main>
-    <script src=/assets/js/singleproject.min.js defer></script>
-<Footer />
+
+  <Fragment slot="scripts">
+    <script src="/assets/js/singleproject.min.js" defer></script>
+  </Fragment>
+</PageLayout>
