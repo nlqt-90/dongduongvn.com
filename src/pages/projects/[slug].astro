@@ -1,6 +1,6 @@
 ---
 import PageLayout from "@layouts/PageLayout.astro";
-import { Fragment } from "astro/jsx-runtime";
+
 import projects from "../../data/projects.json";
 
 export function getStaticPaths() {
@@ -21,9 +21,7 @@ if (!project) {
   pageSubtitle="Project details"
   pageTitle={project.title}
 >
-  <Fragment slot="head">
-    <link rel="stylesheet" href="/assets/css/single-project.min.css" />
-  </Fragment>
+  <link slot="head" rel="stylesheet" href="/assets/css/single-project.min.css" />
   <!-- ABOUT -->
      <div class="about section-nopb">
       <div class="container">

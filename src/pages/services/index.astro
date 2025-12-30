@@ -1,17 +1,16 @@
 ---
 import PageLayout from "@layouts/PageLayout.astro";
-import { Fragment } from "astro/jsx-runtime";
+
 
 ---
 
 <PageLayout 
   title="Services | Axial Construct"
   pageSubtitle="Building communities"
-  pageTitle="Services"
+  pageTitle="Dịch vụ"
 >
-  <Fragment slot="head">
-    <link rel="stylesheet" href="/assets/css/services.min.css" />
-  </Fragment>
+  <link slot="head" rel="stylesheet" href="/assets/css/services.min.css" />
+
         <section class="services section">
             <div class=container>
                 <div class="services_header section_header"><span class=subtitle>What we do</span>
@@ -44,7 +43,7 @@ import { Fragment } from "astro/jsx-runtime";
                         <div class=wrapper><span class=number>04</span>
                             <h4 class=title>Electrical Engineering</h4>
                             <p class=description>Ac tortor vitae purus faucibus ornare suspendisse sed nisi lacus. Nam
-                                aliquam sem et tortor</p><a class="link link-arrow" href="/services/installation">Details <i
+                                aliquam sem et tortor</p><a class="link link-arrow" href="/services/formwork">Details <i
                                     class="icon-arrow_right icon"></i></a>
                         </div>
                     </li>
@@ -52,7 +51,7 @@ import { Fragment } from "astro/jsx-runtime";
                         <div class=wrapper><span class=number>05</span>
                             <h4 class=title>Chemistry and Metallurgy</h4>
                             <p class=description>Mollis nunc sed id semper. Sodales ut etiam sit amet nisl purus. Sed
-                                odio morbi quis commodo odio</p><a class="link link-arrow" href="/services/operation">Details <i class="icon-arrow_right icon"></i></a>
+                                odio morbi quis commodo odio</p><a class="link link-arrow" href="#">Details <i class="icon-arrow_right icon"></i></a>
                         </div>
                     </li>
                     <li class=services_list-item data-aos=fade-up>
@@ -296,7 +295,7 @@ import { Fragment } from "astro/jsx-runtime";
             </div>
         </section>
 
-  <Fragment slot="scripts">
-    <script src="/assets/js/services.min.js" defer></script>
-  </Fragment>
+  <script slot="scripts" src="/assets/js/services.min.js" defer></script>
+
+
 </PageLayout>

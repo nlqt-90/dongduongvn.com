@@ -1,6 +1,6 @@
 ---
 import PageLayout from "@layouts/PageLayout.astro";
-import { Fragment } from "astro/jsx-runtime";
+
 import projects from "../../data/projects.json";
 
 const featuredProjects = projects.slice(0, 4);
@@ -11,9 +11,8 @@ const featuredProjects = projects.slice(0, 4);
   pageSubtitle="Building communities"
   pageTitle="Our Projects"
 >
-  <Fragment slot="head">
-    <link rel="stylesheet" href="/assets/css/projects.min.css" />
-  </Fragment>
+  <link slot="head" rel="stylesheet" href="/assets/css/projects.min.css" />
+
 
   <section class="projects section">
   <div class="container">
