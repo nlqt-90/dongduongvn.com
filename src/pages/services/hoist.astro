@@ -1,6 +1,5 @@
 ---
 import PageLayout from "@layouts/PageLayout.astro";
-import { Fragment } from "astro/jsx-runtime";
 
 ---
 
@@ -9,9 +8,7 @@ import { Fragment } from "astro/jsx-runtime";
   pageSubtitle="Single service"
   pageTitle="Electrical Engineering"
 >
-  <Fragment slot="head">
-    <link rel="stylesheet" href="/assets/css/single-service.min.css" />
-  </Fragment>
+  <link slot="head" rel="stylesheet" href="/assets/css/single-service.min.css" />
         <section class="tabs section">
             <div class=container>
                 <div class="tabs_header section_header">
@@ -560,7 +557,5 @@ import { Fragment } from "astro/jsx-runtime";
             </div>
         </section>
 
-  <Fragment slot="scripts">
-    <script src="/assets/js/singleservice.min.js" defer></script>
-  </Fragment>
+  <script slot="scripts" src="/assets/js/singleservice.min.js" defer></script>
 </PageLayout>

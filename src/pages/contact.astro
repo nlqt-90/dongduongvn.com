@@ -1,6 +1,5 @@
 ---
 import PageLayout from "@layouts/PageLayout.astro";
-import { Fragment } from "astro/jsx-runtime";
 
 ---
 
@@ -9,9 +8,7 @@ import { Fragment } from "astro/jsx-runtime";
   pageSubtitle="Build relationships"
   pageTitle="Contacts"
 >
-  <Fragment slot="head">
-    <link rel="stylesheet" href="/assets/css/contacts.min.css" />
-  </Fragment>
+  <link slot="head" rel="stylesheet" href="/assets/css/contacts.min.css" />
         <section class="info section-nopb">
             <div class=container>
                 <div class=info_data>
@@ -61,7 +58,5 @@ import { Fragment } from "astro/jsx-runtime";
             </div>
         </section>
 
-  <Fragment slot="scripts">
-    <script src="/assets/js/map.min.js" defer></script>
-  </Fragment>
+  <script slot="scripts" src="/assets/js/map.min.js" defer></script>
 </PageLayout>

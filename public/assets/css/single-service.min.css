@@ -292,6 +292,13 @@ html[dir="rtl"] .tabs_content-item .main .info_table .value {
 .process_steps-step {
     position: relative;
 }
+/* Override progress-step when inside process_steps-step */
+.process_steps-step.progress-step {
+    display: block;
+    -webkit-box-flex: unset;
+    -ms-flex: unset;
+    flex: unset;
+}
 .process_steps-step_wrapper {
     margin-left: 20px;
     padding-left: 20px;
@@ -352,8 +359,21 @@ html[dir="rtl"] .process_steps-step_wrapper {
     .process_steps {
         padding-right: 0;
         margin-top: 60px;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+        flex-direction: row;
     }
     .process_steps-step {
+        -webkit-box-flex: unset;
+        -ms-flex: unset;
+        flex: unset;
+    }
+    /* Override progress-step flex when inside process_steps on desktop */
+    .process_steps .progress-step {
         -webkit-box-flex: unset;
         -ms-flex: unset;
         flex: unset;
@@ -378,6 +398,135 @@ html[dir="rtl"] .process_steps-step_wrapper {
         margin-right: 0;
         padding-right: 10px;
         margin-left: 32px;
+    }
+}
+/* Progress Tracker Styles - From Original Theme */
+.progress-tracker {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    padding: 0;
+    list-style: none;
+}
+.progress-step {
+    -webkit-box-flex: 1;
+    -ms-flex: 1 1 0%;
+    flex: 1 1 0%;
+    margin: 0;
+    padding: 0;
+    min-width: 24px;
+}
+.progress-step:last-child {
+    -webkit-box-flex: 0;
+    -ms-flex-positive: 0;
+    flex-grow: 0;
+}
+.progress-step:last-child .progress-marker::after {
+    display: none;
+}
+.progress-marker {
+    display: block;
+    position: relative;
+}
+.progress-marker_spot {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: inline-block;
+    background-color: #ffc631;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 3;
+}
+.progress-marker_spot--underlay {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background-color: rgba(255, 198, 49, 0.3);
+    top: -10px;
+    left: -10px;
+    z-index: 2;
+    transition: ease-in-out;
+}
+.progress-step.is-complete .progress-marker_spot--underlay {
+    animation: 4.5s infinite pulse;
+    width: 40px;
+    height: 40px;
+}
+.progress-marker::after {
+    content: '';
+    display: block;
+    position: absolute;
+    z-index: 1;
+    top: 10px;
+    right: -10px;
+    width: 100%;
+    height: 1px;
+    -webkit-transition: background-color .6s, background-position .6s;
+    transition: background-color .6s, background-position .6s;
+}
+.progress-step .progress-marker {
+    color: #a9a9a9;
+}
+.progress-step .progress-marker::after,
+.progress-step .progress-marker::before {
+    background-color: #b6b6b6;
+}
+.progress-step.is-active .progress-marker::before,
+.progress-step.is-complete .progress-marker::after,
+.progress-step.is-complete .progress-marker::before,
+.progress-step.is-progress .progress-marker::after,
+.progress-step.is-progress .progress-marker::before {
+    background-color: #ffc631;
+}
+.progress-tracker--vertical {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+}
+.progress-tracker--vertical .progress-step {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-flex: 1;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+}
+/* Override for process_steps-step to prevent layout issues */
+.process_steps-step.progress-step {
+    display: block;
+    -webkit-box-flex: unset;
+    -ms-flex: unset;
+    flex: unset;
+}
+.progress-tracker--vertical .progress-marker::after {
+    right: auto;
+    top: 0;
+    left: 10px;
+    width: 1px;
+    height: 100%;
+}
+@-webkit-keyframes pulse {
+    0%, 100% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+    }
+    50% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+}
+@keyframes pulse {
+    0%, 100% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+    }
+    50% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
     }
 }
 .faq_header .text {

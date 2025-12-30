@@ -1,6 +1,5 @@
 ---
 import PageLayout from "@layouts/PageLayout.astro";
-import { Fragment } from "astro/jsx-runtime";
 
 ---
 
@@ -9,9 +8,7 @@ import { Fragment } from "astro/jsx-runtime";
   pageSubtitle="Building communities"
   pageTitle="About"
 >
-  <Fragment slot="head">
-    <link rel="stylesheet" href="/assets/css/about.css" />
-  </Fragment>
+  <link slot="head" rel="stylesheet" href="/assets/css/about.css" />
 
         <section class="about section">
             <div class=container>
@@ -534,7 +531,5 @@ import { Fragment } from "astro/jsx-runtime";
             </div>
         </section>
 
-  <Fragment slot="scripts">
-    <script src="/assets/js/about.min.js" defer></script>
-  </Fragment>
+  <script slot="scripts" src="/assets/js/about.min.js" defer></script>
 </PageLayout>
