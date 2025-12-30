@@ -1,36 +1,17 @@
 ---
-import BaseLayout from "@layouts/BaseLayout.astro";
-import Header from "@components/Header.astro";
-import Footer from "@components/Footer.astro";
+import PageLayout from "@layouts/PageLayout.astro";
+import { Fragment } from "astro/jsx-runtime";
 
 ---
 
-<BaseLayout title="Liên hệ | Đông Dương">
-
-  <!-- CSS RIÊNG CỦA ABOUT -->
-<link rel="stylesheet" href="/assets/css/contacts.min.css" />
-
-
-  <Header />
-
-    <header class="page primary-bg">
-        <div class=container>
-            <div class=section_header><span class="subtitle subtitle--extended">Build relationships</span>
-                <h1 class=title>Contacts</h1>
-                <ul class=breadcrumbs>
-                    <li class=breadcrumbs_item><a href=index-2.html>Home</a></li>
-                    <li class="breadcrumbs_item breadcrumbs_item--current"><span>Contacts</span></li>
-                </ul>
-            </div>
-        </div>
-        <div class=media>
-            <picture>
-                <source data-srcset=/assets/img/plan.png srcset=assets/img/plan.png type=image/webp><img class=lazy
-                    data-src=/assets/img/plan.png src=/assets/img/plan.png alt=media>
-            </picture>
-        </div>
-    </header>
-    <main>
+<PageLayout 
+  title="Liên hệ | Đông Dương"
+  pageSubtitle="Build relationships"
+  pageTitle="Contacts"
+>
+  <Fragment slot="head">
+    <link rel="stylesheet" href="/assets/css/contacts.min.css" />
+  </Fragment>
         <section class="info section-nopb">
             <div class=container>
                 <div class=info_data>
@@ -79,10 +60,8 @@ import Footer from "@components/Footer.astro";
                 </div>
             </div>
         </section>
-    </main>
 
-    <script src=/assets/js/map.min.js defer></script>
-
-  <Footer />
-
-</BaseLayout>
+  <Fragment slot="scripts">
+    <script src="/assets/js/map.min.js" defer></script>
+  </Fragment>
+</PageLayout>
