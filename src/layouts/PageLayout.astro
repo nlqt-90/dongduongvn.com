@@ -1,0 +1,81 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Header from "@components/Header.astro";
+import Footer from "@components/Footer.astro";
+
+interface Props {
+  title: string;
+  description?: string;
+  pageSubtitle?: string;
+  pageTitle: string;
+  breadcrumbs?: Array<{ label: string; href?: string }>;
+  headerImage?: string;
+}
+
+const {
+  title,
+  description,
+  pageSubtitle = "",
+  pageTitle,
+  breadcrumbs = [],
+  headerImage = "/assets/img/plan.png"
+} = Astro.props;
+
+// Tự động tạo breadcrumbs nếu không được cung cấp
+const finalBreadcrumbs = breadcrumbs.length > 0 
+  ? breadcrumbs 
+  : [
+      { label: "Home", href: "/" },
+      { label: pageTitle, href: undefined } // current page
+    ];
+---
+
+<BaseLayout title={title} description={description}>
+  <slot name="head" />
+  
+  <Header />
+
+  <header class="page primary-bg">
+    <div class="container">
+      <div class="section_header">
+        {pageSubtitle && (
+          <span class="subtitle subtitle--extended">{pageSubtitle}</span>
+        )}
+        <h1 class="title">{pageTitle}</h1>
+        <ul class="breadcrumbs">
+          {finalBreadcrumbs.map((crumb, index) => (
+            <li 
+              class={`breadcrumbs_item ${!crumb.href ? 'breadcrumbs_item--current' : ''}`}
+            >
+              {crumb.href ? (
+                <a href={crumb.href}>{crumb.label}</a>
+              ) : (
+                <span>{crumb.label}</span>
+              )}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+    <div class="media">
+      <picture>
+        <source data-srcset={headerImage} srcset={headerImage} type="image/webp" />
+        <img 
+          class="lazy" 
+          data-src={headerImage} 
+          src={headerImage} 
+          alt="media" 
+        />
+      </picture>
+    </div>
+  </header>
+
+  <main>
+    <slot />
+  </main>
+
+  <Footer />
+
+  <slot name="scripts" />
+</BaseLayout>
+
