@@ -490,6 +490,14 @@
     margin-top: 30px;
     position: relative;
 }
+/* Ensure any image inside spots_map scales properly even if class not assigned */
+.spots_map img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 600px;
+    object-fit: contain;
+}
 .spots_map-map {
     display: block;
     -o-object-fit: cover;
