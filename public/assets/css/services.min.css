@@ -1,17 +1,28 @@
 
-/* Đồng bộ với home.css - bắt đầu */
-.services_header{
-    max-width:510px;
-    width:100%;
+/* Đồng bộ bổ sung services từ home.css */
+.services_list{
+    display:grid;
+    grid-gap:30px;
 }
-.services_list-item .wrapper{
-    display:-webkit-box;
-    display:-ms-flexbox;
-    display:flex;
-    -webkit-box-orient:vertical;
-    -webkit-box-direction:normal;
-    -ms-flex-direction:column;
-    flex-direction:column;
-    height:100%;
+.services_list-item .services_header .text{color:#162739;}
+.services_list-item .wrapper{border:1px solid #c8c8c8;transition:0.3s ease-in-out;}
+.services_list-item .wrapper:hover{border-color:#0da574;}
+.services_list-item .wrapper .number{color:#e9e6e6;font-family:"Inter",system-ui,sans-serif;font-weight:800;font-size:36px;line-height:40px;}
+.services_list-item .wrapper .title{margin:20px 0;}
+.services_list-item .wrapper .description{margin-bottom:40px;color:#202c38;-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;}
+@media screen and (min-width:567.98px){
+ .services_list-item .wrapper{padding:40px;}
+ .services_list-item .number{font-size:40px;line-height:50px;}
 }
-/* Đồng bộ với home.css - kết thúc */
+@media screen and (min-width:767.98px){
+ .services_list{grid-template-columns:repeat(2,1fr);}
+ .services_list-item .wrapper{padding:30px;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column;}
+ .services_list-item .wrapper .description{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;}
+}
+@media screen and (min-width:1023.98px){
+ .services_list-item .wrapper{padding:40px;}
+ .services_list-item .wrapper .number{font-size:48px;line-height:55px;}
+}
+@media screen and (min-width:1279.98px){
+ .services_list{grid-template-columns:repeat(3,1fr);}
+}
