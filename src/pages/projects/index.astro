@@ -1,9 +1,9 @@
 ---
 import PageLayout from "@layouts/PageLayout.astro";
 
-import projects from "../../data/projects.json";
+import { getSortedProjects } from "../../utils/projects.ts";
 
-const featuredProjects = projects.slice(0, 4);
+const allProjects = getSortedProjects();
 ---
 
 <PageLayout 
@@ -17,7 +17,7 @@ const featuredProjects = projects.slice(0, 4);
   <section class="projects section">
   <div class="container">
     <ul class="projects_list">
-      {featuredProjects.map(project => (
+      {allProjects.map(project => (
         <li class="projects_list-item">
           <div class="media">
             <img src={project.thumbnail} alt={project.title} />

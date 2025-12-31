@@ -2,6 +2,9 @@
 import BaseLayout from "@layouts/BaseLayout.astro";
 import Header from "@components/Header.astro";
 import Footer from "@components/Footer.astro";
+import { getSortedProjects } from "../utils/projects.ts";
+
+const latestProjects = getSortedProjects().slice(0, 4);
 
 ---
 
@@ -70,20 +73,16 @@ import Footer from "@components/Footer.astro";
         <div class="services_header section_header">
             <span class="subtitle">Dịch vụ cho thuê</span>
             <h2 class="title" data-aos="fade-right" data-aos-duration="500">
-                Hệ thống Thiết bị <br /> 
-                <span class="highlight">Nâng hạ & Chống đỡ</span>
+                Thiết bị <br /> 
+                <span class="highlight">Máy Xây Dựng</span>
             </h2>
-            <p class="text">
-                Sở hữu danh mục thiết bị chủ lực từ các thương hiệu hàng đầu thế giới như Potain, Alimak, GJJ... 
-                Đông Dương cam kết đáp ứng mọi tiêu chuẩn kỹ thuật cho các dự án trọng điểm quốc gia.
-            </p>
         </div>
         <ul class="services_list">
             <li class="services_list-item" data-aos="fade-up">
                 <div class="wrapper">
                     <span class="number">01</span>
-                    <h4 class="title">Cẩu tháp Potain</h4>
-                    <p class="description">Hệ thống cẩu tháp Potain (Pháp) với các model MC 175, MCi 85 tiêu chuẩn, đảm bảo hiệu suất nâng hạ tối ưu.</p>
+                    <h4 class="title">Cẩu tháp</h4>
+                    <p class="description">Giải pháp cẩu tháp phục vụ thi công nhà cao tầng và công trình quy mô lớn, đảm bảo an toàn, ổn định và hiệu quả nâng hạ.</p>
                     <a class="link link-arrow" href="/services/tower-crane">Chi tiết <i class="icon-arrow_right icon"></i></a>
                 </div>
             </li>
@@ -91,8 +90,8 @@ import Footer from "@components/Footer.astro";
             <li class="services_list-item" data-aos="fade-up" data-aos-delay="100">
                 <div class="wrapper">
                     <span class="number">02</span>
-                    <h4 class="title">Vận thăng lồng</h4>
-                    <p class="description">Cung cấp các dòng vận thăng GJJ và ALIMAK tải trọng 2000kg, tốc độ vận hành lên đến 60m/phút.</p>
+                    <h4 class="title">Vận thăng</h4>
+                    <p class="description">Hệ thống vận thăng chở người và vật liệu, vận hành ổn định, đáp ứng yêu cầu thi công liên tục tại công trình cao tầng.</p>
                     <a class="link link-arrow" href="/services/hoist">Chi tiết <i class="icon-arrow_right icon"></i></a>
                 </div>
             </li>
@@ -100,8 +99,8 @@ import Footer from "@components/Footer.astro";
             <li class="services_list-item" data-aos="fade-up" data-aos-delay="200">
                 <div class="wrapper">
                     <span class="number">03</span>
-                    <h4 class="title">Giàn giáo Khớp nối</h4>
-                    <p class="description">Hệ giàn giáo Kwickstage đạt chuẩn QUATEST, thiết kế thông minh giúp giảm vật tư và chi phí vận chuyển.</p>
+                    <h4 class="title">Giàn giáo</h4>
+                    <p class="description">Hệ giàn giáo linh hoạt, chắc chắn, đáp ứng tiêu chuẩn an toàn thi công, tối ưu lắp dựng và tháo dỡ.</p>
                     <a class="link link-arrow" href="/services/scaffolding">Chi tiết <i class="icon-arrow_right icon"></i></a>
                 </div>
             </li>
@@ -109,8 +108,8 @@ import Footer from "@components/Footer.astro";
             <li class="services_list-item" data-aos="fade-up" data-aos-delay="300">
                 <div class="wrapper">
                     <span class="number">04</span>
-                    <h4 class="title">Cốp pha thép</h4>
-                    <p class="description">Giải pháp cốp pha tấm sàn, cốp pha cột đa dạng quy cách, chịu lực tốt và đảm bảo độ phẳng bề mặt bê tông.</p>
+                    <h4 class="title">Cốp pha</h4>
+                    <p class="description">Giải pháp cốp pha đa dạng cho sàn, cột và vách, đảm bảo độ chính xác hình khối và chất lượng bề mặt bê tông.</p>
                     <a class="link link-arrow" href="/services/formwork">Chi tiết <i class="icon-arrow_right icon"></i></a>
                 </div>
             </li>
@@ -119,7 +118,7 @@ import Footer from "@components/Footer.astro";
                 <div class="wrapper">
                     <span class="number">05</span>
                     <h4 class="title">Vận chuyển & Lắp đặt</h4>
-                    <p class="description">Dịch vụ trọn gói từ vận chuyển đến lắp dựng, vận hành và tháo hạ thiết bị chuyên nghiệp tận công trình.</p>
+                    <p class="description">Dịch vụ trọn gói từ vận chuyển, lắp dựng đến tháo dỡ thiết bị, đảm bảo tiến độ và an toàn tại công trình.</p>
                     <a class="link link-arrow" href="#">Chi tiết <i class="icon-arrow_right icon"></i></a>
                 </div>
             </li>
@@ -127,8 +126,8 @@ import Footer from "@components/Footer.astro";
             <li class="services_list-item" data-aos="fade-up" data-aos-delay="500">
                 <div class="wrapper">
                     <span class="number">06</span>
-                    <h4 class="title">Khán đài di động</h4>
-                    <p class="description">Kỷ lục Việt Nam về khán đài lắp ghép. Giải pháp sân khấu và khán đài sự kiện tiêu chuẩn quốc tế.</p>
+                    <h4 class="title">Khán đài</h4>
+                    <p class="description">Giải pháp khán đài và sân khấu lắp ghép cho sự kiện và công trình công cộng, đáp ứng yêu cầu quy mô lớn.</p>
                     <a class="link link-arrow" href="https://khandaivn.com" target="_blank" rel="noopener noreferrer">khandaivn.com <i class="icon-arrow_right icon"></i></a>
                 </div>
             </li>
@@ -144,78 +143,31 @@ import Footer from "@components/Footer.astro";
                 <div class="projects_header section_header"><span class=subtitle>What we do</span>
                     <h2 class=title data-aos=fade-right>Our <span class=highlight>Projects</span></h2>
                 </div>
-                <ul class=projects_list>
-                    <li class=projects_list-item>
-                        <div class=media data-aos=zoom-in-right>
-                            <picture>
-                                <source data-srcset=/assets/img/projects/01.jpg srcset=/assets/img/projects/01.jpg type=image/webp>
-                                <img class=lazy data-src=/assets/img/projects/01.jpg src=/assets/img/projects/01.jpg
-                                    alt="Jazzy Elite Construction Shopping Center">
-                            </picture>
-                        </div>
-                        <div class=main>
-                            <h3 class=main_title data-aos=fade-in><span class=text>Jazzy Elite Construction
-                                    Shopping</span> <span class="divider divider--line" data-aos=slide-right></span>
-                            </h3>
-                            <div class=main_info><span class=location data-aos=fade-in data-aos-delay=50><i
-                                        class="icon-location icon"></i> 100 Sunrise Ct Hamel, Minnesota </span><a
-                                    class="link link-arrow link-arrow--alt" href=single-project.html data-aos=fade-in
-                                    data-aos-delay=50>Details <i class="icon-arrow_right icon"></i></a></div>
-                        </div>
-                    </li>
-                    <li class=projects_list-item>
-                        <div class=media data-aos=zoom-in-right>
-                            <picture>
-                                <source data-srcset=/assets/img/projects/02.jpg srcset=/assets/img/projects/02.jpg type=image/webp>
-                                <img class=lazy data-src=/assets/img/projects/02.jpg src=/assets/img/projects/02.jpg
-                                    alt="Fresh Concept Construction Renovation">
-                            </picture>
-                        </div>
-                        <div class=main>
-                            <h3 class=main_title data-aos=fade-in><span class=text>Fresh Concept Construction
-                                    Renovation</span> <span class="divider divider--line" data-aos=slide-right></span>
-                            </h3>
-                            <div class=main_info><span class=location data-aos=fade-in data-aos-delay=50><i
-                                        class="icon-location icon"></i> Rocky Highway Port Juana </span><a
-                                    class="link link-arrow link-arrow--alt" href=single-project.html data-aos=fade-in
-                                    data-aos-delay=50>Details <i class="icon-arrow_right icon"></i></a></div>
-                        </div>
-                    </li>
-                    <li class=projects_list-item>
-                        <div class=media data-aos=zoom-in-right>
-                            <picture>
-                                <source data-srcset=/assets/img/projects/03.jpg srcset=/assets/img/projects/03.jpg type=image/webp>
-                                <img class=lazy data-src=/assets/img/projects/03.jpg src=/assets/img/projects/03.jpg
-                                    alt="Installation a  Supply System">
-                            </picture>
-                        </div>
-                        <div class=main>
-                            <h3 class=main_title data-aos=fade-in><span class=text>Installation a Supply System</span>
-                                <span class="divider divider--line" data-aos=slide-right></span></h3>
-                            <div class=main_info><span class=location data-aos=fade-in data-aos-delay=50><i
-                                        class="icon-location icon"></i> Wuckert Junctions Hermannberg </span><a
-                                    class="link link-arrow link-arrow--alt" href=single-project.html data-aos=fade-in
-                                    data-aos-delay=50>Details <i class="icon-arrow_right icon"></i></a></div>
-                        </div>
-                    </li>
-                    <li class=projects_list-item>
-                        <div class=media data-aos=zoom-in-right>
-                            <picture>
-                                <source data-srcset=/assets/img/projects/04.jpg srcset=/assets/img/projects/04.jpg type=image/webp>
-                                <img class=lazy data-src=/assets/img/projects/04.jpg src=/assets/img/projects/04.jpg
-                                    alt="Reconstruction of Old Factory Building">
-                            </picture>
-                        </div>
-                        <div class=main>
-                            <h3 class=main_title data-aos=fade-in><span class=text>Reconstruction of Old Factory
-                                    Building</span> <span class="divider divider--line" data-aos=slide-right></span>
-                            </h3>
-                            <div class=main_info><span class=location data-aos=fade-in data-aos-delay=50><i
-                                        class="icon-location icon"></i> Stoltenberg Underpass Blockbury </span><a
-                                    class="link link-arrow link-arrow--alt" href=single-project.html data-aos=fade-in
-                                    data-aos-delay=50>Details <i class="icon-arrow_right icon"></i></a></div>
-                        </div>
-                    </li>
+                <ul class="projects_list">
+                    {latestProjects.map(project => (
+                        <li class="projects_list-item">
+                            <div class="media" data-aos="zoom-in-right">
+                                <picture>
+                                    <source data-srcset={project.thumbnail} srcset={project.thumbnail} type="image/webp" />
+                                    <img class="lazy" data-src={project.thumbnail} src={project.thumbnail} alt={project.title} />
+                                </picture>
+                            </div>
+                            <div class="main">
+                                <h3 class="main_title" data-aos="fade-in">
+                                    <span class="text">{project.title}</span>
+                                    <span class="divider divider--line" data-aos="slide-right"></span>
+                                </h3>
+                                <div class="main_info">
+                                    <span class="location" data-aos="fade-in" data-aos-delay="50">
+                                        <i class="icon-location icon"></i> {project.location}
+                                    </span>
+                                    <a class="link link-arrow link-arrow--alt" href={`/projects/${project.slug}`} data-aos="fade-in" data-aos-delay="50">
+                                        Details <i class="icon-arrow_right icon"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
+                    ))}
                 </ul>
             </div>
         </section>
