@@ -1,31 +1,27 @@
 [
   {
-    "slug": "food-factory-design-and-construction",
-    "title": "Food Factory Design and Construction",
-    "location": "Karli Turnpike Apt. 993 Port Valentine",
+    "slug": "nha-may-che-bien-thuc-pham-greenfarm",
+    "title": "Nhà máy Chế biến Thực phẩm GreenFarm",
+    "location": "KCN Long Hậu, Long An",
     "thumbnail": "/assets/img/projects/05.jpg",
     "mainImage": "/assets/img/singleproject.jpg",
-
     "description": [
-      "Congue eu consequat ac felis donec et odio pellentesque. Nullam ac tortor vitae purus.",
-      "Aenean sed adipiscing diam donec adipiscing tristique risus. Nunc pulvinar sapien et ligula."
+      "Thiết kế và thi công trọn gói nhà máy theo tiêu chuẩn GMP, đáp ứng yêu cầu sản xuất sạch và an toàn.",
+      "Hệ thống kết cấu thép và panel bao che hiện đại, tối ưu hóa không gian và hiệu suất vận hành."
     ],
-
     "checklist": [
-      "Building the future with ideas",
-      "Designing future with excellence",
-      "Discovering possibility in concrete",
-      "Engineering the better way"
+      "Thiết kế tối ưu theo công năng",
+      "Kết cấu thép chịu lực",
+      "Hệ thống Panel cách nhiệt",
+      "Đáp ứng tiêu chuẩn GMP"
     ],
-
     "info": {
-      "location": "California, US",
-      "sector": "Buildings, civil",
-      "technology": "Monolithicas",
-      "scope": "12 000",
+      "location": "Long An, Việt Nam",
+      "sector": "Công nghiệp, Nhà xưởng",
+      "technology": "Kết cấu thép, Panel",
+      "scope": "12,000 m²",
       "completionDate": "Jan 1, 2021"
     },
-
     "gallery": [
       "/assets/img/gallery/01.jpg",
       "/assets/img/gallery/08.jpg",
@@ -33,33 +29,27 @@
       "/assets/img/gallery/09.jpg"
     ]
   },
-
   {
-    "slug": "fresh-concept-construction-renovation",
-    "title": "Fresh Concept Construction Renovation",
-    "location": "Daphne Way New Reaganmouth",
+    "slug": "cai-tao-toa-nha-van-phong-central-point",
+    "title": "Cải tạo Tòa nhà Văn phòng Central Point",
+    "location": "Quận 1, TP. Hồ Chí Minh",
     "thumbnail": "/assets/img/projects/02.jpg",
-    "headerImage": "/assets/img/plan.png",
     "mainImage": "/assets/img/singleproject.jpg",
-
     "description": [
-      "Fresh renovation concept focused on sustainable materials and modern architecture."
+      "Dự án cải tạo toàn diện mặt tiền và không gian nội thất, mang lại diện mạo hiện đại và nâng cao giá trị tài sản."
     ],
-
     "checklist": [
-      "Sustainable materials",
-      "Modern construction",
-      "Cost efficiency"
+      "Vật liệu bền vững",
+      "Kiến trúc hiện đại",
+      "Tối ưu chi phí"
     ],
-
     "info": {
-      "location": "New York, US",
-      "sector": "Renovation",
-      "technology": "Hybrid",
-      "scope": "9 500",
+      "location": "TP. Hồ Chí Minh, Việt Nam",
+      "sector": "Cải tạo, Văn phòng",
+      "technology": "Hybrid, Kính cường lực",
+      "scope": "9,500 m²",
       "completionDate": "Aug 12, 2021"
     },
-
     "gallery": [
       "/assets/img/gallery/02.jpg",
       "/assets/img/gallery/01.jpg",
@@ -67,33 +57,27 @@
       "/assets/img/gallery/06.jpg"
     ]
   },
-
   {
-    "slug": "reconstruction-of-old-factory-building",
-    "title": "Reconstruction of Old Factory Building",
-    "location": "Schoen Ramp Suite 607 Borerton",
+    "slug": "tai-cau-truc-nha-may-det-may-vinatex",
+    "title": "Tái cấu trúc Nhà máy Dệt may Vinatex",
+    "location": "KCN Sóng Thần, Bình Dương",
     "thumbnail": "/assets/img/projects/06.jpg",
-    "headerImage": "/assets/img/plan.png",
     "mainImage": "/assets/img/singleproject.jpg",
-
     "description": [
-      "Complete reconstruction of an old industrial facility with updated safety standards."
+      "Tái cấu trúc nhà xưởng cũ, gia cố kết cấu và nâng cấp hệ thống PCCC theo tiêu chuẩn mới nhất."
     ],
-
     "checklist": [
-      "Structural reinforcement",
-      "Industrial safety upgrade",
-      "Energy efficiency"
+      "Gia cố kết cấu",
+      "Nâng cấp an toàn PCCC",
+      "Tối ưu hiệu suất năng lượng"
     ],
-
     "info": {
-      "location": "Texas, US",
-      "sector": "Industrial",
-      "technology": "Steel Frame",
-      "scope": "15 300",
+      "location": "Bình Dương, Việt Nam",
+      "sector": "Công nghiệp, Tái cấu trúc",
+      "technology": "Khung thép, Bê tông dự ứng lực",
+      "scope": "15,300 m²",
       "completionDate": "Mar 5, 2022"
     },
-
     "gallery": [
       "/assets/img/gallery/02.jpg",
       "/assets/img/gallery/01.jpg",
@@ -101,38 +85,60 @@
       "/assets/img/gallery/06.jpg"
     ]
   },
-
   {
-    "slug": "installation-and-creation-of-a-supply-system",
-    "title": "Installation and Creation of a Supply System",
-    "location": "Ernest Mount Bartonstad",
+    "slug": "he-thong-cap-nuoc-sach-sai-gon",
+    "title": "Hệ thống Cấp nước Sạch Sài Gòn",
+    "location": "Thủ Đức, TP. Hồ Chí Minh",
     "thumbnail": "/assets/img/projects/03.jpg",
-    "headerImage": "/assets/img/plan.png",
     "mainImage": "/assets/img/singleproject.jpg",
-
     "description": [
-      "Installation of a modern supply system ensuring reliability and scalability."
+      "Lắp đặt hệ thống đường ống và trạm bơm hiện đại, đảm bảo cung cấp nước sạch ổn định cho khu vực."
     ],
-
     "checklist": [
-      "System planning",
-      "Professional installation",
-      "Long-term maintenance"
+      "Lập kế hoạch hệ thống",
+      "Lắp đặt chuyên nghiệp",
+      "Bảo trì dài hạn"
     ],
-
     "info": {
-      "location": "Illinois, US",
-      "sector": "Infrastructure",
-      "technology": "Automation",
-      "scope": "7 800",
+      "location": "TP. Hồ Chí Minh, Việt Nam",
+      "sector": "Hạ tầng kỹ thuật",
+      "technology": "Tự động hóa, SCADA",
+      "scope": "7,800 m²",
       "completionDate": "Nov 18, 2022"
     },
-
     "gallery": [
       "/assets/img/gallery/02.jpg",
       "/assets/img/gallery/01.jpg",
       "/assets/img/gallery/05.jpg",
       "/assets/img/gallery/06.jpg"
+    ]
+  },
+  {
+    "slug": "khu-do-thi-vinhomes-ocean-park",
+    "title": "Khu đô thị Vinhomes Ocean Park",
+    "location": "Gia Lâm, Hà Nội",
+    "thumbnail": "/assets/img/projects/01.jpg",
+    "mainImage": "/assets/img/singleproject.jpg",
+    "description": [
+      "Cung cấp giải pháp giàn giáo và cốp pha toàn diện cho các tòa tháp căn hộ cao tầng trong đại đô thị."
+    ],
+    "checklist": [
+      "Giải pháp an toàn tuyệt đối",
+      "Đáp ứng tiến độ nhanh",
+      "Tối ưu chi phí vật tư"
+    ],
+    "info": {
+      "location": "Hà Nội, Việt Nam",
+      "sector": "Khu đô thị, Nhà cao tầng",
+      "technology": "Giàn giáo, Cốp pha nhôm",
+      "scope": "50,000 m²",
+      "completionDate": "Dec 25, 2023"
+    },
+    "gallery": [
+      "/assets/img/gallery/01.jpg",
+      "/assets/img/gallery/03.jpg",
+      "/assets/img/gallery/04.jpg",
+      "/assets/img/gallery/07.jpg"
     ]
   }
 ]
