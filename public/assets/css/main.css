@@ -118,6 +118,7 @@ html.fixed {
     width: 100%;
 }
 body {
+    font-family: "Inter", system-ui, sans-serif;
     font-family: Roboto, sans-serif;
     font-size: 17px;
     line-height: 1.5;
@@ -231,7 +232,7 @@ body.swal2-shown {
     font-size: 16px;
     line-height: 21px;
     margin-bottom: 15px;
-    font-family: Archivo, sans-serif;
+    font-family: "Inter", system-ui, sans-serif;
     font-weight: 600;
 }
 .section_header .subtitle:before {
@@ -268,7 +269,7 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: Archivo, sans-serif;
+    font-family: "Inter", system-ui, sans-serif;
     font-weight: 700;
     line-height: 1.2;
 }
@@ -362,7 +363,7 @@ h6 {
     border-color: red !important;
 }
 .btn {
-    font-family: Archivo, sans-serif;
+    font-family: "Inter", system-ui, sans-serif;
     font-weight: 700;
     padding: 0 30px;
     color: #000810;
@@ -410,7 +411,7 @@ h6 {
 }
 .metadata .category {
     color: #001f3f;
-    font-family: Archivo, sans-serif;
+    font-family: "Inter", system-ui, sans-serif;
     font-weight: 600;
 }
 .metadata .author .link:hover,
@@ -539,7 +540,7 @@ input[type="checkbox"] + label .icon {
     line-height: 1;
     color: #0da574;
     letter-spacing: 1px;
-    font-family: Archivo, sans-serif;
+    font-family: "Inter", system-ui, sans-serif;
     font-weight: 600;
 }
 .link-arrow--alt {
@@ -565,7 +566,7 @@ input[type="checkbox"] + label .icon {
     align-items: center;
     gap: 10px;
     color: #fff;
-    font-family: Archivo, sans-serif;
+    font-family: "Inter", system-ui, sans-serif;
     font-weight: 700;
     font-size: 24px;
     line-height: 1;
@@ -910,14 +911,14 @@ input[type="checkbox"] + label .icon {
     margin-bottom: 0;
 }
 .gallery_item .media .overlay_caption {
-    font-family: Archivo, sans-serif;
+    font-family: "Inter", system-ui, sans-serif;
     font-weight: 700;
 }
 .gallery_item .media .overlay_label {
     text-transform: uppercase;
     color: #ffc631;
     margin-top: 20px;
-    font-family: Archivo, sans-serif;
+    font-family: "Inter", system-ui, sans-serif;
     font-weight: 600;
     font-size: 18px;
 }
@@ -984,7 +985,7 @@ input[type="checkbox"] + label .icon {
 }
 .numbers_list-item .number {
     margin-bottom: 10px;
-    font-family: Archivo, sans-serif;
+    font-family: "Inter", system-ui, sans-serif;
     font-weight: 800;
 }
 .numbers_list-item .label {
@@ -1272,7 +1273,7 @@ input[type="checkbox"] + label .icon {
     box-shadow: none !important;
 }
 .alert_popup-title {
-    font-family: Archivo, sans-serif;
+    font-family: "Inter", system-ui, sans-serif;
     color: #001f3f !important;
     padding: 30px 30px 0;
 }
