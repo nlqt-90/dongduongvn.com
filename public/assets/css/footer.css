@@ -75,7 +75,7 @@
     -webkit-box-direction: normal;
     -ms-flex-direction: column;
     flex-direction: column;
-    line-height: 23px; /* Giữ nguyên line-height gốc của theme */
+    line-height: 28px; /* tăng spacing cho dễ đọc */
 }
 
 .footer_main-block .group-wrapper .group a,
@@ -121,23 +121,31 @@
 
 /* Thiết lập Desktop 2:1:1:1 */
 @media screen and (min-width: 1023.98px) {
+    /* 2 cột, 2 hàng */
     .footer_main {
         display: grid !important;
-        grid-template-columns: 2fr 1fr 1fr 1fr; 
-        gap: 40px;
+        grid-template-columns: 1fr 1fr; /* 2 cột bằng nhau */
+        column-gap: 60px;
+        row-gap: 40px;
         align-items: start;
         padding-bottom: 80px;
     }
 
+    /* mọi block chiếm 1 ô */
     .footer_main-block {
         width: 100% !important;
         max-width: none !important;
     }
 
-    /* Giới hạn độ rộng khối giới thiệu để cân đối */
+    /* Brand giữ 1 cột (không span) để đi cùng HQ */
     .footer_main-block--brand {
         max-width: 400px !important;
+        grid-column: auto;
     }
+
+    /* đảm bảo icon + text align, text xuống dòng thoải mái */
+    .footer_main-block .group-wrapper { display: flex; }
+    .footer_main-block .group-wrapper .group { display: block; }
 }
 
 /* --- FOOTER SECONDARY --- */

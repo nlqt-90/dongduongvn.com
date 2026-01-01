@@ -10,35 +10,76 @@ import PageLayout from "@layouts/PageLayout.astro";
 >
   <link slot="head" rel="stylesheet" href="/assets/css/about.css" />
 
-        <section class="about section">
-            <div class=container>
-                <div class=main>
-                    <div class=section_header><span class=subtitle data-aos=fade-down>Who we are</span>
-                        <h2 class=title data-aos=fade-right>Bringing <span class=highlight>Your Ideas</span> and
-                            Innovations to Life</h2>
-                        <p class=text data-aos=fade-up data-aos-delay=50>Our civil and structural team is committed to
-                            providing sustainable, creative & efficient engineering solutions for our communities</p>
-                    </div>
-                    <ul class=checklist>
-                        <li class=checklist_item data-aos=fade-up><i class="icon-arrow_right icon"></i> Making lives
-                            easier</li>
-                        <li class=checklist_item data-aos=fade-up data-aos-delay=50><i
-                                class="icon-arrow_right icon"></i> Get every solution right here</li>
-                        <li class=checklist_item data-aos=fade-up data-aos-delay=100><i
-                                class="icon-arrow_right icon"></i> Innovation and creativity</li>
-                        <li class=checklist_item data-aos=fade-up data-aos-delay=100><i
-                                class="icon-arrow_right icon"></i> Fine engineering only with us</li>
-                    </ul>
-                    <div class=wrapper data-aos=fade-up><a class=btn href=#>Consult now</a></div>
-                </div>
-                <div class=media data-aos=zoom-in data-aos-duration=700>
-                    <picture>
-                        <source data-srcset=/assets/img/about/01.jpg srcset=/assets/img/about/01.jpg type=image/webp><img
-                            class=lazy data-src=/assets/img/about/01.jpg src=/assets/img/about/01.jpg alt="About Us">
-                    </picture>
-                </div>
+  <section class="about section">
+    <div class="container">
+        <div class="main">
+            <div class="section_header">
+                <span class="subtitle" data-aos="fade-down">
+                    GIỚI THIỆU
+                </span>
+
+                <h2 class="title" data-aos="fade-right">
+                    Đồng hành cùng <span class="highlight">giải pháp thi công</span><br>
+                    hiệu quả và an toàn
+                </h2>
+
+                <p class="text" data-aos="fade-up" data-aos-delay="50">
+                    Đông Dương là đơn vị cung cấp thiết bị và giải pháp thi công xây dựng,
+                    phục vụ các công trình dân dụng, công nghiệp và hạ tầng trên toàn quốc.
+                    Với hệ thống kho và chi nhánh ba miền, cùng việc áp dụng tiêu chuẩn quản lý
+                    chất lượng ISO, chúng tôi đảm bảo khả năng cung ứng, triển khai và hỗ trợ
+                    kỹ thuật hiệu quả cho từng dự án.
+                </p>
             </div>
-        </section>
+
+            <ul class="checklist">
+                <li class="checklist_item" data-aos="fade-up">
+                    <i class="icon-arrow_right icon"></i>
+                    Giải pháp phù hợp từng điều kiện công trình
+                </li>
+
+                <li class="checklist_item" data-aos="fade-up" data-aos-delay="50">
+                    <i class="icon-arrow_right icon"></i>
+                    Đảm bảo tiêu chuẩn kỹ thuật và an toàn
+                </li>
+
+                <li class="checklist_item" data-aos="fade-up" data-aos-delay="100">
+                    <i class="icon-arrow_right icon"></i>
+                    Kinh nghiệm triển khai dự án quy mô lớn
+                </li>
+
+                <li class="checklist_item" data-aos="fade-up" data-aos-delay="150">
+                    <i class="icon-arrow_right icon"></i>
+                    Năng lực cung ứng và hỗ trợ trên toàn quốc
+                </li>
+            </ul>
+
+            <div class="wrapper" data-aos="fade-up">
+                <a class="btn" href="#">
+                    Tư vấn giải pháp
+                </a>
+            </div>
+        </div>
+
+        <div class="media" data-aos="zoom-in" data-aos-duration="700">
+            <picture>
+                <source
+                    data-srcset="/assets/img/about/01.jpg"
+                    srcset="/assets/img/about/01.jpg"
+                    type="image/webp"
+                >
+                <img
+                    class="lazy"
+                    data-src="/assets/img/about/01.jpg"
+                    src="/assets/img/about/01.jpg"
+                    alt="Giới thiệu công ty Đông Dương"
+                >
+            </picture>
+        </div>
+    </div>
+</section>
+
+
         <section class="quote primary-bg section">
             <div class=container>
                 <div class="quote_header section_header"><svg class=quote_header-icon width=160 height=160
@@ -56,218 +97,217 @@ import PageLayout from "@layouts/PageLayout.astro";
                         <path
                             d="M124.066 79.9994H124.566V79.9989L124.066 79.9994ZM80.0007 35.9341L80.0012 35.4341L79.5017 35.4335L79.5007 35.9331L80.0007 35.9341ZM80 36.2417H79.5L80.5 36.2427L80 36.2417ZM80 35.9341H80.5V35.4341H80V35.9341ZM55.5183 43.3605L55.2405 42.9448L55.2405 42.9448L55.5183 43.3605ZM39.2884 63.1368L39.7503 63.3282L39.7504 63.3282L39.2884 63.1368ZM36.7808 88.5967L37.2712 88.4992L37.2712 88.4992L36.7808 88.5967ZM48.8407 111.16L48.4871 111.513L48.4872 111.513L48.8407 111.16ZM71.4034 123.219L71.5009 122.729L71.5009 122.729L71.4034 123.219ZM96.8633 120.711L96.672 120.25L96.6719 120.25L96.8633 120.711ZM116.64 104.482L117.055 104.76L117.055 104.76L116.64 104.482ZM119.911 53.3326L119.495 53.6104V53.6104L119.911 53.3326ZM128 79.9994L128.5 80V79.9994H128ZM79.9994 128V128.5H80L79.9994 128ZM53.3327 119.911L53.6105 119.495H53.6105L53.3327 119.911ZM35.6538 98.369L36.1158 98.1777H36.1158L35.6538 98.369ZM32.9223 70.6359L33.4127 70.7335L33.4127 70.7335L32.9223 70.6359ZM46.0589 46.0589L45.7054 45.7053L45.7054 45.7053L46.0589 46.0589ZM70.6359 32.9224L70.7335 33.4127L70.7335 33.4127L70.6359 32.9224ZM98.369 35.6538L98.5604 35.1919V35.1919L98.369 35.6538ZM124.566 80.0001V79.9994H123.566V80.0001H124.566ZM124.566 79.9989C124.552 68.1839 119.853 56.8565 111.498 48.5018L110.791 49.2089C118.959 57.3763 123.553 68.4499 123.566 80L124.566 79.9989ZM111.498 48.5018C103.144 40.1471 91.8162 35.4475 80.0012 35.4341L80.0001 36.4341C91.5502 36.4472 102.624 41.0415 110.791 49.2089L111.498 48.5018ZM79.5007 35.9331L79.5 36.2407L80.5 36.2427L80.5007 35.9351L79.5007 35.9331ZM80.5 36.2417V35.9341H79.5V36.2417H80.5ZM80 35.4341C71.1855 35.4341 62.5696 38.0478 55.2405 42.9448L55.7961 43.7763C62.9607 38.9891 71.3833 36.4341 80 36.4341V35.4341ZM55.2405 42.9448C47.9117 47.8418 42.1996 54.802 38.8265 62.9455L39.7504 63.3282C43.0477 55.3674 48.6317 48.5634 55.7961 43.7762L55.2405 42.9448ZM38.8265 62.9455C35.4533 71.0885 34.5708 80.0496 36.2904 88.6943L37.2712 88.4992C35.5902 80.0484 36.4529 71.2884 39.7503 63.3282L38.8265 62.9455ZM36.2904 88.6943C38.01 97.3397 42.2545 105.28 48.4871 111.513L49.1943 110.806C43.1014 104.713 38.9522 96.9506 37.2712 88.4992L36.2904 88.6943ZM48.4872 111.513C54.7198 117.746 62.6605 121.99 71.3058 123.71L71.5009 122.729C63.0495 121.048 55.2871 116.899 49.1943 110.806L48.4872 111.513ZM71.3058 123.71C79.9506 125.429 88.9117 124.547 97.0546 121.173L96.6719 120.25C88.7117 123.547 79.9517 124.41 71.5009 122.729L71.3058 123.71ZM97.0546 121.173C105.198 117.801 112.158 112.088 117.055 104.76L116.224 104.204C111.437 111.368 104.633 116.953 96.672 120.25L97.0546 121.173ZM117.055 104.76C121.952 97.4305 124.566 88.8146 124.566 80.0001H123.566C123.566 88.6168 121.011 97.0394 116.224 104.204L117.055 104.76ZM119.495 53.6104C124.714 61.4215 127.5 70.6054 127.5 79.9994H128.5C128.5 70.4076 125.655 61.0304 120.326 53.0549L119.495 53.6104ZM127.5 79.9989C127.486 92.5927 122.477 104.667 113.572 113.572L114.279 114.279C123.371 105.187 128.486 92.8586 128.5 80L127.5 79.9989ZM113.572 113.572C104.667 122.477 92.5927 127.486 79.9989 127.5L80 128.5C92.8586 128.486 105.187 123.371 114.279 114.279L113.572 113.572ZM79.9994 127.5C70.6054 127.5 61.4215 124.714 53.6105 119.495L53.0549 120.326C61.0304 125.655 70.4076 128.5 79.9994 128.5V127.5ZM53.6105 119.495C45.7991 114.276 39.7109 106.857 36.1158 98.1777L35.1919 98.5604C38.8627 107.422 45.0791 114.997 53.0549 120.326L53.6105 119.495ZM36.1158 98.1777C32.5206 89.4983 31.5799 79.9474 33.4127 70.7335L32.4319 70.5384C30.5606 79.9462 31.521 89.6983 35.1919 98.5604L36.1158 98.1777ZM33.4127 70.7335C35.2456 61.519 39.7695 53.0555 46.4125 46.4124L45.7054 45.7053C38.9225 52.4882 34.3034 61.1299 32.4319 70.5384L33.4127 70.7335ZM46.4125 46.4124C53.0555 39.7695 61.519 35.2455 70.7335 33.4127L70.5384 32.432C61.1299 34.3033 52.4882 38.9225 45.7054 45.7053L46.4125 46.4124ZM70.7335 33.4127C79.9473 31.5799 89.4983 32.5206 98.1777 36.1157L98.5604 35.1919C89.6983 31.521 79.9462 30.5605 70.5384 32.432L70.7335 33.4127ZM98.1777 36.1157C106.857 39.7109 114.276 45.7991 119.495 53.6104L120.326 53.0549C114.997 45.0791 107.422 38.8627 98.5604 35.1919L98.1777 36.1157Z"
                             fill=#344F6B />
-                    </svg> <span class=subtitle>Who we are</span>
-                    <h3 class=title>Pulvinar elementum integer enim neque volutpat ac. Amet dictum sit amet justo donec
-                        enim diam vulputate ut. Egestas sed sed risus pretium quam. Viverra accumsan in nisl nisi
-                        scelerisque eu</h3><span class=author>Benjamin Miller</span>
+                    </svg> <span class=subtitle>CAM KẾT DOANH NGHIỆP</span>
+                    <h3 class=title>Chúng tôi cam kết cung cấp giải pháp và thiết bị thi công đáp ứng đầy đủ
+                        yêu cầu kỹ thuật, đảm bảo an toàn, hiệu quả và phù hợp với từng điều kiện
+                        công trình thực tế.</h3><span class=author>Công ty Đông Dương</span>
                 </div>
             </div>
         </section>
         <section class="services section">
-            <div class=container>
-                <div class="services_header section_header"><span class=subtitle>Just feel the future</span>
-                    <h2 class=title>Spotlight <span class=highlight>Services</span></h2>
+            <div class="container">
+        
+                <div class="services_header section_header">
+                    <span class="subtitle">DỊCH VỤ CUNG CẤP</span>
+                    <h2 class="title">
+                        Giải pháp <span class="highlight">thi công xây dựng</span>
+                    </h2>
                 </div>
-                <div class=services_wrapper>
+        
+                <div class="services_wrapper">
                     <div class="services_slider swiper">
-                        <div class=swiper-wrapper>
+                        <div class="swiper-wrapper">
+        
+                            <!-- CẨU THÁP -->
                             <div class="services_slider-slide swiper-slide">
-                                <div class=media>
+                                <div class="media">
                                     <picture>
-                                        <source data-srcset=/assets/img/tabs/01.jpg srcset=/assets/img/tabs/01.jpg
-                                            type=image/webp><img class=lazy data-src=/assets/img/tabs/01.jpg
-                                            src=/assets/img/tabs/01.jpg alt="Process Engineering">
+                                        <source srcset="/assets/img/tabs/01.jpg" type="image/webp">
+                                        <img src="/assets/img/tabs/01.jpg" alt="Cẩu tháp">
                                     </picture>
                                 </div>
-                                <div class=main>
-                                    <h3 class=title>Process Engineering</h3>
-                                    <p class=text>Vitae ultricies leo integer malesuada nunc vel. Molestie ac feugiat
-                                        sed lectus vestibulum mattis ullamcorper velit. Viverra aliquet eget sit amet
-                                        tellus cras adipiscing. Molestie ac feugiat sed lectus vestibulum mattis
-                                        ullamcorper velit</p>
-                                    <ul class=list>
-                                        <li class=checklist_item><i class="icon-arrow_right icon"></i> Making lives
-                                            easier</li>
-                                        <li class=checklist_item><i class="icon-arrow_right icon"></i> Get every
-                                            solution right here</li>
-                                        <li class=checklist_item><i class="icon-arrow_right icon"></i> Innovation and
-                                            creativity</li>
-                                    </ul><a class=btn href=single-service.html>Read more</a>
+                                <div class="main">
+                                    <h3 class="title">Cẩu tháp</h3>
+                                    <p class="text">
+                                        Cung cấp giải pháp cẩu tháp phục vụ thi công nhà cao tầng
+                                        và công trình quy mô lớn, đảm bảo an toàn và hiệu quả vận hành.
+                                    </p>
+                                    <ul class="list">
+                                        <li class="checklist_item"><i class="icon-arrow_right icon"></i> Phù hợp nhiều loại công trình</li>
+                                        <li class="checklist_item"><i class="icon-arrow_right icon"></i> Đáp ứng tiêu chuẩn an toàn</li>
+                                        <li class="checklist_item"><i class="icon-arrow_right icon"></i> Hỗ trợ lắp dựng & vận hành</li>
+                                    </ul>
+                                    <a class="btn" href="single-service.html">Chi tiết dịch vụ</a>
                                 </div>
                             </div>
+        
+                            <!-- VẬN THĂNG -->
                             <div class="services_slider-slide swiper-slide">
-                                <div class=media>
+                                <div class="media">
                                     <picture>
-                                        <source data-srcset=/assets/img/tabs/02.jpg srcset=/assets/img/tabs/02.jpg
-                                            type=image/webp><img class=lazy data-src=/assets/img/tabs/02.jpg
-                                            src=/assets/img/tabs/02.jpg alt="Chemistry and Metallurgy">
+                                        <source srcset="/assets/img/tabs/02.jpg" type="image/webp">
+                                        <img src="/assets/img/tabs/02.jpg" alt="Vận thăng">
                                     </picture>
                                 </div>
-                                <div class=main>
-                                    <h3 class=title>Chemistry and Metallurgy</h3>
-                                    <p class=text>Vitae ultricies leo integer malesuada nunc vel. Molestie ac feugiat
-                                        sed lectus vestibulum mattis ullamcorper velit. Viverra aliquet eget sit amet
-                                        tellus cras adipiscing. Molestie ac feugiat sed lectus vestibulum mattis
-                                        ullamcorper velit</p>
-                                    <ul class=list>
-                                        <li class=checklist_item><i class="icon-arrow_right icon"></i> Making lives
-                                            easier</li>
-                                        <li class=checklist_item><i class="icon-arrow_right icon"></i> Get every
-                                            solution right here</li>
-                                        <li class=checklist_item><i class="icon-arrow_right icon"></i> Innovation and
-                                            creativity</li>
-                                    </ul><a class=btn href=single-service.html>Read more</a>
+                                <div class="main">
+                                    <h3 class="title">Vận thăng</h3>
+                                    <p class="text">
+                                        Giải pháp vận thăng phục vụ vận chuyển người và vật liệu
+                                        trong thi công, góp phần tối ưu tiến độ và an toàn lao động.
+                                    </p>
+                                    <ul class="list">
+                                        <li class="checklist_item"><i class="icon-arrow_right icon"></i> Tải trọng đa dạng</li>
+                                        <li class="checklist_item"><i class="icon-arrow_right icon"></i> Vận hành ổn định</li>
+                                        <li class="checklist_item"><i class="icon-arrow_right icon"></i> Phù hợp công trình cao tầng</li>
+                                    </ul>
+                                    <a class="btn" href="single-service.html">Chi tiết dịch vụ</a>
                                 </div>
                             </div>
+        
+                            <!-- GIÀN GIÁO -->
                             <div class="services_slider-slide swiper-slide">
-                                <div class=media>
+                                <div class="media">
                                     <picture>
-                                        <source data-srcset=/assets/img/tabs/03.jpg srcset=/assets/img/tabs/03.jpg
-                                            type=image/webp><img class=lazy data-src=/assets/img/tabs/03.jpg
-                                            src=/assets/img/tabs/03.jpg alt="Electrical Engineering">
+                                        <source srcset="/assets/img/tabs/03.jpg" type="image/webp">
+                                        <img src="/assets/img/tabs/03.jpg" alt="Giàn giáo">
                                     </picture>
                                 </div>
-                                <div class=main>
-                                    <h3 class=title>Electrical Engineering</h3>
-                                    <p class=text>Vitae ultricies leo integer malesuada nunc vel. Molestie ac feugiat
-                                        sed lectus vestibulum mattis ullamcorper velit. Viverra aliquet eget sit amet
-                                        tellus cras adipiscing. Molestie ac feugiat sed lectus vestibulum mattis
-                                        ullamcorper velit</p>
-                                    <ul class=list>
-                                        <li class=checklist_item><i class="icon-arrow_right icon"></i> Making lives
-                                            easier</li>
-                                        <li class=checklist_item><i class="icon-arrow_right icon"></i> Get every
-                                            solution right here</li>
-                                        <li class=checklist_item><i class="icon-arrow_right icon"></i> Innovation and
-                                            creativity</li>
-                                    </ul><a class=btn href=single-service.html>Read more</a>
+                                <div class="main">
+                                    <h3 class="title">Giàn giáo</h3>
+                                    <p class="text">
+                                        Cung cấp hệ thống giàn giáo thi công linh hoạt,
+                                        đáp ứng nhiều điều kiện công trình và yêu cầu kỹ thuật khác nhau.
+                                    </p>
+                                    <ul class="list">
+                                        <li class="checklist_item"><i class="icon-arrow_right icon"></i> Lắp dựng nhanh chóng</li>
+                                        <li class="checklist_item"><i class="icon-arrow_right icon"></i> Kết cấu chắc chắn</li>
+                                        <li class="checklist_item"><i class="icon-arrow_right icon"></i> Đảm bảo an toàn thi công</li>
+                                    </ul>
+                                    <a class="btn" href="single-service.html">Chi tiết dịch vụ</a>
                                 </div>
                             </div>
+        
+                            <!-- CỐP PHA -->
                             <div class="services_slider-slide swiper-slide">
-                                <div class=media>
+                                <div class="media">
                                     <picture>
-                                        <source data-srcset=/assets/img/tabs/04.jpg srcset=/assets/img/tabs/04.jpg
-                                            type=image/webp><img class=lazy data-src=/assets/img/tabs/04.jpg
-                                            src=/assets/img/tabs/04.jpg alt="Specialty Services">
+                                        <source srcset="/assets/img/tabs/04.jpg" type="image/webp">
+                                        <img src="/assets/img/tabs/04.jpg" alt="Cốp pha">
                                     </picture>
                                 </div>
-                                <div class=main>
-                                    <h3 class=title>Specialty Services</h3>
-                                    <p class=text>Vitae ultricies leo integer malesuada nunc vel. Molestie ac feugiat
-                                        sed lectus vestibulum mattis ullamcorper velit. Viverra aliquet eget sit amet
-                                        tellus cras adipiscing. Molestie ac feugiat sed lectus vestibulum mattis
-                                        ullamcorper velit</p>
-                                    <ul class=list>
-                                        <li class=checklist_item><i class="icon-arrow_right icon"></i> Making lives
-                                            easier</li>
-                                        <li class=checklist_item><i class="icon-arrow_right icon"></i> Get every
-                                            solution right here</li>
-                                        <li class=checklist_item><i class="icon-arrow_right icon"></i> Innovation and
-                                            creativity</li>
-                                    </ul><a class=btn href=single-service.html>Read more</a>
+                                <div class="main">
+                                    <h3 class="title">Cốp pha</h3>
+                                    <p class="text">
+                                        Giải pháp cốp pha phục vụ thi công bê tông,
+                                        đảm bảo độ chính xác, chất lượng bề mặt và hiệu quả sử dụng.
+                                    </p>
+                                    <ul class="list">
+                                        <li class="checklist_item"><i class="icon-arrow_right icon"></i> Đa dạng quy cách</li>
+                                        <li class="checklist_item"><i class="icon-arrow_right icon"></i> Chịu lực tốt</li>
+                                        <li class="checklist_item"><i class="icon-arrow_right icon"></i> Tái sử dụng hiệu quả</li>
+                                    </ul>
+                                    <a class="btn" href="single-service.html">Chi tiết dịch vụ</a>
                                 </div>
                             </div>
+        
+                            <!-- VẬN CHUYỂN & LẮP DỰNG -->
                             <div class="services_slider-slide swiper-slide">
-                                <div class=media>
+                                <div class="media">
                                     <picture>
-                                        <source data-srcset=/assets/img/tabs/05.jpg srcset=/assets/img/tabs/05.jpg
-                                            type=image/webp><img class=lazy data-src=/assets/img/tabs/05.jpg
-                                            src=/assets/img/tabs/05.jpg alt="Civil engineering">
+                                        <source srcset="/assets/img/tabs/05.jpg" type="image/webp">
+                                        <img src="/assets/img/tabs/05.jpg" alt="Vận chuyển và lắp dựng">
                                     </picture>
                                 </div>
-                                <div class=main>
-                                    <h3 class=title>Civil engineering</h3>
-                                    <p class=text>Vitae ultricies leo integer malesuada nunc vel. Molestie ac feugiat
-                                        sed lectus vestibulum mattis ullamcorper velit. Viverra aliquet eget sit amet
-                                        tellus cras adipiscing. Molestie ac feugiat sed lectus vestibulum mattis
-                                        ullamcorper velit</p>
-                                    <ul class=list>
-                                        <li class=checklist_item><i class="icon-arrow_right icon"></i> Making lives
-                                            easier</li>
-                                        <li class=checklist_item><i class="icon-arrow_right icon"></i> Get every
-                                            solution right here</li>
-                                        <li class=checklist_item><i class="icon-arrow_right icon"></i> Innovation and
-                                            creativity</li>
-                                    </ul><a class=btn href=single-service.html>Read more</a>
+                                <div class="main">
+                                    <h3 class="title">Vận chuyển & lắp dựng</h3>
+                                    <p class="text">
+                                        Dịch vụ trọn gói từ vận chuyển, lắp dựng đến tháo dỡ thiết bị,
+                                        đảm bảo tiến độ và an toàn tại công trình.
+                                    </p>
+                                    <ul class="list">
+                                        <li class="checklist_item"><i class="icon-arrow_right icon"></i> Đội ngũ kỹ thuật chuyên nghiệp</li>
+                                        <li class="checklist_item"><i class="icon-arrow_right icon"></i> Quy trình thi công rõ ràng</li>
+                                        <li class="checklist_item"><i class="icon-arrow_right icon"></i> Hỗ trợ nhanh chóng</li>
+                                    </ul>
+                                    <a class="btn" href="single-service.html">Chi tiết dịch vụ</a>
                                 </div>
                             </div>
+        
+                            <!-- GIẢI PHÁP TỔNG THỂ -->
                             <div class="services_slider-slide swiper-slide">
-                                <div class=media>
+                                <div class="media">
                                     <picture>
-                                        <source data-srcset=/assets/img/tabs/06.jpg srcset=/assets/img/tabs/06.jpg
-                                            type=image/webp><img class=lazy data-src=/assets/img/tabs/06.jpg
-                                            src=/assets/img/tabs/06.jpg alt="Construction Management">
+                                        <source srcset="/assets/img/tabs/06.jpg" type="image/webp">
+                                        <img src="/assets/img/tabs/06.jpg" alt="Giải pháp thi công tổng thể">
                                     </picture>
                                 </div>
-                                <div class=main>
-                                    <h3 class=title>Construction Management</h3>
-                                    <p class=text>Vitae ultricies leo integer malesuada nunc vel. Molestie ac feugiat
-                                        sed lectus vestibulum mattis ullamcorper velit. Viverra aliquet eget sit amet
-                                        tellus cras adipiscing. Molestie ac feugiat sed lectus vestibulum mattis
-                                        ullamcorper velit</p>
-                                    <ul class=list>
-                                        <li class=checklist_item><i class="icon-arrow_right icon"></i> Making lives
-                                            easier</li>
-                                        <li class=checklist_item><i class="icon-arrow_right icon"></i> Get every
-                                            solution right here</li>
-                                        <li class=checklist_item><i class="icon-arrow_right icon"></i> Innovation and
-                                            creativity</li>
-                                    </ul><a class=btn href=single-service.html>Read more</a>
+                                <div class="main">
+                                    <h3 class="title">Giải pháp thi công tổng thể</h3>
+                                    <p class="text">
+                                        Tư vấn và cung cấp giải pháp tổng thể về thiết bị thi công,
+                                        phù hợp với từng giai đoạn và điều kiện công trình.
+                                    </p>
+                                    <ul class="list">
+                                        <li class="checklist_item"><i class="icon-arrow_right icon"></i> Tư vấn theo yêu cầu thực tế</li>
+                                        <li class="checklist_item"><i class="icon-arrow_right icon"></i> Tối ưu chi phí & tiến độ</li>
+                                        <li class="checklist_item"><i class="icon-arrow_right icon"></i> Đồng hành suốt dự án</li>
+                                    </ul>
+                                    <a class="btn" href="single-service.html">Chi tiết dịch vụ</a>
                                 </div>
                             </div>
+        
                         </div>
                     </div>
+        
                     <div class="services_slider-pagination swiper-pagination"></div>
                 </div>
+        
             </div>
         </section>
+        
         <div class="gallery presentation" data-role=gallery>
-            <div class=gallery_item><a class=media href=img/gallery/10full.jpg
-                    data-caption="Fresh Concept Construction Renovation" data-role=gallery-link>
+            <div class=gallery_item><a class=media href=/assets/img/gallery/crane.webp
+                    data-caption="Cẩu tháp" data-role=gallery-link>
                     <picture>
-                        <source data-srcset=/assets/img/gallery/10.jpg srcset=/assets/img/gallery/10.jpg type=image/webp>
-                        <img class=lazy data-src=/assets/img/gallery/10.jpg src=/assets/img/gallery/10.jpg alt=@@caption>
+                        <source data-srcset=/assets/img/gallery/crane.webp srcset=//assets/img/gallery/crane.webp type=image/webp><img
+                            class=lazy data-src=/assets/img/gallery/crane.webp src=/assets/img/gallery/crane.webp alt=@@caption>
                     </picture>
                     <div class=overlay>
-                        <div class="overlay_header section_header"><span class=subtitle>Our gallery</span></div>
-                        <h4 class=overlay_caption>Fresh Concept Construction Renovation</h4><span
-                            class=overlay_label>Special Projects</span>
+                        <div class="overlay_header section_header"><span class=subtitle>HÌNH ẢNH</span></div>
+                        <h4 class=overlay_caption>Cẩu tháp</h4>
                     </div>
                 </a></div>
-            <div class=gallery_item><a class=media href=img/gallery/08full.jpg
-                    data-caption="Fresh Concept Construction Renovation" data-role=gallery-link>
+                <div class=gallery_item><a class=media href=/assets/img/gallery/hoist.webp
+                    data-caption="Vận thăng" data-role=gallery-link>
                     <picture>
-                        <source data-srcset=/assets/img/gallery/08.jpg srcset=/assets/img/gallery/08.jpg type=image/webp>
-                        <img class=lazy data-src=/assets/img/gallery/08.jpg src=/assets/img/gallery/08.jpg alt=@@caption>
+                        <source data-srcset=/assets/img/gallery/hoist.webp srcset=/assets/img/gallery/hoist.webp type=image/webp><img
+                            class=lazy data-src=/assets/img/gallery/hoist.webp src=/assets/img/gallery/hoist.webp alt=@@caption>
                     </picture>
                     <div class=overlay>
-                        <div class="overlay_header section_header"><span class=subtitle>Our gallery</span></div>
-                        <h4 class=overlay_caption>Fresh Concept Construction Renovation</h4><span
-                            class=overlay_label>Special Projects</span>
+                        <div class="overlay_header section_header"><span class=subtitle>HÌNH ẢNH</span></div>
+                        <h4 class=overlay_caption>Vặn thăng</h4>
                     </div>
                 </a></div>
-            <div class=gallery_item><a class=media href=img/gallery/02full.jpg
-                    data-caption="Fresh Concept Construction Renovation" data-role=gallery-link>
+                <div class=gallery_item><a class=media href=/assets/img/gallery/scaffoding.webp
+                    data-caption="Giàn giáo" data-role=gallery-link>
                     <picture>
-                        <source data-srcset=/assets/img/gallery/02.jpg srcset=/assets/img/gallery/02.jpg type=image/webp>
-                        <img class=lazy data-src=/assets/img/gallery/02.jpg src=/assets/img/gallery/02.jpg alt=@@caption>
+                        <source data-srcset=/assets/img/gallery/scaffoding.webp srcset=//assets/img/gallery/scaffoding.webp type=image/webp><img
+                            class=lazy data-src=/assets/img/gallery/scaffoding.webp src=/assets/img/gallery/scaffoding.webp alt=@@caption>
                     </picture>
                     <div class=overlay>
-                        <div class="overlay_header section_header"><span class=subtitle>Our gallery</span></div>
-                        <h4 class=overlay_caption>Fresh Concept Construction Renovation</h4><span
-                            class=overlay_label>Special Projects</span>
+                        <div class="overlay_header section_header"><span class=subtitle>HÌNH ẢNH</span></div>
+                        <h4 class=overlay_caption>Giàn giáo</h4>
                     </div>
                 </a></div>
-            <div class=gallery_item><a class=media href=img/gallery/09full.jpg
-                    data-caption="Fresh Concept Construction Renovation" data-role=gallery-link>
+                <div class=gallery_item><a class=media href=/assets/img/gallery/formwork.webp
+                    data-caption="Cốp pha" data-role=gallery-link>
                     <picture>
-                        <source data-srcset=/assets/img/gallery/09.jpg srcset=/assets/img/gallery/09.jpg type=image/webp>
-                        <img class=lazy data-src=/assets/img/gallery/09.jpg src=/assets/img/gallery/09.jpg alt=@@caption>
+                        <source data-srcset=/assets/img/gallery/formwork.webp srcset=//assets/img/gallery/formwork.webp type=image/webp><img
+                            class=lazy data-src=/assets/img/gallery/formwork.webp src=/assets/img/gallery/formwork.webp alt=@@caption>
                     </picture>
                     <div class=overlay>
-                        <div class="overlay_header section_header"><span class=subtitle>Our gallery</span></div>
-                        <h4 class=overlay_caption>Fresh Concept Construction Renovation</h4><span
-                            class=overlay_label>Special Projects</span>
+                        <div class="overlay_header section_header"><span class=subtitle>HÌNH ẢNH</span></div>
+                        <h4 class=overlay_caption>Cốp pha</h4>
                     </div>
                 </a></div>
         </div>
