@@ -1,9 +1,9 @@
 [
   {
-    "slug": "nha-may-che-bien-thuc-pham-greenfarm",
-    "title": "Nhà máy Chế biến Thực phẩm GreenFarm",
-    "location": "KCN Long Hậu, Long An",
-    "thumbnail": "/assets/img/projects/05.jpg",
+    "slug": "riviera-point",
+    "title": "Riviera Point",
+    "location": "Quận 7, TPHCM",
+    "thumbnail": "/assets/img/projects/riviera-point.webp",
     "mainImage": "/assets/img/singleproject.jpg",
     "description": [
       "Thiết kế và thi công trọn gói nhà máy theo tiêu chuẩn GMP, đáp ứng yêu cầu sản xuất sạch và an toàn.",
@@ -30,10 +30,10 @@
     ]
   },
   {
-    "slug": "cai-tao-toa-nha-van-phong-central-point",
-    "title": "Cải tạo Tòa nhà Văn phòng Central Point",
-    "location": "Quận 1, TP. Hồ Chí Minh",
-    "thumbnail": "/assets/img/projects/02.jpg",
+    "slug": "riviera-point",
+    "title": "Riviera Point",
+    "location": "Quận 7, TPHCM",
+    "thumbnail": "/assets/img/projects/riviera-point.webp",
     "mainImage": "/assets/img/singleproject.jpg",
     "description": [
       "Dự án cải tạo toàn diện mặt tiền và không gian nội thất, mang lại diện mạo hiện đại và nâng cao giá trị tài sản."
@@ -58,10 +58,10 @@
     ]
   },
   {
-    "slug": "tai-cau-truc-nha-may-det-may-vinatex",
-    "title": "Tái cấu trúc Nhà máy Dệt may Vinatex",
-    "location": "KCN Sóng Thần, Bình Dương",
-    "thumbnail": "/assets/img/projects/06.jpg",
+    "slug": "riviera-point",
+    "title": "Riviera Point",
+    "location": "Quận 7, TPHCM",
+    "thumbnail": "/assets/img/projects/riviera-point.webp",
     "mainImage": "/assets/img/singleproject.jpg",
     "description": [
       "Tái cấu trúc nhà xưởng cũ, gia cố kết cấu và nâng cấp hệ thống PCCC theo tiêu chuẩn mới nhất."
@@ -86,10 +86,10 @@
     ]
   },
   {
-    "slug": "he-thong-cap-nuoc-sach-sai-gon",
-    "title": "Hệ thống Cấp nước Sạch Sài Gòn",
-    "location": "Thủ Đức, TP. Hồ Chí Minh",
-    "thumbnail": "/assets/img/projects/03.jpg",
+    "slug": "riviera-point",
+    "title": "Riviera Point",
+    "location": "Quận 7, TPHCM",
+    "thumbnail": "/assets/img/projects/riviera-point.webp",
     "mainImage": "/assets/img/singleproject.jpg",
     "description": [
       "Lắp đặt hệ thống đường ống và trạm bơm hiện đại, đảm bảo cung cấp nước sạch ổn định cho khu vực."
@@ -114,10 +114,10 @@
     ]
   },
   {
-    "slug": "khu-do-thi-vinhomes-ocean-park",
-    "title": "Khu đô thị Vinhomes Ocean Park",
-    "location": "Gia Lâm, Hà Nội",
-    "thumbnail": "/assets/img/projects/01.jpg",
+    "slug": "riviera-point",
+    "title": "Riviera Point",
+    "location": "Quận 7, TPHCM",
+    "thumbnail": "/assets/img/projects/riviera-point.webp",
     "mainImage": "/assets/img/singleproject.jpg",
     "description": [
       "Cung cấp giải pháp giàn giáo và cốp pha toàn diện cho các tòa tháp căn hộ cao tầng trong đại đô thị."

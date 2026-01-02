@@ -3,6 +3,7 @@ import BaseLayout from "@layouts/BaseLayout.astro";
 import Header from "@components/Header.astro";
 import Footer from "@components/Footer.astro";
 import { getSortedProjects } from "../utils/projects.ts";
+import clients from "@data/clients.json";
 
 const latestProjects = getSortedProjects().slice(0, 4);
 
@@ -344,6 +345,28 @@ const latestProjects = getSortedProjects().slice(0, 4);
                 </div>
             </div>
         </section>
+        <section class="clients section section-notop">
+            <div class="container">
+                <div class="clients_header section_header">
+                    <span class="subtitle">ĐỐI TÁC CHIẾN LƯỢC</span>
+                    <h2 class="title" data-aos="fade-right" data-aos-duration="500">Các khách hàng <span class="highlight">tiêu biểu</span></h2>
+                </div>
+                <div class="clients_slider swiper" data-aos="fade-up">
+                    <div class="swiper-wrapper">
+                        {clients.map(client => (
+                            <div class="swiper-slide" aria-label={client.name}>
+                                <img src={client.logo} alt={client.name} />
+                            </div>
+                        ))}
+                        {clients.map(client => (
+                            <div class="swiper-slide duplicate" aria-hidden="true">
+                                <img src={client.logo} alt="" />
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        </section>
         <section class="faq section-nopb">
             <div class="container">
                 <div class="faq_header section_header">
@@ -504,6 +527,7 @@ const latestProjects = getSortedProjects().slice(0, 4);
                     </div>
                 </a></div>
         </div>
+
         <section class="contact section">
             <div class="container">
                 <div class="contact_form">
@@ -598,10 +622,40 @@ const latestProjects = getSortedProjects().slice(0, 4);
             </div>
         </section>
         
+
+
     </main>
   <Footer />
 
   <!-- JS RIÊNG CỦA HOME -->
   <script src="/assets/js/index.min.js" defer></script>
+<!-- Swiper bundle (JS + CSS) -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
+<!-- Init -->
+<script>
+    /* global Swiper */
+    declare const Swiper: any; 
+    window.addEventListener('load', () => {
+      if (typeof Swiper === 'undefined') return;
+  
+      new Swiper('.clients_slider', {
+        loop: true,
+        slidesPerGroup: 1,
+        slidesPerView: 1,         // mobile default
+        spaceBetween: 20,
+        autoplay: {
+          delay: 3000,
+          disableOnInteraction: false,
+        },
+        breakpoints: {
+          480:  { slidesPerView: 2, spaceBetween: 20 },
+          768:  { slidesPerView: 3, spaceBetween: 30 },
+          1024: { slidesPerView: 4, spaceBetween: 40 }   // hiển thị 4 logo trên desktop
+        }
+      });
+    });
+  </script>
 
 </BaseLayout>
