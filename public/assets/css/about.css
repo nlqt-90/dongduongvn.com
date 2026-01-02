@@ -311,7 +311,7 @@ html[dir="rtl"] .quote_header-icon {
 }
 .features_content + .video {
     margin-top: 60px;
-    max-height: 580px;
+    
 }
 .features_header .title {
     margin-bottom: 30px;
@@ -493,3 +493,5 @@ html[dir="rtl"] .quote_header-icon {
         padding: 60px 60px 60px 40px;
     }
 }
+
+
