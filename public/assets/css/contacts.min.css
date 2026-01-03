@@ -1,89 +1,179 @@
-
 .info_data {
-    margin-bottom: 40px;
+    margin-bottom: 40px
 }
+
 .info_data-card {
-    margin-top: 30px;
+    margin-top: 30px
 }
+
 .info_data-card .wrapper {
     border: 1px solid #c8c8c8;
     padding: 30px;
-    -webkit-transition: 0.3s ease-in-out;
-    -o-transition: 0.3s ease-in-out;
-    transition: 0.3s ease-in-out;
+    -webkit-transition: .3s ease-in-out;
+    -o-transition: .3s ease-in-out;
+    transition: .3s ease-in-out
 }
+
 .info_data-card .wrapper:hover {
-    border-color: #ffc631;
+    border-color: #ffc631
 }
+
 .info_data-card .icon {
     color: #ffc631;
     font-size: 32px;
-    line-height: 30px;
+    line-height: 30px
 }
+
+/* icon nhỏ cho dòng địa chỉ/điện thoại trong chi nhánh */
+.branches_grid .content .icon{
+    font-size: 18px;
+    line-height: 18px;
+    margin-right: 18px;
+}
+
 .info_data-card .title {
-    margin: 15px 0 10px;
+    margin: 15px 0 10px
 }
+
 .info_data-card .content {
-    color: #202c38;
+    color: #202c38
 }
+
 .info_data-card .content .link {
-    -webkit-transition: color 0.3s ease-in-out;
-    -o-transition: color 0.3s ease-in-out;
-    transition: color 0.3s ease-in-out;
+    -webkit-transition: color .3s ease-in-out;
+    -o-transition: color .3s ease-in-out;
+    transition: color .3s ease-in-out
 }
+
 .info_data-card .content .link:focus,
 .info_data-card .content .link:hover {
-    color: #0da574;
+    color: #0da574
 }
-@media screen and (min-width: 767.98px) {
+
+@media screen and (min-width:767.98px) {
     .header.opened {
-        height: 50vh;
+        height: 50vh
     }
+
     .header_nav-list {
-        max-height: calc(50vh - 100px);
+        max-height: calc(50vh - 100px)
     }
+
     .info_header {
-        margin-bottom: 0;
+    grid-column: 1 / -1;
+        margin-bottom: 0
     }
+
     .info_data {
-        display: grid !important;
-        grid-template-columns: repeat(2, 1fr) !important;
-        grid-gap: 30px !important;
-        margin-bottom: 60px;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 30px;
+        margin-bottom: 60px
     }
+
     .info_data-card {
-        margin-top: 0;
+        margin-top: 0
     }
+
     .info_data-card .wrapper {
-        padding: 40px;
+        padding: 40px
     }
 }
-@media screen and (min-width: 1279.98px) {
+
+@media screen and (min-width:1279.98px) {
     .info_data {
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(4, 1fr)
     }
 }
+
 .contacts_map {
-    height: 330px;
+    height: 330px
 }
+
 .contacts_map #map {
-    height: 100%;
+    height: 100%
 }
-@media screen and (min-width: 1024.98px) {
+
+@media screen and (min-width:1024.98px) {
     .contacts_map {
-        height: 660px;
+        height: 660px
     }
 }
+
 .partners_grid {
     display: grid;
     grid-gap: 30px;
+    grid-template-columns: repeat(1, 1fr);
 }
+@media screen and (min-width: 767.98px) {
+    .partners_grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .partners_header {
+        grid-column: 1 / -1;
+        text-align: center;
+    }
+}
+@media screen and (min-width: 1024.98px) {
+    .partners_grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+@media screen and (min-width: 1279.98px) {
+    .partners_grid {
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
+
 .partners_grid-card {
     border: 1px solid #c8c8c8;
-    padding: 51px 0;
+    padding: 51px 0
 }
+
 .partners_grid-card .media {
     max-height: 123px;
     width: auto;
-    margin: auto;
+    margin: auto
 }
+
+/* === Contact – Branches (2 cột) === */
+.branches_grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:40px;
+}
+@media (max-width:767.98px){
+    .branches_grid{ grid-template-columns:1fr; }
+}
+
+/* === Contact – 3 cột card === */
+.info_cards{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    grid-auto-rows:1fr;   /* mọi hàng cao bằng nhau */
+    gap:40px;
+    margin-bottom:60px;
+  }
+  
+  .info_data-card{
+    display:flex;
+    flex-direction:column;
+    height:100%;          /* lấp đầy ô 1fr */
+  }
+  
+  /* Tablet 2 cột */
+  @media (max-width:1023px){
+    .info_cards{ grid-template-columns:repeat(2,1fr); }
+  }
+  /* Mobile 1 cột */
+  @media (max-width:599px){
+    .info_cards{ grid-template-columns:1fr; }
+  }
+
+  /* ép wrapper bên trong giãn full chiều cao thẻ grid */
+.info_data-card .wrapper{
+    height:100%;
+    display:flex;               /* tùy thích căn giữa nội dung */
+    flex-direction:column;
+    justify-content:center;     /* căn giữa dọc */
+  }
