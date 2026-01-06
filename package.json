@@ -6,9 +6,13 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
+    "prod": "node deploy.cjs",
     "astro": "astro"
   },
   "dependencies": {
     "astro": "^5.16.6"
+  },
+  "devDependencies": {
+    "ftp-deploy": "^2.4.7"
   }
 }

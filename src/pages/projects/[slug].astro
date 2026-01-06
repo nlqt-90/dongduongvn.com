@@ -26,7 +26,12 @@ if (!project) {
     /* Responsive auto-fit gallery */
     .presentation {
       /* tối đa 4 cột, tự co với ít hơn */
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    }
+
+    @media (min-width: 1279.98px) {
+      .presentation {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
     }
 
     @media (min-width: 767.98px) {
