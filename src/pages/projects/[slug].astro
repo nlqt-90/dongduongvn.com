@@ -22,6 +22,25 @@ if (!project) {
   pageTitle={project.title}
 >
   <link slot="head" rel="stylesheet" href="/assets/css/single-project.min.css" />
+  <style slot="head">
+    /* Responsive auto-fit gallery */
+    .presentation {
+      /* tối đa 4 cột, tự co với ít hơn */
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+
+    @media (min-width: 767.98px) {
+      .presentation {
+        gap: 20px;
+      }
+    }
+
+    @media (min-width: 1279.98px) {
+      .presentation {
+        gap: 0;
+      }
+    }
+  </style>
   <!-- ABOUT -->
      <div class="about section-nopb">
       <div class="container">
