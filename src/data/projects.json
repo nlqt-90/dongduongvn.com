@@ -1,124 +1,33 @@
 [
   {
-    "slug": "riviera-point",
-    "title": "Riviera Point",
-    "location": "Quận 7, TPHCM",
-    "thumbnail": "/assets/img/projects/riviera-point.webp",
-    "mainImage": "/assets/img/singleproject.jpg",
+    "slug": "capital-square-da-nang",
+    "title": "Capital Square Đà Nẵng",
+    "location": "Sơn Trà, Đà Nẵng",
+    "thumbnail": "/assets/img/projects/capitalsquare/capitalsquare_cover.webp",
+    "mainImage": "/assets/img/projects/capitalsquare/capitalsquare_main.webp",
     "description": [
-      "Thiết kế và thi công trọn gói nhà máy theo tiêu chuẩn GMP, đáp ứng yêu cầu sản xuất sạch và an toàn.",
-      "Hệ thống kết cấu thép và panel bao che hiện đại, tối ưu hóa không gian và hiệu suất vận hành."
-    ],
-    "checklist": [
-      "Thiết kế tối ưu theo công năng",
-      "Kết cấu thép chịu lực",
-      "Hệ thống Panel cách nhiệt",
-      "Đáp ứng tiêu chuẩn GMP"
+      "Capital Square Đà Nẵng được xây dựng trên diện tích 61.368m2 chia thành 2 phân khu Capital Square 2 và Capital Square 3 bao gồm 14 toà căn hộ cao từ 24 – 29 tầng với 3,391 căn hộ. Dự án được ví như biểu tượng sống mới dành cho giới tinh hoa, kiến tạo nên một cộng đồng cư dân văn minh, thịnh vượng và đẳng cấp.  ."
     ],
     "info": {
-      "location": "Long An, Việt Nam",
-      "sector": "Công nghiệp, Nhà xưởng",
-      "technology": "Kết cấu thép, Panel",
-      "scope": "12,000 m²",
-      "completionDate": "Jan 1, 2021"
+      "location": "Đà Nẵng, Việt Nam",
+      "sector": "Tổ hợp thương mại dịch vụ, căn hộ",
+      "technology": "Cẩu tháp 175C",
+      "scope": "61.368 m2",
+      "completionDate": "..."
     },
     "gallery": [
-      "/assets/img/gallery/01.jpg",
-      "/assets/img/gallery/08.jpg",
-      "/assets/img/gallery/02.jpg",
-      "/assets/img/gallery/09.jpg"
-    ]
-  },
-  {
-    "slug": "riviera-point",
-    "title": "Riviera Point",
-    "location": "Quận 7, TPHCM",
-    "thumbnail": "/assets/img/projects/riviera-point.webp",
-    "mainImage": "/assets/img/singleproject.jpg",
-    "description": [
-      "Dự án cải tạo toàn diện mặt tiền và không gian nội thất, mang lại diện mạo hiện đại và nâng cao giá trị tài sản."
-    ],
-    "checklist": [
-      "Vật liệu bền vững",
-      "Kiến trúc hiện đại",
-      "Tối ưu chi phí"
-    ],
-    "info": {
-      "location": "TP. Hồ Chí Minh, Việt Nam",
-      "sector": "Cải tạo, Văn phòng",
-      "technology": "Hybrid, Kính cường lực",
-      "scope": "9,500 m²",
-      "completionDate": "Aug 12, 2021"
-    },
-    "gallery": [
-      "/assets/img/gallery/02.jpg",
-      "/assets/img/gallery/01.jpg",
-      "/assets/img/gallery/05.jpg",
-      "/assets/img/gallery/06.jpg"
-    ]
-  },
-  {
-    "slug": "riviera-point",
-    "title": "Riviera Point",
-    "location": "Quận 7, TPHCM",
-    "thumbnail": "/assets/img/projects/riviera-point.webp",
-    "mainImage": "/assets/img/singleproject.jpg",
-    "description": [
-      "Tái cấu trúc nhà xưởng cũ, gia cố kết cấu và nâng cấp hệ thống PCCC theo tiêu chuẩn mới nhất."
-    ],
-    "checklist": [
-      "Gia cố kết cấu",
-      "Nâng cấp an toàn PCCC",
-      "Tối ưu hiệu suất năng lượng"
-    ],
-    "info": {
-      "location": "Bình Dương, Việt Nam",
-      "sector": "Công nghiệp, Tái cấu trúc",
-      "technology": "Khung thép, Bê tông dự ứng lực",
-      "scope": "15,300 m²",
-      "completionDate": "Mar 5, 2022"
-    },
-    "gallery": [
-      "/assets/img/gallery/02.jpg",
-      "/assets/img/gallery/01.jpg",
-      "/assets/img/gallery/05.jpg",
-      "/assets/img/gallery/06.jpg"
-    ]
-  },
-  {
-    "slug": "riviera-point",
-    "title": "Riviera Point",
-    "location": "Quận 7, TPHCM",
-    "thumbnail": "/assets/img/projects/riviera-point.webp",
-    "mainImage": "/assets/img/singleproject.jpg",
-    "description": [
-      "Lắp đặt hệ thống đường ống và trạm bơm hiện đại, đảm bảo cung cấp nước sạch ổn định cho khu vực."
-    ],
-    "checklist": [
-      "Lập kế hoạch hệ thống",
-      "Lắp đặt chuyên nghiệp",
-      "Bảo trì dài hạn"
-    ],
-    "info": {
-      "location": "TP. Hồ Chí Minh, Việt Nam",
-      "sector": "Hạ tầng kỹ thuật",
-      "technology": "Tự động hóa, SCADA",
-      "scope": "7,800 m²",
-      "completionDate": "Nov 18, 2022"
-    },
-    "gallery": [
-      "/assets/img/gallery/02.jpg",
-      "/assets/img/gallery/01.jpg",
-      "/assets/img/gallery/05.jpg",
-      "/assets/img/gallery/06.jpg"
+      "/assets/img/projects/capitalsquare/capitalsquare_1.webp",
+      "/assets/img/projects/capitalsquare/capitalsquare_2.webp",
+      "/assets/img/projects/capitalsquare/capitalsquare_3.webp",
+      "/assets/img/projects/capitalsquare/capitalsquare_4.webp"
     ]
   },
   {
     "slug": "aqua-city-dong-nai",
     "title": "Aqua City",
     "location": "TP Biên Hòa, Đồng Nai",
-    "thumbnail": "/assets/img/projects/aquacity_cover.webp",
-    "mainImage": "/assets/img/projects/aquacity_main.webp",
+    "thumbnail": "/assets/img/projects/aquacity/aquacity_cover.webp",
+    "mainImage": "/assets/img/projects/aquacity/aquacity_main.webp",
     "description": [
       "Aqua City với không gian xanh sinh thái giao hòa cùng hệ tiện ích đẳng cấp, tiện nghi chào đón bạn, những cư dân tinh hoa tìm kiếm một nơi an cư lý tưởng cho cả gia đình, hay đơn giản là tìm một điểm đến mới thú vị đầy trải nghiệm đáng nhớ, một nơi đầu tư bền vững, đáng tin cậy cho tương lai."
     ],
@@ -130,10 +39,87 @@
       "completionDate": "2023 - 2025"
     },
     "gallery": [
-      "/assets/img/projects/aquacity_1.webp",
-      "/assets/img/projects/aquacity_2.webp",
-      "/assets/img/projects/aquacity_3.webp",
-      "/assets/img/projects/aquacity_4.webp"
+      "/assets/img/projects/aquacity/aquacity_1.webp",
+      "/assets/img/projects/aquacity/aquacity_2.webp",
+      "/assets/img/projects/aquacity/aquacity_3.webp",
+      "/assets/img/projects/aquacity/aquacity_4.webp"
+    ]
+  },
+  {
+    "slug": "benh-vien-da-khoa-ben-tre",
+    "title": "Bệnh Viện Đa Khoa Bến Tre",
+    "location": "Bình Phú, Bến Tre",
+    "thumbnail": "/assets/img/projects/benhvienbentre/benhvienbentre_cover.webp",
+    "mainImage": "/assets/img/projects/benhvienbentre/benhvienbentre_main.webp",
+    "description": [
+      "Bệnh viện đa khoa tỉnh Bến Tre xây dựng có diện tích gần 10 ha, tại xã Bình Phú, thành phố Bến Tre, thời gian hoàn thành dự án đến năm 2026. Dự án có quy mô 1.000 giường bệnh với tổng mức đầu tư hơn 1.658 tỷ đồng, trong đó, nguồn vốn vay tín dụng ưu đãi hỗ trợ phát triển của Chính phủ Hàn Quốc cho dự án là hơn 1.331 tỉ đồng."
+    ],
+    "info": {
+      "location": "Bến Tre, Việt Nam",
+      "sector": "Bệnh viện",
+      "technology": "Cẩu tháp 175C",
+      "scope": "1000 Giường",
+      "completionDate": "..."
+    },
+    "gallery": [
+      "/assets/img/projects/benhvienbentre/benhvienbentre_1.webp",
+      "/assets/img/projects/benhvienbentre/benhvienbentre_2.webp",
+      "/assets/img/projects/benhvienbentre/benhvienbentre_3.webp",
+      "/assets/img/projects/benhvienbentre/benhvienbentre_4.webp",
+      "/assets/img/projects/benhvienbentre/benhvienbentre_5.webp",
+      "/assets/img/projects/benhvienbentre/benhvienbentre_6.webp",
+      "/assets/img/projects/benhvienbentre/benhvienbentre_7.webp",
+      "/assets/img/projects/benhvienbentre/benhvienbentre_8.webp"
+
+    ]
+  },
+  {
+    "slug": "viet-star-cu-chi",
+    "title": "Nhà máy đốt rác Việt Star Củ Chi  ",
+    "location": "Củ Chi, TPHCM",
+    "thumbnail": "/assets/img/projects/vietstar/vietstar_cover.webp",
+    "mainImage": "/assets/img/projects/vietstar/vietstar_main.webp",
+    "description": [
+      "Nhà máy đốt rác phát điện Vietstar tọa lạc tại Khu liên hợp xử lý chất thải Tây Bắc (Củ Chi), là dự án trọng điểm với tổng vốn đầu tư 3.500 tỷ đồng nhằm hiện đại hóa quy trình xử lý rác của TP.HCM. Sử dụng công nghệ tiên tiến từ Đức, nhà máy có khả năng xử lý 2.000 tấn rác mỗi ngày để chuyển hóa thành 40MW điện năng cùng các sản phẩm tái chế như phân bón hữu cơ."
+    ],
+    "info": {
+      "location": "TPHCM, Việt Nam",
+      "sector": "Nhà máy đốt rác",
+      "technology": "Cẩu tháp, Giàn giáo",
+      "scope": "2000 tấn/ngày",
+      "completionDate": "Cuối năm 2026"
+    },
+    "gallery": [
+      "/assets/img/projects/vietstar/vietstar_1.webp",
+      "/assets/img/projects/vietstar/vietstar_2.webp"
+    ]
+  },
+  {
+    "slug": "xu-ly-nuoc-thai-nhieu-loc-thi-nghe",
+    "title": "Nhà máy xử lý nước thải Nhiêu Lộc - Thị Nghè",
+    "location": "Thạnh Mỹ Lợi, TP Thủ Đức",
+    "thumbnail": "/assets/img/projects/xulynuocthainltn/xulynuocthainltn_cover.webp",
+    "mainImage": "/assets/img/projects/xulynuocthainltn/xulynuocthainltn_main.webp",
+    "description": [
+      "Nhà máy xử lý nước thải Nhiêu Lộc – Thị Nghè tại TP. Thủ Đức là dự án môi trường trọng điểm với công suất 480.000 m³/ngày đêm, lớn nhất Đông Nam Á. Sử dụng công nghệ MBBR hiện đại và vốn đầu tư 6.000 tỷ đồng, nhà máy sẽ xử lý nước thải cho 1,4 triệu dân khu vực trung tâm. Dự kiến vận hành từ năm 2026, công trình đóng vai trò then chốt trong việc làm sạch sông Sài Gòn và phát triển đô thị bền vững."
+    ],
+    "info": {
+      "location": "TPHCM, Việt Nam",
+      "sector": "Nhà máy xử lý nước thải",
+      "technology": "Giàn giáo PAL, Khớp nối",
+      "scope": "480.000 m³/ngày đêm",
+      "completionDate": "2026"
+    },
+    "gallery": [
+      "/assets/img/projects/xulynuocthainltn/xulynuocthainltn_1.webp",
+      "/assets/img/projects/xulynuocthainltn/xulynuocthainltn_2.webp",
+      "/assets/img/projects/xulynuocthainltn/xulynuocthainltn_3.webp",
+      "/assets/img/projects/xulynuocthainltn/xulynuocthainltn_4.webp",
+      "/assets/img/projects/xulynuocthainltn/xulynuocthainltn_5.webp",
+      "/assets/img/projects/xulynuocthainltn/xulynuocthainltn_6.webp",
+      "/assets/img/projects/xulynuocthainltn/xulynuocthainltn_7.webp",
+      "/assets/img/projects/xulynuocthainltn/xulynuocthainltn_8.webp"
+
     ]
   }
 ]
