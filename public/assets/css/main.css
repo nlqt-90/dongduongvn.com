@@ -1381,3 +1381,59 @@ html[dir="rtl"] #scrollTrigger {
 }
 
 
+/* --- PROJECT FILTER SECTION --- */
+
+/* KHỐI CHỨA BỘ LỌC */
+.filter_panel {
+    margin-bottom: 40px; /* Giảm khoảng cách bottom */
+  }
+  
+  /* Nhãn “Thiết bị”, “Năm” */
+  .filter_group strong {
+    font-size: 18px;
+    font-weight: 700;
+    color: #002b5c;
+    margin-right: 12px;
+  }
+  
+  /* Style chung cho button lọc */
+  .filter_group button {
+    background: #ffcc00;       /* nền vàng */
+    color: #000;               /* chữ đen */
+    border: none;
+    padding: 10px 18px;
+    margin: 6px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 4px;        /* bo nhẹ */
+    cursor: pointer;
+    transition: 0.25s ease;
+    display: inline-block;
+  }
+  
+  /* Hover */
+  .filter_group button:hover {
+    background: #f2c200;
+  }
+  
+  /* Khi active */
+  .filter_group button.active {
+    background: #4CAF50;  /* xanh lá */
+    color: #fff;          /* chữ trắng */
+  }
+  
+  /* Responsive cho mobile */
+  @media (max-width: 768px) {
+    .filter_group {
+      display: block;
+      margin-bottom: 20px;
+    }
+  
+    .filter_group button {
+      width: auto;
+      margin: 4px 4px 8px 0;
+      padding: 8px 14px;
+      font-size: 14px;
+    }
+  }
+  

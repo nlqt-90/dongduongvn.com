@@ -2,6 +2,7 @@
 import PageLayout from "@layouts/PageLayout.astro";
 import { getCollection } from "astro:content";
 import type { CollectionEntry } from "astro:content";
+import { CATEGORY_LABELS } from "../../utils/categoryLabels";
 
 // Kiểu entry cho collection "projects"
 type ProjectEntry = CollectionEntry<"projects">;
@@ -17,7 +18,7 @@ export async function getStaticPaths() {
 // Lấy slug từ URL
 const slug = Astro.params.slug as string;
 
-// Lấy đúng project theo slug (không dùng getEntryBySlug nữa)
+// Lấy đúng project theo slug
 const entries = await getCollection("projects");
 const entry = entries.find((p) => p.slug === slug) as ProjectEntry | undefined;
 
@@ -28,9 +29,6 @@ if (!entry) {
 // Dữ liệu frontmatter của dự án
 const project = entry.data;
 ---
-
-
-
 
 <PageLayout 
   title={`${project.title} | Dự án | Đông Dương`}
@@ -82,7 +80,7 @@ const project = entry.data;
           </div>
 
           <h3 class="about_article-header">Giới thiệu dự án</h3>
-          {project.description.map((text: string) => (
+          {project.description.map((text) => (
             <p class="about_article-text">{text}</p>
           ))}
 
@@ -120,20 +118,19 @@ const project = entry.data;
                       <td class="value">{project.info.location}</td>
                     </tr>
                     <tr class="about_info-table_row">
-                      <td class="property">Mô hình</td>
-                      <td class="value">{project.info.sector}</td>
-                    </tr>
-                    <tr class="about_info-table_row">
                       <td class="property">Thiết bị cung cấp</td>
-                      <td class="value">{project.info.technology}</td>
+                      <td class="value">  {project.categories
+                        .map((cat) => CATEGORY_LABELS[cat] ?? cat)
+                        .join(", ")
+                      }</td>
                     </tr>
                     <tr class="about_info-table_row">
                       <td class="property">Quy mô</td>
                       <td class="value">{project.info.scope}</td>
                     </tr>
                     <tr class="about_info-table_row">
-                      <td class="property">Thời gian hoàn thành</td>
-                      <td class="value">{project.info.completionDate}</td>
+                      <td class="property">Thời gian triển khai</td>
+                      <td class="value">{project.startDate}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -178,7 +175,7 @@ const project = entry.data;
 
   <!-- GALLERY -->
   <div class="gallery presentation" data-role="gallery">
-    {project.gallery.map((img: string) => (
+    {project.gallery.map((img) => (
       <div class="gallery_item">
         <a class="media" href={img} data-caption={project.title} data-role="gallery-link">
           <picture>

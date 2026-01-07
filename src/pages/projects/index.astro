@@ -1,59 +1,178 @@
 ---
 import PageLayout from "@layouts/PageLayout.astro";
-import { getCollection } from "astro:content";
+import { getCollection, type CollectionEntry } from "astro:content";
+import { CATEGORY_LABELS } from "../../utils/categoryLabels";
+type ProjectEntry = CollectionEntry<"projects">;
 
-// Lấy toàn bộ project từ content/projects/
+// Lấy tất cả dự án từ content collections
 const entries = await getCollection("projects");
 
-// Sắp xếp theo thứ tự A-Z hoặc theo nhu cầu
-const allProjects = entries
-  .map((entry) => ({
-    slug: entry.slug,
-    ...entry.data
-  }))
-  .sort((a, b) => a.title.localeCompare(b.title));
+// Chuẩn hoá dữ liệu + sort theo startDate (mới nhất trước)
+const allProjects = (entries as ProjectEntry[])
+  .map((entry) => {
+    const year = entry.data.startDate.split("-")[0] ?? "0000";
+    return {
+      slug: entry.slug,
+      ...entry.data,
+      year,
+    };
+  })
+  .sort((a, b) => b.startDate.localeCompare(a.startDate));
+
+// Danh sách category (thiết bị) duy nhất
+const allCategories = [
+  ...new Set(allProjects.flatMap((p) => p.categories)),
+];
+
+// Danh sách năm duy nhất (sort năm mới → cũ)
+const allYears = [
+  ...new Set(allProjects.map((p) => p.year)),
+].sort((a, b) => Number(b) - Number(a));
 ---
 
-<PageLayout 
+<PageLayout
   title="Dự Án đã tham gia | Đông Dương"
   pageSubtitle="An toàn - Chất lượng - Chuyên nghiệp"
   pageTitle="Các dự án đã tham gia"
 >
   <link slot="head" rel="stylesheet" href="/assets/css/projects.min.css" />
 
-<section class="projects section">
-  <div class="container">
-    <ul class="projects_list">
-      {allProjects.map(project => (
-        <li class="projects_list-item">
-          <div class="media">
-            <img src={project.thumbnail} alt={project.title} />
-          </div>
+  <!-- FILTER -->
+  <section class="projects_filters section">
+    <div class="container">
+      <div class="filter_group">
+        <strong>Thiết bị:</strong>
+        <button type="button" data-filter-category="all">Tất cả</button>
 
-          <div class="main">
-            <h3 class="main_title">
-              <span class="text">{project.title}</span>
-              <span class="divider divider--line"></span>
-            </h3>
+        {allCategories.map((cat) => (
+          <button type="button" data-filter-category={cat}>
+            {CATEGORY_LABELS[cat] ?? cat}
+          </button>
+        ))}
+      </div>
 
-            <div class="main_info">
-              <span class="location">
-                <i class="icon-location icon"></i>
-                {project.location}
-              </span>
+      <div class="filter_group">
+        <strong>Năm:</strong>
+        <button type="button" data-filter-year="all">Tất cả</button>
+        {allYears.map((yr) => (
+          <button type="button" data-filter-year={yr}>
+            {yr}
+          </button>
+        ))}
+      </div>
+    </div>
+  </section>
 
-              <a
-                class="link link-arrow"
-                href={`/projects/${project.slug}`}
-              >
-                Chi tiết <i class="icon-arrow_right icon"></i>
-              </a>
+  <!-- DANH SÁCH DỰ ÁN -->
+  <section class="projects section">
+    <div class="container">
+      <ul class="projects_list">
+        {allProjects.map((project) => (
+          <li
+            class="projects_list-item"
+            data-categories={project.categories.join(",")}
+            data-year={project.year}
+          >
+            <div class="media">
+              <picture>
+                <img src={project.thumbnail} alt={project.title} />
+              </picture>
             </div>
-          </div>
-        </li>
-      ))}
-    </ul>
-  </div>
-</section>
+
+            <div class="main">
+              <h3 class="main_title">
+                <span class="text">{project.title}</span>
+                <span class="divider divider--line"></span>
+              </h3>
+
+              <div class="main_info">
+                <span class="location">
+                  <i class="icon-location icon"></i>
+                  {project.location}
+                </span>
+
+                <a
+                  class="link link-arrow"
+                  href={`/projects/${project.slug}`}
+                >
+                  Chi tiết <i class="icon-arrow_right icon"></i>
+                </a>
+              </div>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- SCRIPT FILTER (TypeScript, đã fix dataset/style) -->
+  <script>
+    // @ts-nocheck  // TẮT TYPESCRIPT CHO ĐOẠN NÀY
+  
+    document.addEventListener("DOMContentLoaded", () => {
+  
+      // Danh sách item cần lọc
+      const items = Array.from(
+        document.querySelectorAll(".projects_list-item")
+      );
+  
+      // Biến lưu bộ lọc hiện tại
+      let currentCategory = "all";
+      let currentYear = "all";
+  
+      // Hàm áp dụng bộ lọc
+      const applyFilters = () => {
+        items.forEach((el) => {
+          const cats = (el.dataset.categories || "").split(",");
+          const year = el.dataset.year || "";
+  
+          const matchCategory =
+            currentCategory === "all" || cats.includes(currentCategory);
+  
+          const matchYear =
+            currentYear === "all" || year === currentYear;
+  
+          el.style.display = matchCategory && matchYear ? "" : "none";
+        });
+      };
+  
+      // --- LỌC THEO CATEGORY ---
+      const catButtons = document.querySelectorAll("[data-filter-category]");
+  
+      catButtons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+  
+          // Xóa class active khỏi tất cả
+          catButtons.forEach((b) => b.classList.remove("active"));
+  
+          // Thêm class active vào nút hiện tại
+          btn.classList.add("active");
+  
+          // Gán giá trị
+          currentCategory = btn.dataset.filterCategory || "all";
+  
+          applyFilters();
+        });
+      });
+  
+      // --- LỌC THEO YEAR ---
+      const yearButtons = document.querySelectorAll("[data-filter-year]");
+  
+      yearButtons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+  
+          yearButtons.forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+  
+          currentYear = btn.dataset.filterYear || "all";
+  
+          applyFilters();
+        });
+      });
+    });
+  </script>
+  
+
+    
 
 </PageLayout>
