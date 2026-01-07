@@ -1,5 +1,4 @@
 ---
-slug: aqua-city-dong-nai
 title: Aqua City
 location: TP Biên Hòa, Đồng Nai
 thumbnail: /assets/img/projects/aquacity/aquacity_cover.webp
@@ -11,7 +10,7 @@ info:
   sector: Khu đô thị
   technology: Cẩu tháp 175C
   scope: 1000 Ha
-  completionDate: 2023 - 2025
+  completionDate: "2025"
 gallery:
   - /assets/img/projects/aquacity/aquacity_1.webp
   - /assets/img/projects/aquacity/aquacity_2.webp

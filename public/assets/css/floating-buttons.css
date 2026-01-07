@@ -1,0 +1,52 @@
+.zalo-float-btn,
+.hotline-float-btn {
+  position: fixed;
+  right: 20px;
+  z-index: 10000;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, .25);
+}
+
+.zalo-float-btn {
+  bottom: 80px;
+  animation: zalo-shake 4s ease-in-out infinite;
+}
+
+.hotline-float-btn {
+  bottom: 150px;
+  animation: zalo-shake 4s ease-in-out infinite;
+}
+
+.zalo-float-btn:hover,
+.hotline-float-btn:hover {
+  animation-play-state: paused;
+}
+
+@keyframes zalo-shake {
+  0%, 100% { transform: translate(0,0) rotate(0deg); }
+  10%, 30%, 50%, 70%, 90% { transform: translate(-2px,0) rotate(-5deg); }
+  20%, 40%, 60%, 80% { transform: translate(2px,0) rotate(5deg); }
+}
+
+.zalo-float-btn img,
+.hotline-float-btn img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 768px) {
+  .zalo-float-btn,
+  .hotline-float-btn {
+    width: 50px;
+    height: 50px;
+    right: 12px;
+  }
+
+  .zalo-float-btn {
+    bottom: 60px;
+  }
+}

@@ -1,5 +1,4 @@
 ---
-slug: benh-vien-da-khoa-ben-tre
 title: Bệnh Viện Đa Khoa Bến Tre
 location: Bình Phú, Bến Tre
 thumbnail: /assets/img/projects/benhvienbentre/benhvienbentre_cover.webp

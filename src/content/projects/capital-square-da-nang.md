@@ -1,5 +1,4 @@
 ---
-slug: capital-square-da-nang
 title: Capital Square Đà Nẵng
 location: Sơn Trà, Đà Nẵng
 thumbnail: /assets/img/projects/capitalsquare/capitalsquare_cover.webp

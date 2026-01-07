@@ -2,12 +2,19 @@
 import BaseLayout from "@layouts/BaseLayout.astro";
 import Header from "@components/Header.astro";
 import Footer from "@components/Footer.astro";
-import { getSortedProjects } from "../utils/projects.ts";
+import { getCollection, type CollectionEntry } from "astro:content";
 import clients from "@data/clients.json";
 
-const latestProjects = getSortedProjects().slice(0, 4);
+// Kiểu dữ liệu 1 project trong collection "projects"
+type ProjectEntry = CollectionEntry<"projects">;
+
+// Lấy toàn bộ project từ Markdown rồi lấy 4 cái đầu
+const allProjects = await getCollection("projects");
+const latestProjects: ProjectEntry[] = (allProjects as ProjectEntry[]).slice(0, 4);
 
 ---
+
+
 
 <BaseLayout
   title="Đông Dương | Giàn giáo – Cốp pha – Vận thăng"
@@ -138,40 +145,58 @@ const latestProjects = getSortedProjects().slice(0, 4);
 
 
 
+<section class="projects primary-bg section">
+    <div class="container">
+        <div class="projects_header section_header">
+            <span class="subtitle">NĂNG LỰC THI CÔNG</span>
+            <h2 class="title" data-aos="fade-right">
+                Các <span class="highlight">dự án</span> đã tham gia
+            </h2>
+        </div>
+        <ul class="projects_list">
+            {latestProjects.map((project) => (
+                <li class="projects_list-item">
+                    <div class="media" data-aos="zoom-in-right">
+                        <picture>
+                            <source
+                              data-srcset={project.data.thumbnail}
+                              srcset={project.data.thumbnail}
+                              type="image/webp"
+                            />
+                            <img
+                              class="lazy"
+                              data-src={project.data.thumbnail}
+                              src={project.data.thumbnail}
+                              alt={project.data.title}
+                            />
+                        </picture>
+                    </div>
+                    <div class="main">
+                        <h3 class="main_title" data-aos="fade-in">
+                            <span class="text">{project.data.title}</span>
+                            <span class="divider divider--line" data-aos="slide-right"></span>
+                        </h3>
+                        <div class="main_info">
+                            <span class="location" data-aos="fade-in" data-aos-delay="50">
+                                <i class="icon-location icon"></i> {project.data.location}
+                            </span>
+                            <a
+                              class="link link-arrow link-arrow--alt"
+                              href={`/projects/${project.slug}`}
+                              data-aos="fade-in"
+                              data-aos-delay="50"
+                            >
+                                Chi tiết <i class="icon-arrow_right icon"></i>
+                            </a>
+                        </div>
+                    </div>
+                </li>
+            ))}
+        </ul>
+    </div>
+</section>
 
-        <section class="projects primary-bg section">
-            <div class=container>
-                <div class="projects_header section_header"><span class=subtitle>NĂNG LỰC THI CÔNG</span>
-                    <h2 class=title data-aos=fade-right>Các <span class=highlight>dự án</span> đã tham gia</h2>
-                </div>
-                <ul class="projects_list">
-                    {latestProjects.map(project => (
-                        <li class="projects_list-item">
-                            <div class="media" data-aos="zoom-in-right">
-                                <picture>
-                                    <source data-srcset={project.thumbnail} srcset={project.thumbnail} type="image/webp" />
-                                    <img class="lazy" data-src={project.thumbnail} src={project.thumbnail} alt={project.title} />
-                                </picture>
-                            </div>
-                            <div class="main">
-                                <h3 class="main_title" data-aos="fade-in">
-                                    <span class="text">{project.title}</span>
-                                    <span class="divider divider--line" data-aos="slide-right"></span>
-                                </h3>
-                                <div class="main_info">
-                                    <span class="location" data-aos="fade-in" data-aos-delay="50">
-                                        <i class="icon-location icon"></i> {project.location}
-                                    </span>
-                                    <a class="link link-arrow link-arrow--alt" href={`/projects/${project.slug}`} data-aos="fade-in" data-aos-delay="50">
-                                        Chi tiết <i class="icon-arrow_right icon"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </li>
-                    ))}
-                </ul>
-            </div>
-        </section>
+
         <section class="spots section">
             <div class=container>
                 <div class=wrapper>

@@ -1,5 +1,4 @@
 ---
-slug: xu-ly-nuoc-thai-nhieu-loc-thi-nghe
 title: Nhà máy xử lý nước thải Nhiêu Lộc - Thị Nghè
 location: Thạnh Mỹ Lợi, TP Thủ Đức
 thumbnail: /assets/img/projects/xulynuocthainltn/xulynuocthainltn_cover.webp
@@ -11,7 +10,7 @@ info:
   sector: Nhà máy xử lý nước thải
   technology: Giàn giáo PAL, Khớp nối
   scope: 480.000 m³/ngày đêm
-  completionDate: 2026
+  completionDate: "2026"
 gallery:
   - /assets/img/projects/xulynuocthainltn/xulynuocthainltn_1.webp
   - /assets/img/projects/xulynuocthainltn/xulynuocthainltn_2.webp

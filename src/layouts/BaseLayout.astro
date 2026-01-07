@@ -26,81 +26,19 @@ const {
   <link rel="stylesheet" href="/assets/css/header.css" />
   <link rel="stylesheet" href="/assets/css/footer.css" />
   <link rel="stylesheet" href="/assets/css/main.css" />
-  <!-- Floating Buttons Styles -->
-  <style>
-    .zalo-float-btn {
-      position: fixed;
-      right: 20px;
-      bottom: 80px;
-      z-index: 10000;
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      overflow: hidden;
-      box-shadow: 0 4px 10px rgba(0,0,0,.25);
-    }
-    /* shake animation */
-    .zalo-float-btn{
-      animation: zalo-shake 4s ease-in-out infinite;
-    }
-    .zalo-float-btn:hover{
-      animation-play-state: paused;
-    }
-    @keyframes zalo-shake{
-      0%,100%{transform:translate(0,0) rotate(0deg)}
-      10%,30%,50%,70%,90%{transform:translate(-2px,0) rotate(-5deg)}
-      20%,40%,60%,80%{transform:translate(2px,0) rotate(5deg)}
-    }
-
-    .zalo-float-btn img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-    }
-    .hotline-float-btn{
-      position: fixed;
-      right: 20px;
-      bottom: 150px;
-      z-index: 10001;
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      background: transparent;
-      color:#fff;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-size:26px;
-      box-shadow:0 4px 10px rgba(0,0,0,.25);
-      animation: zalo-shake 4s ease-in-out infinite;
-    }
-    .hotline-float-btn:hover{animation-play-state:paused;}
-
-    @media (max-width: 768px){
-      .zalo-float-btn{
-        right: 12px;
-        bottom: 60px;
-        width:50px;
-        height:50px;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="/assets/css/floating-buttons.css" />
 </head>
 
 <body>
   <slot />
-
-  <!-- JS chung -->
-  <script src="/assets/js/common.min.js" defer></script>
-  <!-- Hotline Button -->
   <a href="tel:+842838552151" class="hotline-float-btn" aria-label="Gọi hotline">
     <img src="/assets/img/hotline-icon.png" alt="Hotline" />
   </a>
-  <!-- Zalo Floating Button -->
+  
   <a href="https://zalo.me/84901234567" target="_blank" rel="noopener" class="zalo-float-btn" aria-label="Chat Zalo">
     <img src="/assets/img/zalo-icon.png" alt="Zalo chat" />
   </a>
-
+  
   <!-- JS chung -->
   <script src="/assets/js/common.min.js" defer></script>
 </body>

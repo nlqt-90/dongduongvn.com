@@ -1,20 +1,36 @@
 ---
 import PageLayout from "@layouts/PageLayout.astro";
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
 
-import projects from "../../data/projects.json";
+// Kiểu entry cho collection "projects"
+type ProjectEntry = CollectionEntry<"projects">;
 
-export function getStaticPaths() {
-  return projects.map(p => ({
-    params: { slug: p.slug }
+// Sinh static paths từ tất cả project
+export async function getStaticPaths() {
+  const entries = await getCollection("projects");
+  return entries.map((p) => ({
+    params: { slug: p.slug },
   }));
 }
 
-const project = projects.find(p => p.slug === Astro.params.slug);
+// Lấy slug từ URL
+const slug = Astro.params.slug as string;
 
-if (!project) {
+// Lấy đúng project theo slug (không dùng getEntryBySlug nữa)
+const entries = await getCollection("projects");
+const entry = entries.find((p) => p.slug === slug) as ProjectEntry | undefined;
+
+if (!entry) {
   return Astro.redirect("/404");
 }
+
+// Dữ liệu frontmatter của dự án
+const project = entry.data;
 ---
+
+
+
 
 <PageLayout 
   title={`${project.title} | Dự án | Đông Dương`}
@@ -32,6 +48,7 @@ if (!project) {
     @media (min-width: 1279.98px) {
       .presentation {
         grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
     }
 
     @media (min-width: 767.98px) {
@@ -46,120 +63,122 @@ if (!project) {
       }
     }
   </style>
+
   <!-- ABOUT -->
-     <div class="about section-nopb">
-      <div class="container">
-        <div class="about_content">
-          <article class="about_article">
-            <div class="media">
-              <picture>
-                <source data-srcset={project.mainImage} srcset={project.mainImage} type="image/webp" />
-                <img
-                  class="lazy"
-                  data-src={project.mainImage}
-                  src={project.mainImage}
-                  alt={project.title}
-                />
-              </picture>
-            </div>
+  <div class="about section-nopb">
+    <div class="container">
+      <div class="about_content">
+        <article class="about_article">
+          <div class="media">
+            <picture>
+              <source data-srcset={project.mainImage} srcset={project.mainImage} type="image/webp" />
+              <img
+                class="lazy"
+                data-src={project.mainImage}
+                src={project.mainImage}
+                alt={project.title}
+              />
+            </picture>
+          </div>
 
-            <h3 class="about_article-header">Giới thiệu dự án</h3>
-            {project.description.map((text: string) => (
-              <p class="about_article-text">{text}</p>
-            ))}
+          <h3 class="about_article-header">Giới thiệu dự án</h3>
+          {project.description.map((text: string) => (
+            <p class="about_article-text">{text}</p>
+          ))}
 
-            <h3 class="about_article-header">Giải pháp thi công toàn diện và an toàn</h3>
-            <p class="about_article-text">
-              Với đội ngũ kỹ sư giàu kinh nghiệm và hệ thống thiết bị hiện đại, chúng tôi cam kết mang đến những giải pháp thi công tối ưu nhất cho mọi loại hình công trình. Sự an toàn của con người và tính bền vững của kết cấu luôn là ưu tiên hàng đầu trong mọi hành động.
-            </p>
+          <h3 class="about_article-header">Giải pháp thi công toàn diện và an toàn</h3>
+          <p class="about_article-text">
+            Với đội ngũ kỹ sư giàu kinh nghiệm và hệ thống thiết bị hiện đại, chúng tôi cam kết mang đến những
+            giải pháp thi công tối ưu nhất cho mọi loại hình công trình. Sự an toàn của con người và tính bền vững
+            của kết cấu luôn là ưu tiên hàng đầu trong mọi hành động.
+          </p>
 
-            <ul class=checklist>
-              <li class=checklist_item><i class="icon-check icon"></i> Tiêu chuẩn an toàn lao động quốc tế.</li>
-              <li class=checklist_item><i class="icon-check icon"></i> Đảm bảo tiến độ thi công khắt khe nhất.
-              </li>
-              <li class=checklist_item><i class="icon-check icon"></i> Tối ưu hóa chi phí đầu tư cho chủ thầu.
-              </li>
+          <ul class="checklist">
+            <li class="checklist_item"><i class="icon-check icon"></i> Tiêu chuẩn an toàn lao động quốc tế.</li>
+            <li class="checklist_item"><i class="icon-check icon"></i> Đảm bảo tiến độ thi công khắt khe nhất.</li>
+            <li class="checklist_item"><i class="icon-check icon"></i> Tối ưu hóa chi phí đầu tư cho chủ thầu.</li>
           </ul>
 
-            <h3 class="about_article-header">Đẳng cấp trong từng chi tiết kỹ thuật</h3>
-            <p class="about_article-text">
-              Không chỉ cung cấp thiết bị, chúng tôi cung cấp sự an tâm. Mọi hệ thống giàn giáo, cẩu tháp hay vận thăng đều được kiểm định nghiêm ngặt trước khi lắp dựng. Chúng tôi ứng dụng công nghệ quản lý vận hành tiên tiến để đảm bảo thiết bị hoạt động liên tục, chính xác, góp phần tạo nên những công trình biểu tượng.
-            </p>
-          </article>
+          <h3 class="about_article-header">Đẳng cấp trong từng chi tiết kỹ thuật</h3>
+          <p class="about_article-text">
+            Không chỉ cung cấp thiết bị, chúng tôi cung cấp sự an tâm. Mọi hệ thống giàn giáo, cẩu tháp hay vận thăng
+            đều được kiểm định nghiêm ngặt trước khi lắp dựng. Chúng tôi ứng dụng công nghệ quản lý vận hành tiên tiến
+            để đảm bảo thiết bị hoạt động liên tục, chính xác, góp phần tạo nên những công trình biểu tượng.
+          </p>
+        </article>
 
-          <div class="about_aside">
-            <div class="about_info about_aside-item">
-              <div class="wrapper">
-                <div class="wrapper--helper">
-                  <h3 class="about_info-title title">Thông tin dự án</h3>
+        <div class="about_aside">
+          <div class="about_info about_aside-item">
+            <div class="wrapper">
+              <div class="wrapper--helper">
+                <h3 class="about_info-title title">Thông tin dự án</h3>
 
-                  <table class="about_info-table">
-                    <tbody>
-                      <tr class="about_info-table_row">
-                        <td class="property">Vị trí</td>
-                        <td class="value">{project.info.location}</td>
-                      </tr>
-                      <tr class="about_info-table_row">
-                        <td class="property">Mô hình</td>
-                        <td class="value">{project.info.sector}</td>
-                      </tr>
-                      <tr class="about_info-table_row">
-                        <td class="property">Thiết bị cung cấp</td>
-                        <td class="value">{project.info.technology}</td>
-                      </tr>
-                      <tr class="about_info-table_row">
-                        <td class="property">Quy mô</td>
-                        <td class="value">{project.info.scope}</td>
-                      </tr>
-                      <tr class="about_info-table_row">
-                        <td class="property">Thời gian hoàn thành</td>
-                        <td class="value">{project.info.completionDate}</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-
-                {/* ✅ theme demo: href="#" */}
-                <a class="link link-arrow" href="#">
-                  Nhận báo giá ngay <i class="icon-arrow_right icon"></i>
-                </a>
+                <table class="about_info-table">
+                  <tbody>
+                    <tr class="about_info-table_row">
+                      <td class="property">Vị trí</td>
+                      <td class="value">{project.info.location}</td>
+                    </tr>
+                    <tr class="about_info-table_row">
+                      <td class="property">Mô hình</td>
+                      <td class="value">{project.info.sector}</td>
+                    </tr>
+                    <tr class="about_info-table_row">
+                      <td class="property">Thiết bị cung cấp</td>
+                      <td class="value">{project.info.technology}</td>
+                    </tr>
+                    <tr class="about_info-table_row">
+                      <td class="property">Quy mô</td>
+                      <td class="value">{project.info.scope}</td>
+                    </tr>
+                    <tr class="about_info-table_row">
+                      <td class="property">Thời gian hoàn thành</td>
+                      <td class="value">{project.info.completionDate}</td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
+
+              {/* ✅ theme demo: href="#" */}
+              <a class="link link-arrow" href="#">
+                Nhận báo giá ngay <i class="icon-arrow_right icon"></i>
+              </a>
             </div>
+          </div>
 
-            <div class="about_contact about_aside-item primary-bg">
-              <div class="wrapper">
-                <h3 class="about_contact-title title">Bạn đang chuẩn bị triển khai dự án?</h3>
+          <div class="about_contact about_aside-item primary-bg">
+            <div class="wrapper">
+              <h3 class="about_contact-title title">Bạn đang chuẩn bị triển khai dự án?</h3>
 
-                <ul class="contact-info">
-                  <li class="contact-info_group">
-                    <span class="name">Địa chỉ</span>
-                    <span class="content">143 Trần Hưng Đạo B, Phường Chợ Lớn, TP. Hồ Chí Minh</span>
-                  </li>
-                  <li class="contact-info_group">
-                    <span class="name">Email</span>
-                    <span class="content d-inline-flex flex-column">
-                      <a class="link" href="mailto:example.com">contact@dongduongvn.com</a>
-                    </span>
-                  </li>
-                  <li class="contact-info_group">
-                    <span class="name">Điện thoại</span>
-                    <span class="content d-inline-flex flex-column">
-                      <a class="link" href="tel:+13136453395">+84.28 3855 2151</a>
-                    </span>
-                  </li>
-                </ul>
+              <ul class="contact-info">
+                <li class="contact-info_group">
+                  <span class="name">Địa chỉ</span>
+                  <span class="content">143 Trần Hưng Đạo B, Phường Chợ Lớn, TP. Hồ Chí Minh</span>
+                </li>
+                <li class="contact-info_group">
+                  <span class="name">Email</span>
+                  <span class="content d-inline-flex flex-column">
+                    <a class="link" href="mailto:example.com">contact@dongduongvn.com</a>
+                  </span>
+                </li>
+                <li class="contact-info_group">
+                  <span class="name">Điện thoại</span>
+                  <span class="content d-inline-flex flex-column">
+                    <a class="link" href="tel:+842838552151">+84.28 3855 2151</a>
+                  </span>
+                </li>
+              </ul>
 
-
-              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
 
   <!-- GALLERY -->
   <div class="gallery presentation" data-role="gallery">
-    {project.gallery.map((img) => (
+    {project.gallery.map((img: string) => (
       <div class="gallery_item">
         <a class="media" href={img} data-caption={project.title} data-role="gallery-link">
           <picture>
@@ -178,80 +197,111 @@ if (!project) {
     ))}
   </div>
 
-  <!-- FEEDBACK (BỊ THIẾU TRƯỚC ĐÂY) -->
-        <section class="feedback section">
-            <div class=container>
-                <div class="feedback_header section_header"><span class=subtitle>Phản hồi của khách hàng</span>
-                    <h2 class=title><span class=highlight>Đối tác</span> nói gì về Đông Dương</h2>
-                    <p class=text>Sự ủng hộ nhiệt tình và đóng góp quý báu của Quý Công ty đã góp phần tạo nên thành công rực rỡ cho các sự kiện tầm cỡ quốc gia</p><a class=btn href=/about>XEM HỒ SƠ NĂNG LỰC</a>
-                </div>
-                <div class="feedback_slider swiper">
-                    <div class=swiper-wrapper>
-                        <div class="feedback_slider-slide swiper-slide">
-                            <p class=main>Thành công của sự kiện chính là nhờ sự ủng hộ nhiệt tình của Quý Công ty, góp phần tôn vinh những giá trị văn hóa và quảng bá hình ảnh địa phương đến du khách trong và ngoài nước.</p>
-                            <div class=media>
-                                <div class=avatar>
-                                    <picture>
-                                        <source data-srcset=/assets/img/avatars/lehoitra.webp
-                                            srcset=/assets/img/avatars/lehoitra.webp type=image/webp><img class=lazy
-                                            data-src=assets/img/avatars/lehoitra.webp src=assets/img/avatars/lehoitra.webp
-                                            alt="UBND tỉnh Lâm Đồng">
-                                    </picture>
-                                </div>
-                                <div class=media_info><span class=name>Đại diện UBND Tỉnh / Ban Tổ chức</span> <span
-                                        class=company>Lễ hội Văn hóa Trà 2006</span></div>
-                            </div>
-                        </div>
-                        <div class="feedback_slider-slide swiper-slide">
-                            <p class=main>Sự hỗ trợ, giúp đỡ không nhỏ của Quý Công ty về cả vật chất và tinh thần đã góp phần tạo điều kiện cho sinh viên có một sân chơi bổ ích, tạo động lực cho phong rào nghiên cứu khoa học và chuyển giao công nghệ.</p>
-                            <div class=media>
-                                <div class=avatar>
-                                    <picture>
-                                        <source data-srcset=/assets/img/avatars/robocon2005.webp
-                                            srcset=/assets/img/avatars/robocon2005.webp type=image/webp><img class=lazy
-                                            data-src=assets/img/avatars/robocon2005.webp src=assets/img/avatars/robocon2005.webp
-                                            alt="John Smith">
-                                    </picture>
-                                </div>
-                                <div class=media_info><span class=name>Ban Tổ chức Robocon</span> <span
-                                        class=company>ĐH Sư phạm Kỹ thuật TP.HCM</span></div>
-                            </div>
-                        </div>
-                        <div class="feedback_slider-slide swiper-slide">
-                            <p class=main>Sự đồng hành và tài trợ của Quý Công ty đã giúp chúng tôi tổ chức giải đấu thành công rực rỡ, để lại ấn tượng tốt đẹp trong lòng người hâm mộ và các đơn vị truyền thông như VTV, HTV.</p>
-                            <div class=media>
-                                <div class=avatar>
-                                    <picture>
-                                        <source data-srcset=/assets/img/avatars/vungtautourist.webp
-                                            srcset=/assets/img/avatars/vungtautourist.webp type=image/webp><img class=lazy
-                                            data-src=assets/img/avatars/vungtautourist.webp src=assets/img/avatars/vungtautourist.webp
-                                            alt="Marta Diaz">
-                                    </picture>
-                                </div>
-                                <div class=media_info><span class=name>Ban Tổ chức Giải Bóng chuyền Bãi biển Quốc gia</span> <span
-                                        class=company>Vungtau Tourist</span></div>
-                            </div>
-                        </div>
-                        <div class="feedback_slider-slide swiper-slide">
-                            <p class=main>Ủy ban nhân dân tỉnh trân trọng cảm ơn Quý Công ty đã tạo mọi điều kiện giúp đỡ để buổi lễ mít-tinh kỷ niệm 30 năm ngày giải phóng hoàn toàn miền Nam thành công tốt đẹp.</p>
-                            <div class=media>
-                                <div class=avatar>
-                                    <picture>
-                                        <source data-srcset=/assets/img/avatars/tinhbentre.webp
-                                            srcset=/assets/img/avatars/tinhbentre.webp type=image/webp><img class=lazy
-                                            data-src=assets/img/avatars/tinhbentre.webp src=assets/img/avatars/tinhbentre.webp
-                                            alt="Victor Adams">
-                                    </picture>
-                                </div>
-                                <div class=media_info><span class=name>UBND tỉnh Bến Tre</span> <span
-                                        class=company>Kỷ niệm 30 năm Giải phóng miền Nam</span></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="feedback_slider-pagination swiper-pagination"></div>
-                </div>
+  <!-- FEEDBACK -->
+  <section class="feedback section">
+    <div class="container">
+      <div class="feedback_header section_header">
+        <span class="subtitle">Phản hồi của khách hàng</span>
+        <h2 class="title"><span class="highlight">Đối tác</span> nói gì về Đông Dương</h2>
+        <p class="text">
+          Sự ủng hộ nhiệt tình và đóng góp quý báu của Quý Công ty đã góp phần tạo nên thành công rực rỡ cho các sự kiện tầm cỡ quốc gia
+        </p>
+        <a class="btn" href="/about">XEM HỒ SƠ NĂNG LỰC</a>
+      </div>
+      <div class="feedback_slider swiper">
+        <div class="swiper-wrapper">
+          <div class="feedback_slider-slide swiper-slide">
+            <p class="main">
+              Thành công của sự kiện chính là nhờ sự ủng hộ nhiệt tình của Quý Công ty, góp phần tôn vinh những giá trị văn hóa và quảng bá hình ảnh địa phương đến du khách trong và ngoài nước.
+            </p>
+            <div class="media">
+              <div class="avatar">
+                <picture>
+                  <img
+                    class="lazy"
+                    data-src="/assets/img/avatars/lehoitra.webp"
+                    src="/assets/img/avatars/lehoitra.webp"
+                    alt="UBND tỉnh Lâm Đồng"
+                  />
+                </picture>
+              </div>
+              <div class="media_info">
+                <span class="name">Đại diện UBND Tỉnh / Ban Tổ chức</span>
+                <span class="company">Lễ hội Văn hóa Trà 2006</span>
+              </div>
             </div>
-        </section>
+          </div>
+
+          <div class="feedback_slider-slide swiper-slide">
+            <p class="main">
+              Sự hỗ trợ, giúp đỡ không nhỏ của Quý Công ty về cả vật chất và tinh thần đã góp phần tạo điều kiện cho sinh viên có một sân chơi bổ ích...
+            </p>
+            <div class="media">
+              <div class="avatar">
+                <picture>
+                  <img
+                    class="lazy"
+                    data-src="/assets/img/avatars/robocon2005.webp"
+                    src="/assets/img/avatars/robocon2005.webp"
+                    alt="Robocon 2005"
+                  />
+                </picture>
+              </div>
+              <div class="media_info">
+                <span class="name">Ban Tổ chức Robocon</span>
+                <span class="company">ĐH Sư phạm Kỹ thuật TP.HCM</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="feedback_slider-slide swiper-slide">
+            <p class="main">
+              Sự đồng hành và tài trợ của Quý Công ty đã giúp chúng tôi tổ chức giải đấu thành công rực rỡ...
+            </p>
+            <div class="media">
+              <div class="avatar">
+                <picture>
+                  <img
+                    class="lazy"
+                    data-src="/assets/img/avatars/vungtautourist.webp"
+                    src="/assets/img/avatars/vungtautourist.webp"
+                    alt="Vungtau Tourist"
+                  />
+                </picture>
+              </div>
+              <div class="media_info">
+                <span class="name">Ban Tổ chức Giải Bóng chuyền Bãi biển Quốc gia</span>
+                <span class="company">Vungtau Tourist</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="feedback_slider-slide swiper-slide">
+            <p class="main">
+              Ủy ban nhân dân tỉnh trân trọng cảm ơn Quý Công ty đã tạo mọi điều kiện giúp đỡ để buổi lễ mít-tinh kỷ niệm 30 năm ngày giải phóng hoàn toàn miền Nam thành công tốt đẹp.
+            </p>
+            <div class="media">
+              <div class="avatar">
+                <picture>
+                  <img
+                    class="lazy"
+                    data-src="/assets/img/avatars/tinhbentre.webp"
+                    src="/assets/img/avatars/tinhbentre.webp"
+                    alt="UBND Bến Tre"
+                  />
+                </picture>
+              </div>
+              <div class="media_info">
+                <span class="name">UBND tỉnh Bến Tre</span>
+                <span class="company">Kỷ niệm 30 năm Giải phóng miền Nam</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="feedback_slider-pagination swiper-pagination"></div>
+      </div>
+    </div>
+  </section>
 
   <Fragment slot="scripts">
     <script src="/assets/js/singleproject.min.js" defer></script>

@@ -1,5 +1,4 @@
 ---
-slug: viet-star-cu-chi
 title: Nhà máy đốt rác Việt Star Củ Chi
 location: Củ Chi, TPHCM
 thumbnail: /assets/img/projects/vietstar/vietstar_cover.webp
@@ -11,7 +10,7 @@ info:
   sector: Nhà máy đốt rác
   technology: Cẩu tháp, Giàn giáo
   scope: 2000 tấn/ngày
-  completionDate: Cuối năm 2026
+  completionDate: "2026"
 gallery:
   - /assets/img/projects/vietstar/vietstar_1.webp
   - /assets/img/projects/vietstar/vietstar_2.webp

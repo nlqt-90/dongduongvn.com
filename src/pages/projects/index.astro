@@ -1,9 +1,17 @@
 ---
 import PageLayout from "@layouts/PageLayout.astro";
+import { getCollection } from "astro:content";
 
-import { getSortedProjects } from "../../utils/projects.ts";
+// Lấy toàn bộ project từ content/projects/
+const entries = await getCollection("projects");
 
-const allProjects = getSortedProjects();
+// Sắp xếp theo thứ tự A-Z hoặc theo nhu cầu
+const allProjects = entries
+  .map((entry) => ({
+    slug: entry.slug,
+    ...entry.data
+  }))
+  .sort((a, b) => a.title.localeCompare(b.title));
 ---
 
 <PageLayout 
@@ -13,8 +21,7 @@ const allProjects = getSortedProjects();
 >
   <link slot="head" rel="stylesheet" href="/assets/css/projects.min.css" />
 
-
-  <section class="projects section">
+<section class="projects section">
   <div class="container">
     <ul class="projects_list">
       {allProjects.map(project => (
@@ -48,4 +55,5 @@ const allProjects = getSortedProjects();
     </ul>
   </div>
 </section>
+
 </PageLayout>
