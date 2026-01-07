@@ -2,32 +2,31 @@
 import PageLayout from "@layouts/PageLayout.astro";
 import { getCollection, type CollectionEntry } from "astro:content";
 import { CATEGORY_LABELS } from "../../utils/categoryLabels";
+
 type ProjectEntry = CollectionEntry<"projects">;
 
-// Lấy tất cả dự án từ content collections
+// Lấy toàn bộ dự án
 const entries = await getCollection("projects");
 
-// Chuẩn hoá dữ liệu + sort theo startDate (mới nhất trước)
+// Chuẩn hoá + sort (mới nhất trước)
 const allProjects = (entries as ProjectEntry[])
-  .map((entry) => {
-    const year = entry.data.startDate.split("-")[0] ?? "0000";
-    return {
-      slug: entry.slug,
-      ...entry.data,
-      year,
-    };
-  })
+  .map((entry) => ({
+    slug: entry.slug,
+    ...entry.data,
+    year: entry.data.startDate.split("-")[0] ?? "0000",
+  }))
   .sort((a, b) => b.startDate.localeCompare(a.startDate));
 
-// Danh sách category (thiết bị) duy nhất
-const allCategories = [
-  ...new Set(allProjects.flatMap((p) => p.categories)),
-];
+// Pagination 4 dự án / trang
+const PAGE_SIZE = 4;
+const pageCount = Math.ceil(allProjects.length / PAGE_SIZE);
+const visibleProjects = allProjects.slice(0, PAGE_SIZE);
 
-// Danh sách năm duy nhất (sort năm mới → cũ)
-const allYears = [
-  ...new Set(allProjects.map((p) => p.year)),
-].sort((a, b) => Number(b) - Number(a));
+// Filter lists (thiết bị + năm)
+const allCategories = [...new Set(allProjects.flatMap((p) => p.categories))];
+const allYears = [...new Set(allProjects.map((p) => p.year))].sort(
+  (a, b) => Number(b) - Number(a)
+);
 ---
 
 <PageLayout
@@ -38,14 +37,21 @@ const allYears = [
   <link slot="head" rel="stylesheet" href="/assets/css/projects.min.css" />
   <style slot="head">
     /* Re-use palette color already defined (#0da574) */
-    /* Center groups + reduce bottom gap */
+    /* Center filter groups + reduce bottom gap  */
     .projects_filters .container{display:flex;flex-direction:column;align-items:center;}
-    .projects_filters .filter_group{justify-content:center;margin-bottom:10px;}
-    /* tighten spacing before project list */
-    .projects.section{padding-top:40px;}
-    .projects_filters .filter_group{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:20px;}
+    .projects_filters .filter_group{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:center;margin-bottom:10px;}
     .filter-btn{width:auto;}
     .filter-btn.active{background:#0da574;color:#fff;}
+
+    /* tighten spacing trước danh sách dự án */
+    .projects.section{padding-top:40px;}
+
+    /* PAGINATION DOTS */
+    .pagination{margin-top:40px;text-align:center;}
+    .pagination_list{display:inline-flex;gap:10px;list-style:none;padding:0;margin:0;}
+    .pagination_link{display:inline-block;width:12px;height:12px;border-radius:50%;background:#c8c8c8;text-indent:-9999px;}
+    .pagination_link:hover{background:#ffc631;}
+    .pagination_link.current{background:#ffc631;}
   </style>
 
   <!-- FILTER -->
@@ -54,7 +60,6 @@ const allYears = [
       <div class="filter_group">
         <strong>Thiết bị:</strong>
         <button type="button" class="btn filter-btn" data-filter-category="all">Tất cả</button>
-
         {allCategories.map((cat) => (
           <button type="button" class="btn filter-btn" data-filter-category={cat}>
             {CATEGORY_LABELS[cat] ?? cat}
@@ -74,11 +79,11 @@ const allYears = [
     </div>
   </section>
 
-  <!-- DANH SÁCH DỰ ÁN -->
+  <!-- DANH SÁCH DỰ ÁN (page 1) -->
   <section class="projects section">
     <div class="container">
       <ul class="projects_list">
-        {allProjects.map((project) => (
+        {visibleProjects.map((project) => (
           <li
             class="projects_list-item"
             data-categories={project.categories.join(",")}
@@ -89,23 +94,17 @@ const allYears = [
                 <img src={project.thumbnail} alt={project.title} />
               </picture>
             </div>
-
             <div class="main">
               <h3 class="main_title">
                 <span class="text">{project.title}</span>
                 <span class="divider divider--line"></span>
               </h3>
-
               <div class="main_info">
                 <span class="location">
                   <i class="icon-location icon"></i>
                   {project.location}
                 </span>
-
-                <a
-                  class="link link-arrow"
-                  href={`/projects/${project.slug}`}
-                >
+                <a class="link link-arrow" href={`/projects/${project.slug}`}>
                   Chi tiết <i class="icon-arrow_right icon"></i>
                 </a>
               </div>
@@ -113,77 +112,61 @@ const allYears = [
           </li>
         ))}
       </ul>
+
+      <!-- PAGINATION -->
+      {pageCount > 1 && (
+        <nav class="pagination">
+          <ul class="pagination_list">
+            {Array.from({ length: pageCount }).map((_, i) => (
+              <li>
+                <a
+                  href={i === 0 ? "/projects/" : `/projects/page/${i + 1}/`}
+                  class={`pagination_link ${i === 0 ? "current" : ""}`}
+                >
+                  {i + 1}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      )}
     </div>
   </section>
 
-  <!-- SCRIPT FILTER (TypeScript, đã fix dataset/style) -->
+  <!-- SCRIPT FILTER (giữ nguyên) -->
   <script>
-    // @ts-nocheck  // TẮT TYPESCRIPT CHO ĐOẠN NÀY
-  
+    // @ts-nocheck
     document.addEventListener("DOMContentLoaded", () => {
-  
-      // Danh sách item cần lọc
-      const items = Array.from(
-        document.querySelectorAll(".projects_list-item")
-      );
-  
-      // Biến lưu bộ lọc hiện tại
+      const items = Array.from(document.querySelectorAll(".projects_list-item"));
       let currentCategory = "all";
       let currentYear = "all";
-  
-      // Hàm áp dụng bộ lọc
       const applyFilters = () => {
         items.forEach((el) => {
           const cats = (el.dataset.categories || "").split(",");
           const year = el.dataset.year || "";
-  
-          const matchCategory =
-            currentCategory === "all" || cats.includes(currentCategory);
-  
-          const matchYear =
-            currentYear === "all" || year === currentYear;
-  
+          const matchCategory = currentCategory === "all" || cats.includes(currentCategory);
+          const matchYear = currentYear === "all" || year === currentYear;
           el.style.display = matchCategory && matchYear ? "" : "none";
         });
       };
-  
-      // --- LỌC THEO CATEGORY ---
       const catButtons = document.querySelectorAll("[data-filter-category]");
-  
       catButtons.forEach((btn) => {
         btn.addEventListener("click", () => {
-  
-          // Xóa class active khỏi tất cả
           catButtons.forEach((b) => b.classList.remove("active"));
-  
-          // Thêm class active vào nút hiện tại
           btn.classList.add("active");
-  
-          // Gán giá trị
           currentCategory = btn.dataset.filterCategory || "all";
-  
           applyFilters();
         });
       });
-  
-      // --- LỌC THEO YEAR ---
       const yearButtons = document.querySelectorAll("[data-filter-year]");
-  
       yearButtons.forEach((btn) => {
         btn.addEventListener("click", () => {
-  
           yearButtons.forEach((b) => b.classList.remove("active"));
           btn.classList.add("active");
-  
           currentYear = btn.dataset.filterYear || "all";
-  
           applyFilters();
         });
       });
     });
   </script>
-  
-
-    
-
 </PageLayout>

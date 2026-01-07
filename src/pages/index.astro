@@ -3,6 +3,7 @@ import BaseLayout from "@layouts/BaseLayout.astro";
 import Header from "@components/Header.astro";
 import Footer from "@components/Footer.astro";
 import { getCollection, type CollectionEntry } from "astro:content";
+import Popup from "@components/Popup.astro";
 import clients from "@data/clients.json";
 
 // Kiểu dữ liệu 1 project trong collection "projects"
@@ -11,6 +12,18 @@ type ProjectEntry = CollectionEntry<"projects">;
 // Lấy toàn bộ project từ Markdown rồi lấy 4 cái đầu
 const allProjects = await getCollection("projects");
 const latestProjects: ProjectEntry[] = (allProjects as ProjectEntry[]).slice(0, 4);
+
+// Popup logic
+const popups = await getCollection("popups");
+const now = new Date();
+const isActive = (p: any) => {
+  const d = p.data;
+  if (!d.active) return false;
+  if (d.startDate && new Date(d.startDate) > now) return false;
+  if (d.endDate && new Date(d.endDate) < now) return false;
+  return true;
+};
+const activePopup = popups.find(isActive)?.data ?? null;
 
 ---
 
@@ -26,6 +39,7 @@ const latestProjects: ProjectEntry[] = (allProjects as ProjectEntry[]).slice(0, 
   <link rel="stylesheet" href="/assets/css/home.css" />
 
   <Header />
+  <Popup popup={activePopup} />
     <main>
 <section class="hero primary-bg">
     <div class="hero_deco">

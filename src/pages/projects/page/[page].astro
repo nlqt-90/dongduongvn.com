@@ -1,0 +1,139 @@
+---
+import { getCollection, type CollectionEntry } from "astro:content";
+
+// Số item mỗi trang
+const PAGE_SIZE = 4;
+
+
+// Tính danh sách path tĩnh cho các trang /projects/page/[page]
+export async function getStaticPaths() {
+  const PAGE_SIZE = 4;
+  const entries = await getCollection("projects");
+  const totalPages = Math.ceil(entries.length / PAGE_SIZE);
+
+  // Trang 1 đã render ở /projects/, generate từ 2 → totalPages
+  return Array.from({ length: totalPages - 1 }).map((_, idx) => ({
+    params: { page: String(idx + 2) },
+  }));
+}
+
+import PageLayout from "@layouts/PageLayout.astro";
+import { CATEGORY_LABELS } from "../../../utils/categoryLabels";
+
+const { page } = Astro.params; // dynamic param as string
+const currentPage = Number(page);
+
+
+// Fetch all projects once
+const entries = await getCollection("projects");
+
+const allProjects = (entries as CollectionEntry<"projects">[])
+  .map((entry) => ({
+    slug: entry.slug,
+    ...entry.data,
+    year: entry.data.startDate.split("-")[0] ?? "0000",
+  }))
+  .sort((a, b) => b.startDate.localeCompare(a.startDate));
+
+const totalPages = Math.ceil(allProjects.length / PAGE_SIZE);
+if (currentPage < 1 || currentPage > totalPages) {
+  throw new Error("Page out of range");
+}
+const start = (currentPage - 1) * PAGE_SIZE;
+const visibleProjects = allProjects.slice(start, start + PAGE_SIZE);
+
+// filter data for filter panel
+const allCategories = [...new Set(allProjects.flatMap((p) => p.categories))];
+const allYears = [...new Set(allProjects.map((p) => p.year))].sort((a, b) => Number(b) - Number(a));
+---
+
+<!-- reuse same markup as index, but inject currentPage variable to highlight pagination link -->
+<PageLayout
+  title={`Dự Án - Trang ${currentPage} | Đông Dương`}
+  pageSubtitle="An toàn - Chất lượng - Chuyên nghiệp"
+  pageTitle="Các dự án đã tham gia"
+>
+  <link slot="head" rel="stylesheet" href="/assets/css/projects.min.css" />
+  <style slot="head">
+    .projects_filters .container{display:flex;flex-direction:column;align-items:center;}
+    .projects_filters .filter_group{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:center;margin-bottom:10px;}
+    .filter-btn{width:auto;}
+    .filter-btn.active{background:#0da574;color:#fff;}
+    .projects.section{padding-top:40px;}
+    .pagination{margin-top:40px;text-align:center;}
+    .pagination_list{display:inline-flex;gap:10px;list-style:none;padding:0;margin:0;}
+    .pagination_link{display:inline-block;width:12px;height:12px;border-radius:50%;background:#c8c8c8;text-indent:-9999px;}
+    .pagination_link:hover{background:#ffc631;}
+    .pagination_link.current{background:#ffc631;}
+  </style>
+
+  <!-- FILTER -->
+  <section class="projects_filters section-nopb">
+    <div class="container">
+      <div class="filter_group">
+        <strong>Thiết bị:</strong>
+        <button type="button" class="btn filter-btn" data-filter-category="all">Tất cả</button>
+        {allCategories.map((cat) => (
+          <button type="button" class="btn filter-btn" data-filter-category={cat}>
+            {CATEGORY_LABELS[cat] ?? cat}
+          </button>
+        ))}
+      </div>
+      <div class="filter_group">
+        <strong>Năm:</strong>
+        <button type="button" class="btn filter-btn" data-filter-year="all">Tất cả</button>
+        {allYears.map((yr) => (
+          <button type="button" class="btn filter-btn" data-filter-year={yr}>
+            {yr}
+          </button>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="projects section">
+    <div class="container">
+      <ul class="projects_list">
+        {visibleProjects.map((project) => (
+          <li class="projects_list-item" data-categories={project.categories.join(',')} data-year={project.year}>
+            <div class="media"><picture><img src={project.thumbnail} alt={project.title}/></picture></div>
+            <div class="main">
+              <h3 class="main_title"><span class="text">{project.title}</span><span class="divider divider--line"></span></h3>
+              <div class="main_info">
+                <span class="location"><i class="icon-location icon"></i>{project.location}</span>
+                <a class="link link-arrow" href={`/projects/${project.slug}`}>Chi tiết <i class="icon-arrow_right icon"></i></a>
+              </div>
+            </div>
+          </li>
+        ))}
+      </ul>
+
+      <!-- pagination dots -->
+      <nav class="pagination">
+        <ul class="pagination_list">
+          {Array.from({ length: totalPages }).map((_, idx) => {
+            const link = idx === 0 ? '/projects/' : `/projects/page/${idx + 1}/`;
+            return (
+              <li>
+                <a href={link} class={`pagination_link ${idx + 1 === currentPage ? 'current' : ''}`}>{idx + 1}</a>
+              </li>
+            );
+          })}
+        </ul>
+      </nav>
+    </div>
+  </section>
+
+  <script>
+     // @ts-nocheck
+    // filter script same as index
+    document.addEventListener('DOMContentLoaded', ()=>{
+      const items=[...document.querySelectorAll('.projects_list-item')];
+      let currentCategory='all', currentYear='all';
+      const apply=()=>{items.forEach(el=>{const cats=(el.dataset.categories||'').split(',');const year=el.dataset.year||'';const okCat=currentCategory==='all'||cats.includes(currentCategory);const okYear=currentYear==='all'||year===currentYear;el.style.display= okCat&&okYear ? '' : 'none';});};
+      document.querySelectorAll('[data-filter-category]').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('[data-filter-category]').forEach(b=>b.classList.remove('active'));btn.classList.add('active');currentCategory=btn.dataset.filterCategory||'all';apply();}));
+      document.querySelectorAll('[data-filter-year]').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('[data-filter-year]').forEach(b=>b.classList.remove('active'));btn.classList.add('active');currentYear=btn.dataset.filterYear||'all';apply();}));
+    });
+  </script>
+</PageLayout>
+

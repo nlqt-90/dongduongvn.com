@@ -26,6 +26,19 @@ const projects = defineCollection({
   }),
 });
 
+// --------------- NEW COLLECTION: popups -----------------
+const popups = defineCollection({
+  type: "content",
+  schema: z.object({
+    title: z.string(),
+    active: z.boolean().default(true),
+    startDate: z.string().optional(), // YYYY-MM-DD (ISO) – optional
+    endDate: z.string().optional(),   // YYYY-MM-DD (ISO) – optional
+    image: z.string(),               // path to image in /assets/
+  }),
+});
+
 export const collections = {
   projects,
+  popups,
 };

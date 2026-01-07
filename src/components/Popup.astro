@@ -1,0 +1,45 @@
+---
+// Props: popup is a CollectionEntry<'popups'> | null | undefined
+const { popup } = Astro.props as { popup: any | null };
+
+// If nothing to show, short-circuit (Astro 4 supports returning nothing)
+if (!popup) {
+  return null;
+}
+---
+
+<style>
+  @import "../styles/popup.css";
+</style>
+
+<div class="popup-overlay" data-role="popup-overlay" aria-hidden="false">
+  <div class="popup-box">
+    <button class="popup-close" data-role="popup-close" aria-label="Close popup">×</button>
+    <img src={popup.image} alt={popup.title} class="popup-image" />
+  </div>
+</div>
+
+<script>
+  // @ts-nocheck simple client script: close on click X or outside box
+  document.addEventListener('DOMContentLoaded', () => {
+    const overlay = document.querySelector('[data-role="popup-overlay"]');
+    const closeBtn = document.querySelector('[data-role="popup-close"]');
+    const box = document.querySelector('.popup-box');
+
+    const close = () => {
+      if (!overlay) return;
+      overlay.style.display = 'none';
+    };
+
+    closeBtn?.addEventListener('click', close);
+    overlay?.addEventListener('click', (e) => {
+      if (e.target === overlay) close();
+    });
+
+    // ESC key
+    document.addEventListener('keyup', (e) => {
+      if (e.key === 'Escape') close();
+    });
+  });
+</script>
+
