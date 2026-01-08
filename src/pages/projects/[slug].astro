@@ -3,7 +3,7 @@ import PageLayout from "@layouts/PageLayout.astro";
 import { getCollection } from "astro:content";
 import type { CollectionEntry } from "astro:content";
 import { CATEGORY_LABELS } from "../../utils/categoryLabels";
-
+import { url } from "@utils/url";
 // Kiểu entry cho collection "projects"
 type ProjectEntry = CollectionEntry<"projects">;
 
@@ -301,6 +301,6 @@ const project = entry.data;
   </section>
 
   <Fragment slot="scripts">
-    <script src="/assets/js/singleproject.min.js" defer></script>
+    <script src={url("/assets/js/singleproject.min.js")} defer></script>
   </Fragment>
 </PageLayout>

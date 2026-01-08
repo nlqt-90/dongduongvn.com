@@ -1,6 +1,6 @@
 ---
 import PageLayout from "@layouts/PageLayout.astro";
-
+import { url } from "@utils/url";
 ---
 
 <PageLayout 
@@ -611,6 +611,6 @@ import PageLayout from "@layouts/PageLayout.astro";
             </div>
         </section>
 
-  <script slot="scripts" src="/assets/js/singleservice.min.js" defer></script>
-  <script src="/assets/js/singleproject.min.js" defer></script>
+  <script slot="scripts" src={url("/assets/js/singleservice.min.js")} defer></script>
+  <script src={url("/assets/js/singleproject.min.js")} defer></script>
 </PageLayout>

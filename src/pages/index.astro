@@ -5,6 +5,7 @@ import Footer from "@components/Footer.astro";
 import { getCollection, type CollectionEntry } from "astro:content";
 import Popup from "@components/Popup.astro";
 import clients from "@data/clients.json";
+import { url } from "@utils/url";
 
 // Kiểu dữ liệu 1 project trong collection "projects"
 type ProjectEntry = CollectionEntry<"projects">;
@@ -667,7 +668,7 @@ const activePopup = popups.find(isActive)?.data ?? null;
   <Footer />
 
   <!-- JS RIÊNG CỦA HOME -->
-  <script src="/assets/js/index.min.js" defer></script>
+  <script src={url("/assets/js/index.min.js")} defer></script>
 <!-- Swiper bundle (JS + CSS) -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
 
