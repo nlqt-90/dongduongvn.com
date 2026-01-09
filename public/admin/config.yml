@@ -1,0 +1,80 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "static/uploads"
+public_folder: "/uploads"
+
+slug:
+  clean_accents: true
+
+collections:
+
+  # ===========================
+  # POPUP COLLECTION
+  # ===========================
+  - name: "popups"
+    label: "Popups"
+    folder: "src/content/popups"
+    create: true
+    format: "frontmatter"
+    extension: "md"
+    slug: "{{fields.title}}"
+
+    fields:
+      - { label: "Tiêu đề", name: "title", widget: "string" }
+      - { label: "Kích hoạt", name: "active", widget: "boolean", default: true }
+      - { label: "Ngày bắt đầu", name: "startDate", widget: "string" }
+      - { label: "Ngày kết thúc", name: "endDate", widget: "string" }
+      - { label: "Ảnh (path)", name: "image", widget: "string" }
+
+
+  # ===========================
+  # PROJECT COLLECTION
+  # ===========================
+  - name: "projects"
+    label: "Projects"
+    folder: "src/content/projects"
+    create: true
+    format: "frontmatter"
+    extension: "md"
+    slug: "{{fields.title}}"
+
+    fields:
+      - { label: "Tiêu đề", name: "title", widget: "string" }
+      - { label: "Địa điểm", name: "location", widget: "string" }
+      - { label: "Ngày bắt đầu (YYYY-MM)", name: "startDate", widget: "string" }
+
+      - label: "Danh mục thiết bị"
+        name: "categories"
+        widget: "list"
+        field:
+          label: "Slug"
+          name: "category"
+          widget: "string"
+
+      - { label: "Thumbnail (path)", name: "thumbnail", widget: "string" }
+      - { label: "Ảnh chính (path)", name: "mainImage", widget: "string" }
+
+      - label: "Mô tả dự án"
+        name: "description"
+        widget: "list"
+        field:
+          label: "Đoạn mô tả"
+          name: "text"
+          widget: "text"
+
+      - label: "Thông tin thêm"
+        name: "info"
+        widget: "object"
+        fields:
+          - { label: "Địa điểm hiển thị", name: "location", widget: "string" }
+          - { label: "Quy mô", name: "scope", widget: "string" }
+
+      - label: "Gallery"
+        name: "gallery"
+        widget: "list"
+        field:
+          label: "Ảnh (path)"
+          name: "image"
+          widget: "string"
