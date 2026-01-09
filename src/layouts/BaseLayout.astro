@@ -29,6 +29,7 @@ const {
   <link rel="stylesheet" href={url("/assets/css/footer.css")} />
   <link rel="stylesheet" href={url("/assets/css/main.css")} />
   <link rel="stylesheet" href={url("/assets/css/floating-buttons.css")} />
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js" defer></script>
 </head>
 
 <body>
@@ -43,5 +44,20 @@ const {
   
   <!-- JS chung -->
   <script src={url("/assets/js/common.min.js")} defer></script>
+  <script is:inline>
+    // Thêm dòng này để TypeScript không báo lỗi
+    const netlifyIdentity = window.netlifyIdentity;
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", (user) => {
+        if (!user) {
+          // Nếu user nhấn vào link xác nhận email, widget sẽ tự mở
+          window.netlifyIdentity.on("login", () => {
+            // Sau khi login/xác nhận thành công, đẩy về trang admin
+            document.location.href = "/admin/";
+          });
+        }
+      });
+    }
+  </script>
 </body>
 </html>
