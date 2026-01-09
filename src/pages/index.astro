@@ -37,7 +37,7 @@ const activePopup = popups.find(isActive)?.data ?? null;
 
 
   <!-- CSS RIÊNG CỦA HOME -->
-  <link rel="stylesheet" href="/assets/css/home.css" />
+  <link rel="stylesheet" href={url("/assets/css/home.css")} />
 
   <Header />
   <Popup popup={activePopup} />
@@ -45,22 +45,22 @@ const activePopup = popups.find(isActive)?.data ?? null;
 <section class="hero primary-bg">
     <div class="hero_deco">
         <picture>
-            <source data-srcset="/assets/img/plan.png" srcset="/assets/img/plan.png" type="image/webp">
-            <img class="lazy" data-src="/assets/img/plan.png" src="/assets/img/plan.png" alt="Đông Dương Deco">
+            <source data-srcset={url("/assets/img/plan.png")} srcset={url("/assets/img/plan.png")} type="image/webp">
+            <img class="lazy" data-src={url("/assets/img/plan.png")} src={url("/assets/img/plan.png")} alt="Đông Dương Deco">
         </picture>
     </div>
     <div class="container">
         <div class="hero_media" data-aos="fade-up" data-aos-delay="50">
             <picture>
-                <source data-srcset="/assets/img/hero/crane-175c.webp" srcset="/assets/img/hero/crane-175c.webp" type="image/webp">
-                <img class="lazy" data-src="/assets/img/hero/crane-175c.webp" src="/assets/img/hero/crane-175c.webp" alt="Thiết bị xây dựng Đông Dương">
+                <source data-srcset={url("/assets/img/hero/crane-175c.webp")} srcset={url("/assets/img/hero/crane-175c.webp")} type="image/webp">
+                <img class="lazy" data-src={url("/assets/img/hero/crane-175c.webp")} src={url("/assets/img/hero/crane-175c.webp")} alt="Thiết bị xây dựng Đông Dương">
             </picture>
         </div>
         <div class="hero_header section_header">
             <span class="subtitle subtitle--extended">An toàn. Chất lượng. Chuyên nghiệp.</span>
             <h1 class="title">Giải pháp Cho thuê Thiết bị Xây dựng Hàng đầu</h1>
             <p class="text">Đông Dương chuyên cung cấp và cho thuê hệ thống Cẩu tháp Potain, Vận thăng, Giàn giáo và Cốp pha tiêu chuẩn quốc tế cho các dự án hạ tầng và dân dụng trọng điểm.</p>
-            <a class="btn" href="/contact">Tư vấn ngay</a>
+            <a class="btn" href={url("/contact")}>Tư vấn ngay</a>
         </div>
         <div class="hero_main">
             <div class="numbers">
@@ -79,11 +79,11 @@ const activePopup = popups.find(isActive)?.data ?? null;
                     <h3 class="title">Đối tác Chiến lược</h3>
                     <span class="square highlight">Potain</span> 
                     <span class="info">Thương hiệu Cẩu tháp số 1 thế giới</span> 
-                    <a class="link link-arrow" href="/services/tower-crane">Xem chi tiết <i class="icon-arrow_right icon"></i></a>
+                    <a class="link link-arrow" href={url("/services/tower-crane")}>Xem chi tiết <i class="icon-arrow_right icon"></i></a>
                 </div>
                 <picture>
-                    <source data-srcset="/assets/img/hero/potain-logo.png" srcset="/assets/img/hero/potain-logo.png" type="image/webp">
-                    <img class="lazy" data-src="/assets/img/hero/potain-logo.png" src="/assets/img/hero/potain-logo.png" alt="Đối tác Potain">
+                    <source data-srcset={url("/assets/img/hero/potain-logo.png")} srcset={url("/assets/img/hero/potain-logo.png")} type="image/webp">
+                    <img class="lazy" data-src={url("/assets/img/hero/potain-logo.png")} src={url("/assets/img/hero/potain-logo.png")} alt="Đối tác Potain">
                 </picture>
             </div>
         </div>
@@ -106,7 +106,7 @@ const activePopup = popups.find(isActive)?.data ?? null;
                     <span class="number">01</span>
                     <h4 class="title">Cẩu tháp</h4>
                     <p class="description">Giải pháp cẩu tháp phục vụ thi công nhà cao tầng và công trình quy mô lớn, đảm bảo an toàn, ổn định và hiệu quả nâng hạ.</p>
-                    <a class="link link-arrow" href="/services/tower-crane">Chi tiết <i class="icon-arrow_right icon"></i></a>
+                    <a class="link link-arrow" href={url("/services/tower-crane")}>Chi tiết <i class="icon-arrow_right icon"></i></a>
                 </div>
             </li>
 
@@ -115,7 +115,7 @@ const activePopup = popups.find(isActive)?.data ?? null;
                     <span class="number">02</span>
                     <h4 class="title">Vận thăng</h4>
                     <p class="description">Hệ thống vận thăng chở người và vật liệu, vận hành ổn định, đáp ứng yêu cầu thi công liên tục tại công trình cao tầng.</p>
-                    <a class="link link-arrow" href="/services/hoist">Chi tiết <i class="icon-arrow_right icon"></i></a>
+                    <a class="link link-arrow" href={url("/services/hoist")}>Chi tiết <i class="icon-arrow_right icon"></i></a>
                 </div>
             </li>
 
@@ -124,7 +124,7 @@ const activePopup = popups.find(isActive)?.data ?? null;
                     <span class="number">03</span>
                     <h4 class="title">Giàn giáo</h4>
                     <p class="description">Hệ giàn giáo linh hoạt, chắc chắn, đáp ứng tiêu chuẩn an toàn thi công, tối ưu lắp dựng và tháo dỡ.</p>
-                    <a class="link link-arrow" href="/services/scaffolding">Chi tiết <i class="icon-arrow_right icon"></i></a>
+                    <a class="link link-arrow" href={url("/services/scaffolding")}>Chi tiết <i class="icon-arrow_right icon"></i></a>
                 </div>
             </li>
 
@@ -133,7 +133,7 @@ const activePopup = popups.find(isActive)?.data ?? null;
                     <span class="number">04</span>
                     <h4 class="title">Cốp pha</h4>
                     <p class="description">Giải pháp cốp pha đa dạng cho sàn, cột và vách, đảm bảo độ chính xác hình khối và chất lượng bề mặt bê tông.</p>
-                    <a class="link link-arrow" href="/services/formwork">Chi tiết <i class="icon-arrow_right icon"></i></a>
+                    <a class="link link-arrow" href={url("/services/formwork")}>Chi tiết <i class="icon-arrow_right icon"></i></a>
                 </div>
             </li>
 
@@ -174,14 +174,14 @@ const activePopup = popups.find(isActive)?.data ?? null;
                     <div class="media" data-aos="zoom-in-right">
                         <picture>
                             <source
-                              data-srcset={project.data.thumbnail}
-                              srcset={project.data.thumbnail}
+                              data-srcset={url(project.data.thumbnail)}
+                              srcset={url(project.data.thumbnail)}
                               type="image/webp"
                             />
                             <img
                               class="lazy"
-                              data-src={project.data.thumbnail}
-                              src={project.data.thumbnail}
+                              data-src={url(project.data.thumbnail)}
+                              src={url(project.data.thumbnail)}
                               alt={project.data.title}
                             />
                         </picture>
@@ -197,7 +197,7 @@ const activePopup = popups.find(isActive)?.data ?? null;
                             </span>
                             <a
                               class="link link-arrow link-arrow--alt"
-                              href={`/projects/${project.slug}`}
+                              href={url(`/projects/${project.slug}`)}
                               data-aos="fade-in"
                               data-aos-delay="50"
                             >
@@ -218,7 +218,7 @@ const activePopup = popups.find(isActive)?.data ?? null;
                     <div class="spots_header section_header"><span class=subtitle>MẠNG LƯỚI HOẠT ĐỘNG</span>
                         <h2 class=title>Phủ sóng <span class=highlight>toàn quốc</span></h2>
                     </div>
-                    <div class=spots_map><img src=/assets/svg/vietnam.png alt=Map></div>
+                    <div class=spots_map><img src={url("/assets/svg/vietnam.png")} alt="Vietnam Map"></div>
                 </div>
                 <div class=spots_info>
                     <p class=spots_info-text>Với hệ thống kho bãi và chi nhánh tại ba miền Bắc – Trung – Nam, chúng tôi đảm bảo khả năng cung ứng thiết bị, triển khai và hỗ trợ kỹ thuật nhanh chóng cho các công trình trên toàn quốc.</p>
@@ -229,7 +229,7 @@ const activePopup = popups.find(isActive)?.data ?? null;
                         <div class=spots_info-number>
                             <h2 class="countNum number" data-suffix=% data-value=99>0</h2><span class=label>Tỷ lệ đáp ứng tiến độ & yêu cầu kỹ thuật</span>
                         </div>
-                    </div><a class="spots_info-btn btn" href=about.html>Giới thiệu công ty</a>
+                    </div><a class="spots_info-btn btn" href={url("/about")}>Giới thiệu công ty</a>
                 </div>
             </div>
         </section>
@@ -395,12 +395,12 @@ const activePopup = popups.find(isActive)?.data ?? null;
                     <div class="swiper-wrapper">
                         {clients.map(client => (
                             <div class="swiper-slide" aria-label={client.name}>
-                                <img src={client.logo} alt={client.name} />
+                                <img src={url(client.logo)} alt={client.name} />
                             </div>
                         ))}
                         {clients.map(client => (
                             <div class="swiper-slide duplicate" aria-hidden="true">
-                                <img src={client.logo} alt="" />
+                                <img src={url(client.logo)} alt="partner_duplicate" />
                             </div>
                         ))}
                     </div>
@@ -419,7 +419,7 @@ const activePopup = popups.find(isActive)?.data ?? null;
                         giải pháp thi công và dịch vụ hỗ trợ kỹ thuật.
                     </p>
                     <div class="wrapper">
-                        <a class="btn" href="contacts.html">Liên hệ</a>
+                        <a class="btn" href={url("/contact")}>Liên hệ</a>
                     </div>
                 </div>
         
@@ -522,44 +522,44 @@ const activePopup = popups.find(isActive)?.data ?? null;
         </section>
         
         <div class="gallery presentation" data-role=gallery>
-            <div class=gallery_item><a class=media href=/assets/img/gallery/crane.webp
+            <div class=gallery_item><a class=media href={url("/assets/img/gallery/crane.webp")}
                     data-caption="Cẩu tháp" data-role=gallery-link>
                     <picture>
-                        <source data-srcset="/assets/img/gallery/crane.webp" srcset="/assets/img/gallery/crane.webp" type=image/webp><img
-                            class=lazy data-src=/assets/img/gallery/crane.webp src=/assets/img/gallery/crane.webp alt=@@caption>
+                        <source data-srcset={url("/assets/img/gallery/crane.webp")} srcset={url("/assets/img/gallery/crane.webp")} type=image/webp><img
+                            class=lazy data-src={url("/assets/img/gallery/crane.webp")} src={url("/assets/img/gallery/crane.webp")} alt="Cẩu tháp">
                     </picture>
                     <div class=overlay>
                         <div class="overlay_header section_header"><span class=subtitle>HÌNH ẢNH</span></div>
                         <h4 class=overlay_caption>Cẩu tháp</h4>
                     </div>
                 </a></div>
-                <div class=gallery_item><a class=media href=/assets/img/gallery/hoist.webp
+                <div class=gallery_item><a class=media href={url("/assets/img/gallery/hoist.webp")}
                     data-caption="Vận thăng" data-role=gallery-link>
                     <picture>
-                        <source data-srcset="/assets/img/gallery/hoist.webp" srcset=/assets/img/gallery/hoist.webp type=image/webp><img
-                            class=lazy data-src="/assets/img/gallery/hoist.webp" src=/assets/img/gallery/hoist.webp alt=@@caption>
+                        <source data-srcset={url("/assets/img/gallery/hoist.webp")} srcset={url("/assets/img/gallery/hoist.webp")} type=image/webp><img
+                            class=lazy data-src={url("/assets/img/gallery/hoist.webp")} src={url("/assets/img/gallery/hoist.webp")} alt="Vận thăng">
                     </picture>
                     <div class=overlay>
                         <div class="overlay_header section_header"><span class=subtitle>HÌNH ẢNH</span></div>
                         <h4 class=overlay_caption>Vặn thăng</h4>
                     </div>
                 </a></div>
-                <div class=gallery_item><a class=media href=/assets/img/gallery/scaffoding.webp
+                <div class=gallery_item><a class=media href={url("/assets/img/gallery/scaffoding.webp")}
                     data-caption="Giàn giáo" data-role=gallery-link>
                     <picture>
-                        <source data-srcset=/assets/img/gallery/scaffoding.webp srcset="/assets/img/gallery/scaffoding.webp" type=image/webp><img
-                            class=lazy data-src=/assets/img/gallery/scaffoding.webp src=/assets/img/gallery/scaffoding.webp alt=@@caption>
+                        <source data-srcset={url("/assets/img/gallery/scaffoding.webp")} srcset={url("/assets/img/gallery/scaffoding.webp")} type=image/webp><img
+                            class=lazy data-src={url("/assets/img/gallery/scaffoding.webp")} src={url("/assets/img/gallery/scaffoding.webp")} alt="Giàn giáo">
                     </picture>
                     <div class=overlay>
                         <div class="overlay_header section_header"><span class=subtitle>HÌNH ẢNH</span></div>
                         <h4 class=overlay_caption>Giàn giáo</h4>
                     </div>
                 </a></div>
-                <div class=gallery_item><a class=media href=/assets/img/gallery/formwork.webp
+                <div class=gallery_item><a class=media href={url("/assets/img/gallery/formwork.webp")}
                     data-caption="Cốp pha" data-role=gallery-link>
                     <picture>
-                        <source data-srcset=/assets/img/gallery/formwork.webp srcset="/assets/img/gallery/formwork.webp" type=image/webp><img
-                            class=lazy data-src=/assets/img/gallery/formwork.webp src=/assets/img/gallery/formwork.webp alt=@@caption>
+                        <source data-srcset={url("/assets/img/gallery/formwork.webp")} srcset={url("/assets/img/gallery/formwork.webp")} type=image/webp><img
+                            class=lazy data-src={url("/assets/img/gallery/formwork.webp")} src={url("/assets/img/gallery/formwork.webp")} alt="Cốp pha">
                     </picture>
                     <div class=overlay>
                         <div class="overlay_header section_header"><span class=subtitle>HÌNH ẢNH</span></div>
@@ -641,7 +641,7 @@ const activePopup = popups.find(isActive)?.data ?? null;
                         <li class="contact-info_group">
                             <span class="name">Email</span>
                             <span class="content d-inline-flex flex-column">
-                                <a class="link" href="mailto:info@construct.com">
+                                <a class="link" href="mailto:contact@dongduongvn.com">
                                     contact@dongduongvn.com
                                 </a>
                             </span>

@@ -1,11 +1,11 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro";
-
+import { url } from "@utils/url";
 ---
 
 <BaseLayout title="404 | Page not found">
 
-  <link rel="stylesheet" href="/assets/css/error.min.css" />
+  <link rel="stylesheet" href={url("/assets/css/error.min.css")} />
 
 
 
@@ -16,7 +16,7 @@ import BaseLayout from "@layouts/BaseLayout.astro";
                     <h3 class=title>Không tìm thấy trang</h3>
                 </div>
                 <p class=error_message-text>Xin lỗi, trang bạn đang tìm kiếm hiện không tồn tại.</p><a class=btn
-                    href=index.html>Trang chủ</a>
+                    href={url("/")}>Trang chủ</a>
             </div>
         </div>
     </main>

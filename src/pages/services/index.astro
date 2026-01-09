@@ -9,7 +9,7 @@ import { url } from "@utils/url";
   pageSubtitle="An toàn - Chất lượng - Chuyên nghiệp"
   pageTitle="Dịch vụ"
 >
-  <link slot="head" rel="stylesheet" href="/assets/css/services.min.css" />
+  <link slot="head" rel="stylesheet" href={url("/assets/css/services.min.css")} />
 
 <section class="services section">
     <div class="container">
@@ -26,7 +26,7 @@ import { url } from "@utils/url";
                     <span class="number">01</span>
                     <h4 class="title">Cẩu tháp</h4>
                     <p class="description">Giải pháp cẩu tháp phục vụ thi công nhà cao tầng và công trình quy mô lớn, đảm bảo an toàn, ổn định và hiệu quả nâng hạ.</p>
-                    <a class="link link-arrow" href="/services/tower-crane">Chi tiết <i class="icon-arrow_right icon"></i></a>
+                    <a class="link link-arrow" href={url("/services/tower-crane")}>Chi tiết <i class="icon-arrow_right icon"></i></a>
                 </div>
             </li>
 
@@ -35,7 +35,7 @@ import { url } from "@utils/url";
                     <span class="number">02</span>
                     <h4 class="title">Vận thăng</h4>
                     <p class="description">Hệ thống vận thăng chở người và vật liệu, vận hành ổn định, đáp ứng yêu cầu thi công liên tục tại công trình cao tầng.</p>
-                    <a class="link link-arrow" href="/services/hoist">Chi tiết <i class="icon-arrow_right icon"></i></a>
+                    <a class="link link-arrow" href={url("/services/hoist")}>Chi tiết <i class="icon-arrow_right icon"></i></a>
                 </div>
             </li>
 
@@ -44,7 +44,7 @@ import { url } from "@utils/url";
                     <span class="number">03</span>
                     <h4 class="title">Giàn giáo</h4>
                     <p class="description">Hệ giàn giáo linh hoạt, chắc chắn, đáp ứng tiêu chuẩn an toàn thi công, tối ưu lắp dựng và tháo dỡ.</p>
-                    <a class="link link-arrow" href="/services/scaffolding">Chi tiết <i class="icon-arrow_right icon"></i></a>
+                    <a class="link link-arrow" href={url("/services/scaffolding")}>Chi tiết <i class="icon-arrow_right icon"></i></a>
                 </div>
             </li>
 
@@ -53,7 +53,7 @@ import { url } from "@utils/url";
                     <span class="number">04</span>
                     <h4 class="title">Cốp pha</h4>
                     <p class="description">Giải pháp cốp pha đa dạng cho sàn, cột và vách, đảm bảo độ chính xác hình khối và chất lượng bề mặt bê tông.</p>
-                    <a class="link link-arrow" href="/services/formwork">Chi tiết <i class="icon-arrow_right icon"></i></a>
+                    <a class="link link-arrow" href={url("/services/formwork")}>Chi tiết <i class="icon-arrow_right icon"></i></a>
                 </div>
             </li>
 
@@ -103,11 +103,11 @@ import { url } from "@utils/url";
                 <div class=video data-aos=zoom-in data-aos-duration=600>
                     <div class=video_cover>
                         <picture>
-                            <source data-srcset=/assets/img/about/video_cover.webp srcset=/assets/img/about/video_cover.webp type=image/webp>
-                            <img class=lazy data-src=/assets/img/about/video_cover.webp src=/assets/img/about/video_cover.webp alt=thumbnail>
+                            <source data-srcset={url("/assets/img/about/video_cover.webp")} srcset={url("/assets/img/about/video_cover.webp")} type=image/webp>
+                            <img class=lazy data-src={url("/assets/img/about/video_cover.webp")} src={url("/assets/img/about/video_cover.webp")} alt=thumbnail>
                         </picture>
                     </div><a class=video_btn href=#><i class=icon-play></i> <i class=icon-pause></i></a><video
-                        class=video_content src=/assets/video/crane1.mp4 preload=auto></video>
+                        class=video_content src={url("/assets/video/crane1.mp4")} preload=auto></video>
                 </div>
             </div>
         </section>
@@ -162,8 +162,8 @@ import { url } from "@utils/url";
                 </div>
                 <div class=media data-aos=zoom-in data-aos-duration=700>
                     <picture>
-                        <source data-srcset=/assets/img/services/01.webp srcset=/assets/img/services/01.webp type=image/webp><img
-                            class=lazy data-src=/assets/img/services/01.webp src=/assets/img/services/01.webp alt=media>
+                        <source data-srcset={url("/assets/img/services/01.webp")} srcset={url("/assets/img/services/01.webp")} type=image/webp><img
+                            class=lazy data-src={url("/assets/img/services/01.webp")} src={url("/assets/img/services/01.webp")} alt=media>
                     </picture>
                 </div>
             </div>
@@ -193,51 +193,51 @@ import { url } from "@utils/url";
                 </div>
                 <div class=media data-aos=zoom-in data-aos-duration=700>
                     <picture>
-                        <source data-srcset=/assets/img/services/02.webp srcset=/assets/img/services/02.webp type=image/webp><img
-                            class=lazy data-src=/assets/img/services/02.webp src=/assets/img/services/02.webp alt=media>
+                        <source data-srcset={url("/assets/img/services/02.webp")} srcset={url("/assets/img/services/02.webp")} type=image/webp><img
+                            class=lazy data-src={url("/assets/img/services/02.webp")} src={url("/assets/img/services/02.webp")} alt=media>
                     </picture>
                 </div>
             </div>
         </section>
         <div class="gallery presentation" data-role=gallery>
-            <div class=gallery_item><a class=media href=/assets/img/gallery/crane.webp
+            <div class=gallery_item><a class=media href={url("/assets/img/gallery/crane.webp")}
                     data-caption="Cẩu tháp" data-role=gallery-link>
                     <picture>
-                        <source data-srcset=/assets/img/gallery/crane.webp srcset=//assets/img/gallery/crane.webp type=image/webp><img
-                            class=lazy data-src=/assets/img/gallery/crane.webp src=/assets/img/gallery/crane.webp alt=@@caption>
+                        <source data-srcset={url("/assets/img/gallery/crane.webp")} srcset={url("/assets/img/gallery/crane.webp")} type=image/webp><img
+                            class=lazy data-src={url("/assets/img/gallery/crane.webp")} src={url("/assets/img/gallery/crane.webp")} alt="cẩu tháp">
                     </picture>
                     <div class=overlay>
                         <div class="overlay_header section_header"><span class=subtitle>HÌNH ẢNH</span></div>
                         <h4 class=overlay_caption>Cẩu tháp</h4>
                     </div>
                 </a></div>
-                <div class=gallery_item><a class=media href=/assets/img/gallery/hoist.webp
+                <div class=gallery_item><a class=media href={url("/assets/img/gallery/hoist.webp")}
                     data-caption="Vận thăng" data-role=gallery-link>
                     <picture>
-                        <source data-srcset=/assets/img/gallery/hoist.webp srcset=/assets/img/gallery/hoist.webp type=image/webp><img
-                            class=lazy data-src=/assets/img/gallery/hoist.webp src=/assets/img/gallery/hoist.webp alt=@@caption>
+                        <source data-srcset={url("/assets/img/gallery/hoist.webp")} srcset={url("/assets/img/gallery/hoist.webp")} type=image/webp><img
+                            class=lazy data-src={url("/assets/img/gallery/hoist.webp")} src={url("/assets/img/gallery/hoist.webp")} alt="vận thăng">
                     </picture>
                     <div class=overlay>
                         <div class="overlay_header section_header"><span class=subtitle>HÌNH ẢNH</span></div>
                         <h4 class=overlay_caption>Vặn thăng</h4>
                     </div>
                 </a></div>
-                <div class=gallery_item><a class=media href=/assets/img/gallery/scaffoding.webp
+                <div class=gallery_item><a class=media href={url("/assets/img/gallery/scaffoding.webp")}
                     data-caption="Giàn giáo" data-role=gallery-link>
                     <picture>
-                        <source data-srcset=/assets/img/gallery/scaffoding.webp srcset=//assets/img/gallery/scaffoding.webp type=image/webp><img
-                            class=lazy data-src=/assets/img/gallery/scaffoding.webp src=/assets/img/gallery/scaffoding.webp alt=@@caption>
+                        <source data-srcset={url("/assets/img/gallery/scaffoding.webp")} srcset={url("/assets/img/gallery/scaffoding.webp")} type=image/webp><img
+                            class=lazy data-src={url("/assets/img/gallery/scaffoding.webp")} src={url("/assets/img/gallery/scaffoding.webp")} alt="giàn giáo">
                     </picture>
                     <div class=overlay>
                         <div class="overlay_header section_header"><span class=subtitle>HÌNH ẢNH</span></div>
                         <h4 class=overlay_caption>Giàn giáo</h4>
                     </div>
                 </a></div>
-                <div class=gallery_item><a class=media href=/assets/img/gallery/formwork.webp
+                <div class=gallery_item><a class=media href={url("/assets/img/gallery/formwork.webp")}
                     data-caption="Cốp pha" data-role=gallery-link>
                     <picture>
-                        <source data-srcset=/assets/img/gallery/formwork.webp srcset=//assets/img/gallery/formwork.webp type=image/webp><img
-                            class=lazy data-src=/assets/img/gallery/formwork.webp src=/assets/img/gallery/formwork.webp alt=@@caption>
+                        <source data-srcset={url("/assets/img/gallery/formwork.webp")} srcset={url("/assets/img/gallery/formwork.webp")} type=image/webp><img
+                            class=lazy data-src={url("/assets/img/gallery/formwork.webp")} src={url("/assets/img/gallery/formwork.webp")} alt="cốp pha">
                     </picture>
                     <div class=overlay>
                         <div class="overlay_header section_header"><span class=subtitle>HÌNH ẢNH</span></div>

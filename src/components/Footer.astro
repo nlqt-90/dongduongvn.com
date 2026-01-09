@@ -1,9 +1,12 @@
+---
+import { url } from "@utils/url";
+---
 <footer class="footer primary-bg">
     <div class="container">
         <div class="footer_main">
             <div class="footer_main-block footer_main-block--brand">
-                <a class="brand" href="/">
-                    <img class="brand_logo" src="/assets/svg/logo-dong-duong.svg" alt="Công ty Đông Dương"> 
+                <a class="brand" href={url("/")}>
+                    <img class="brand_logo" src={url("/assets/svg/logo-dong-duong.svg")} alt="Công ty Đông Dương"> 
                 </a>
                 <p class="footer_main-block_subtitle">
                     <strong>Đông Dương</strong> chuyên cho thuê thiết bị xây dựng: <strong>Cẩu tháp, Vận thăng, Giàn giáo & Cốp pha</strong>. Cam kết giải pháp an toàn và tối ưu chi phí cho mọi công trình.
@@ -64,7 +67,7 @@
             <p class="footer_secondary-copyright">
                 <span>
                     Bản quyền &copy; <span id="currentYear"></span> thuộc về 
-                    <a href="/" class="copyright-link">Công ty Đông Dương</a>. 
+                    <a href={url("/")} class="copyright-link">Công ty Đông Dương</a>. 
                     <i>"Your demand is our responsibility"</i>
                 </span>
             </p>

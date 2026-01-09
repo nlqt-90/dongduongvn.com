@@ -11,15 +11,16 @@ const currentPath = pathname === "/"
 // 3. Hàm helper để thêm class 'active' vào thẻ <a>
 const activeClass = (path: string) => (currentPath === path ? "active" : "");
 
+import { url } from "@utils/url";
 ---
 
 <header class="header" data-page={currentPath} data-page-parent={currentPath}>
   <div class="container d-flex">
     
-<a class="brand" href="/">
+<a class="brand" href={url("/")}>
       <img 
         class="brand_logo" 
-        src="/assets/svg/logo-dong-duong.svg" 
+        src={url("/assets/svg/logo-dong-duong.svg")} 
         alt="Axial Construct Logo" 
       />
     </a>
@@ -30,7 +31,7 @@ const activeClass = (path: string) => (currentPath === path ? "active" : "");
         <li class="header_nav-list_item">
           <a 
             class={`nav-link nav-item ${activeClass("home")}`} 
-            href="/" 
+            href={url("/")} 
             data-page="home"
           >
             <span class="nav-item_text">Trang chủ</span>
@@ -40,7 +41,7 @@ const activeClass = (path: string) => (currentPath === path ? "active" : "");
         <li class="header_nav-list_item">
           <a 
             class={`nav-link nav-item ${activeClass("about")}`} 
-            href="/about" 
+            href={url("/about")} 
             data-page="about"
           >
             <span class="nav-item_text">Giới thiệu</span>
@@ -50,7 +51,7 @@ const activeClass = (path: string) => (currentPath === path ? "active" : "");
         <li class="header_nav-list_item dropdown">
           <a
             class={`nav-link nav-item dropdown-toggle ${activeClass("services")}`}
-            href="/services"
+            href={url("/services")} 
             data-page="services"
             data-bs-toggle="collapse"
             data-bs-target="#servicesMenu"
@@ -65,16 +66,16 @@ const activeClass = (path: string) => (currentPath === path ? "active" : "");
           <div class="dropdown-menu collapse" id="servicesMenu">
             <ul class="dropdown-list">
               <li class="list-item">
-                <a class="dropdown-item nav-item" href="/services/tower-crane">Cho thuê cẩu tháp</a>
+                <a class="dropdown-item nav-item" href={url("/services/tower-crane")}>Cho thuê cẩu tháp</a>
               </li>
               <li class="list-item">
-                <a class="dropdown-item nav-item" href="/services/hoist">Cho thuê vận thăng</a>
+                <a class="dropdown-item nav-item" href={url("/services/hoist")}>Cho thuê vận thăng</a>
               </li>
               <li class="list-item">
-                <a class="dropdown-item nav-item" href="/services/scaffolding">Cho thuê giàn giáo</a>
+                <a class="dropdown-item nav-item" href={url("/services/scaffolding")}>Cho thuê giàn giáo</a>
               </li>
               <li class="list-item">
-                <a class="dropdown-item nav-item" href="/services/formwork">Cho thuê cốp pha - phụ kiện</a>
+                <a class="dropdown-item nav-item" href={url("/services/formwork")}>Cho thuê cốp pha - phụ kiện</a>
               </li>
               <li class="list-item">
                 <a class="dropdown-item nav-item" href="https://khandaivn.com" target="_blank" rel="noopener noreferrer">Cho thuê khán đài</a>
@@ -86,7 +87,7 @@ const activeClass = (path: string) => (currentPath === path ? "active" : "");
         <li class="header_nav-list_item">
           <a 
             class={`nav-link nav-item ${activeClass("projects")}`} 
-            href="/projects" 
+            href={url("/projects")} 
             data-page="projects"
           >
             <span class="nav-item_text">Dự án</span>
@@ -96,7 +97,7 @@ const activeClass = (path: string) => (currentPath === path ? "active" : "");
         <li class="header_nav-list_item">
           <a 
             class={`nav-link nav-item ${activeClass("contact")}`} 
-            href="/contact" 
+            href={url("/contact")} 
             data-page="contact"
           >
             <span class="nav-item_text">Liên hệ</span>

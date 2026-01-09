@@ -15,30 +15,30 @@ const {
   <title>{title}</title>
   <meta name="description" content={description} />
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="/assets/img/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href={url("/assets/img/favicon.svg")} />
   <!-- Google Fonts: Inter -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
   <!-- CSS GIỐNG THEME GỐC -->
-  <link rel="stylesheet" href="/assets/css/preload.min.css" />
-  <link rel="stylesheet" href="/assets/css/icomoon.css" />
-  <link rel="stylesheet" href="/assets/css/libs.min.css" />
+  <link rel="stylesheet" href={url("/assets/css/preload.min.css")} />
+  <link rel="stylesheet" href={url("/assets/css/icomoon.css")} />
+  <link rel="stylesheet" href={url("/assets/css/libs.min.css")} />
   <!-- GLOBAL -->
-  <link rel="stylesheet" href="/assets/css/header.css" />
-  <link rel="stylesheet" href="/assets/css/footer.css" />
-  <link rel="stylesheet" href="/assets/css/main.css" />
-  <link rel="stylesheet" href="/assets/css/floating-buttons.css" />
+  <link rel="stylesheet" href={url("/assets/css/header.css")} />
+  <link rel="stylesheet" href={url("/assets/css/footer.css")} />
+  <link rel="stylesheet" href={url("/assets/css/main.css")} />
+  <link rel="stylesheet" href={url("/assets/css/floating-buttons.css")} />
 </head>
 
 <body>
   <slot />
   <a href="tel:+842838552151" class="hotline-float-btn" aria-label="Gọi hotline">
-    <img src="/assets/img/hotline-icon.png" alt="Hotline" />
+    <img src={url("/assets/img/hotline-icon.png")} alt="Hotline" />
   </a>
   
   <a href="https://zalo.me/84901234567" target="_blank" rel="noopener" class="zalo-float-btn" aria-label="Chat Zalo">
-    <img src="/assets/img/zalo-icon.png" alt="Zalo chat" />
+    <img src={url("/assets/img/zalo-icon.png")} alt="Zalo chat" />
   </a>
   
   <!-- JS chung -->

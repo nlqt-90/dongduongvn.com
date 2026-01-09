@@ -8,7 +8,7 @@ import { url } from "@utils/url";
   pageSubtitle="An toàn - Chất lượng - Chuyên nghiệp"
   pageTitle="Cốp pha"
 >
-  <link slot="head" rel="stylesheet" href="/assets/css/single-service.min.css" />
+  <link slot="head" rel="stylesheet" href={url("/assets/css/single-service.min.css")} />
 
 
 
@@ -62,8 +62,8 @@ import { url } from "@utils/url";
                             <!-- IMAGE (GIỮ NGUYÊN) -->
                             <div class="media">
                                 <picture>
-                                    <source srcset="/assets/img/services/formwork/tab1.webp" type="image/webp">
-                                    <img src="/assets/img/services/formwork/tab1.webp" alt="Hệ cốp pha">
+                                    <source srcset={url("/assets/img/services/formwork/tab1.webp")} type="image/webp"><img
+                                        src={url("/assets/img/services/formwork/tab1.webp")} alt="Hệ cốp pha">
                                 </picture>
                             </div>
 
@@ -116,7 +116,7 @@ import { url } from "@utils/url";
                                     </table>
                                 </div>
 
-                                <a href="/contact" class="main_btn btn">Liên hệ báo giá</a>
+                                <a class="main_btn btn" href={url("/contact")}>Liên hệ báo giá</a>
                             </div>
                         </div>
                     </div>
@@ -132,8 +132,8 @@ import { url } from "@utils/url";
                         <div class="content">
                             <div class="media">
                                 <picture>
-                                    <source srcset="/assets/img/services/formwork/tab2.webp" type="image/webp">
-                                    <img src="/assets/img/services/formwork/tab2.webp" alt="Cốp pha thép">
+                                    <source srcset={url("/assets/img/services/formwork/tab2.webp")} type="image/webp">
+                                    <img src={url("/assets/img/services/formwork/tab2.webp")} alt="Cốp pha thép">
                                 </picture>
                             </div>
                             <div class="main">
@@ -141,7 +141,7 @@ import { url } from "@utils/url";
                                     Cốp pha thép cho thuê phục vụ chống sàn, chống dầm và kết cấu bê tông,
                                     chịu tải cao và điều chỉnh chiều cao linh hoạt.
                                 </p>
-                                <a href="/contact" class="main_btn btn">Liên hệ báo giá</a>
+                                <a class="main_btn btn" href={url("/contact")}>Liên hệ báo giá</a>
                             </div>
                         </div>
                     </div>
@@ -157,8 +157,8 @@ import { url } from "@utils/url";
                         <div class="content">
                             <div class="media">
                                 <picture>
-                                    <source srcset="/assets/img/services/formwork/tab3.webp" type="image/webp">
-                                    <img src="/assets/img/services/formwork/tab3.webp" alt="Tấm sàn thép">
+                                    <source srcset={url("/assets/img/services/formwork/tab3.webp")} type="image/webp">
+                                    <img src={url("/assets/img/services/formwork/tab3.webp")} alt="Tấm sàn thép">
                                 </picture>
                             </div>
                             <div class="main">
@@ -166,7 +166,7 @@ import { url } from "@utils/url";
                                     Tấm sàn thép dùng tạo sàn làm việc an toàn trên cao,
                                     thay thế sàn gỗ truyền thống, bền và ổn định tải trọng.
                                 </p>
-                                <a href=/contact" class="main_btn btn">Liên hệ báo giá</a>
+                                <a class="main_btn btn" href={url("/contact")}>Liên hệ báo giá</a>
                             </div>
                         </div>
                     </div>
@@ -182,8 +182,8 @@ import { url } from "@utils/url";
                         <div class="content">
                             <div class="media">
                                 <picture>
-                                    <source srcset="/assets/img/services/formwork/tab4.webp" type="image/webp">
-                                    <img src="/assets/img/services/formwork/tab4.webp" alt="Dịch vụ kỹ thuật">
+                                    <source srcset={url("/assets/img/services/formwork/tab4.webp")} type="image/webp">
+                                    <img src={url("/assets/img/services/formwork/tab4.webp")} alt="Dịch vụ kỹ thuật">
                                 </picture>
                             </div>
                             <div class="main">
@@ -191,7 +191,7 @@ import { url } from "@utils/url";
                                     Cung cấp dịch vụ lắp dựng, tháo dỡ, tư vấn biện pháp thi công
                                     và hỗ trợ kỹ thuật trong suốt thời gian thuê thiết bị.
                                 </p>
-                                <a href="/contact" class="main_btn btn">Liên hệ báo giáz</a>
+                                <a href={url("/contact")} class="main_btn btn">Liên hệ báo giáz</a>
                             </div>
                         </div>
                     </div>
@@ -267,7 +267,7 @@ import { url } from "@utils/url";
                             <span class="number">01</span>
                             <h4 class="title">Cẩu tháp</h4>
                             <p class="description">Giải pháp cẩu tháp phục vụ thi công nhà cao tầng và công trình quy mô lớn, đảm bảo an toàn, ổn định và hiệu quả nâng hạ.</p>
-                            <a class="link link-arrow" href="/services/tower-crane">Chi tiết <i class="icon-arrow_right icon"></i></a>
+                            <a class="link link-arrow" href={url("/services/tower-crane")}>Chi tiết <i class="icon-arrow_right icon"></i></a>
                         </div>
                     </li>
         
@@ -276,7 +276,7 @@ import { url } from "@utils/url";
                             <span class="number">02</span>
                             <h4 class="title">Vận thăng</h4>
                             <p class="description">Hệ thống vận thăng chở người và vật liệu, vận hành ổn định, đáp ứng yêu cầu thi công liên tục tại công trình cao tầng.</p>
-                            <a class="link link-arrow" href="/services/hoist">Chi tiết <i class="icon-arrow_right icon"></i></a>
+                            <a class="link link-arrow" href={url("/services/hoist")}>Chi tiết <i class="icon-arrow_right icon"></i></a>
                         </div>
                     </li>
         
@@ -285,7 +285,7 @@ import { url } from "@utils/url";
                             <span class="number">03</span>
                             <h4 class="title">Giàn giáo</h4>
                             <p class="description">Hệ giàn giáo linh hoạt, chắc chắn, đáp ứng tiêu chuẩn an toàn thi công, tối ưu lắp dựng và tháo dỡ.</p>
-                            <a class="link link-arrow" href="/services/scaffolding">Chi tiết <i class="icon-arrow_right icon"></i></a>
+                            <a class="link link-arrow" href={url("/services/scaffolding")}>Chi tiết <i class="icon-arrow_right icon"></i></a>
                         </div>
                     </li>
         
@@ -294,7 +294,7 @@ import { url } from "@utils/url";
                             <span class="number">04</span>
                             <h4 class="title">Cốp pha</h4>
                             <p class="description">Giải pháp cốp pha đa dạng cho sàn, cột và vách, đảm bảo độ chính xác hình khối và chất lượng bề mặt bê tông.</p>
-                            <a class="link link-arrow" href="/services/formwork">Chi tiết <i class="icon-arrow_right icon"></i></a>
+                            <a class="link link-arrow" href={url("/services/formwork")}>Chi tiết <i class="icon-arrow_right icon"></i></a>
                         </div>
                     </li>
         
@@ -319,88 +319,88 @@ import { url } from "@utils/url";
             </div>
         </section>
         <div class="gallery presentation section-nopb" data-role=gallery>
-            <div class=gallery_item><a class=media href=/assets/img/services/formwork/formwork_01.webp
+            <div class=gallery_item><a class=media href={url("/assets/img/services/formwork/formwork_01.webp")}
                     data-caption="Cột chống" data-role=gallery-link>
                     <picture>
-                        <source data-srcset=/assets/img/services/formwork/formwork_01.webp srcset=/assets/img/services/formwork/formwork_01.webp type=image/webp><img
-                            class=lazy data-src=/assets/img/services/formwork/formwork_01.webp src=/assets/img/services/formwork/formwork_01.webp alt=@@caption>
+                        <source data-srcset={url("/assets/img/services/formwork/formwork_01.webp")} srcset={url("/assets/img/services/formwork/formwork_01.webp")} type=image/webp><img
+                            class=lazy data-src={url("/assets/img/services/formwork/formwork_01.webp")} src={url("/assets/img/services/formwork/formwork_01.webp")} alt="Cột chống">
                     </picture>
                     <div class=overlay>
                         <div class="overlay_header section_header"><span class=subtitle>HÌNH ẢNH</span></div>
                         <h4 class=overlay_caption>Cột chống</h4>
                     </div>
                 </a></div>
-                <div class=gallery_item><a class=media href=/assets/img/services/formwork/formwork_02.webp
+                <div class=gallery_item><a class=media href={url("/assets/img/services/formwork/formwork_02.webp")}
                     data-caption="Cột chống" data-role=gallery-link>
                     <picture>
-                        <source data-srcset=/assets/img/services/formwork/formwork_02.webp srcset=/assets/img/services/formwork/formwork_02.webp type=image/webp><img
-                            class=lazy data-src=/assets/img/services/formwork/formwork_02.webp src=/assets/img/services/formwork/formwork_02.webp alt=@@caption>
+                        <source data-srcset={url("/assets/img/services/formwork/formwork_02.webp")} srcset={url("/assets/img/services/formwork/formwork_02.webp")} type=image/webp><img
+                            class=lazy data-src={url("/assets/img/services/formwork/formwork_02.webp")} src={url("/assets/img/services/formwork/formwork_02.webp")} alt="Cột chống">
                     </picture>
                     <div class=overlay>
                         <div class="overlay_header section_header"><span class=subtitle>HÌNH ẢNH</span></div>
                         <h4 class=overlay_caption>Cột chống</h4>
                     </div>
                 </a></div>
-                <div class=gallery_item><a class=media href=/assets/img/services/formwork/formwork_03.webp
+                <div class=gallery_item><a class=media href={url("/assets/img/services/formwork/formwork_03.webp")}
                     data-caption="Cốp pha" data-role=gallery-link>
                     <picture>
-                        <source data-srcset=/assets/img/services/formwork/formwork_03.webp srcset=/assets/img/services/formwork/formwork_02.webp type=image/webp><img
-                            class=lazy data-src=/assets/img/services/formwork/formwork_03.webp src=/assets/img/services/formwork/formwork_03.webp alt=@@caption>
+                        <source data-srcset={url("/assets/img/services/formwork/formwork_03.webp")} srcset={url("/assets/img/services/formwork/formwork_02.webp")} type=image/webp><img
+                            class=lazy data-src={url("/assets/img/services/formwork/formwork_03.webp")} src={url("/assets/img/services/formwork/formwork_03.webp")} alt="Cốp pha">
                     </picture>
                     <div class=overlay>
                         <div class="overlay_header section_header"><span class=subtitle>HÌNH ẢNH</span></div>
                         <h4 class=overlay_caption>Cốp pha</h4>
                     </div>
                 </a></div>
-                <div class=gallery_item><a class=media href=/assets/img/services/formwork/formwork_04.webp
+                <div class=gallery_item><a class=media href={url("/assets/img/services/formwork/formwork_04.webp")}
                     data-caption="Cốp pha" data-role=gallery-link>
                     <picture>
-                        <source data-srcset=/assets/img/services/formwork/formwork_04.webp srcset=/assets/img/services/formwork/formwork_04.webp type=image/webp><img
-                            class=lazy data-src=/assets/img/services/formwork/formwork_04.webp src=/assets/img/services/formwork/formwork_04.webp alt=@@caption>
+                        <source data-srcset={url("/assets/img/services/formwork/formwork_04.webp")} srcset={url("/assets/img/services/formwork/formwork_04.webp")} type=image/webp><img
+                            class=lazy data-src={url("/assets/img/services/formwork/formwork_04.webp")} src={url("/assets/img/services/formwork/formwork_04.webp")} alt="Cốp pha">
                     </picture>
                     <div class=overlay>
                         <div class="overlay_header section_header"><span class=subtitle>HÌNH ẢNH</span></div>
                         <h4 class=overlay_caption>Cốp pha</h4>
                     </div>
                 </a></div>
-                <div class=gallery_item><a class=media href=/assets/img/services/formwork/formwork_05.webp
+                <div class=gallery_item><a class=media href={url("/assets/img/services/formwork/formwork_05.webp")}
                     data-caption="Tấm sàn thép" data-role=gallery-link>
                     <picture>
-                        <source data-srcset=/assets/img/services/formwork/formwork_05.webp srcset=/assets/img/services/formwork/formwork_05.webp type=image/webp><img
-                            class=lazy data-src=/assets/img/services/formwork/formwork_05.webp src=/assets/img/services/formwork/formwork_05.webp alt=@@caption>
+                        <source data-srcset={url("/assets/img/services/formwork/formwork_05.webp")} srcset={url("/assets/img/services/formwork/formwork_05.webp")} type=image/webp><img
+                            class=lazy data-src={url("/assets/img/services/formwork/formwork_05.webp")} src={url("/assets/img/services/formwork/formwork_05.webp")} alt="Tấm sàn thép">
                     </picture>
                     <div class=overlay>
                         <div class="overlay_header section_header"><span class=subtitle>HÌNH ẢNH</span></div>
                         <h4 class=overlay_caption>Tấm sàn thép</h4>
                     </div>
                 </a></div>
-                <div class=gallery_item><a class=media href=/assets/img/services/formwork/formwork_06.webp
+                <div class=gallery_item><a class=media href={url("/assets/img/services/formwork/formwork_06.webp")}
                     data-caption="Tấm sàn thép" data-role=gallery-link>
                     <picture>
-                        <source data-srcset=/assets/img/services/formwork/formwork_06.webp srcset=/assets/img/services/formwork/formwork_06.webp type=image/webp><img
-                            class=lazy data-src=/assets/img/services/formwork/formwork_06.webp src=/assets/img/services/formwork/formwork_06.webp alt=@@caption>
+                        <source data-srcset={url("/assets/img/services/formwork/formwork_06.webp")} srcset={url("/assets/img/services/formwork/formwork_06.webp")} type=image/webp><img
+                            class=lazy data-src={url("/assets/img/services/formwork/formwork_06.webp")} src={url("/assets/img/services/formwork/formwork_06.webp")} alt="Tấm sàn thép">
                     </picture>
                     <div class=overlay>
                         <div class="overlay_header section_header"><span class=subtitle>HÌNH ẢNH</span></div>
                         <h4 class=overlay_caption>Tấm sàn thép</h4>
                     </div>
                 </a></div>
-                <div class=gallery_item><a class=media href=/assets/img/services/formwork/formwork_07.webp
+                <div class=gallery_item><a class=media href={url("/assets/img/services/formwork/formwork_07.webp")}
                     data-caption="Cốp pha" data-role=gallery-link>
                     <picture>
-                        <source data-srcset=/assets/img/services/formwork/formwork_07.webp srcset=/assets/img/services/formwork/formwork_07.webp type=image/webp><img
-                            class=lazy data-src=/assets/img/services/formwork/formwork_07.webp src=/assets/img/services/formwork/formwork_07.webp alt=@@caption>
+                        <source data-srcset={url("/assets/img/services/formwork/formwork_07.webp")} srcset={url("/assets/img/services/formwork/formwork_07.webp")} type=image/webp><img
+                            class=lazy data-src={url("/assets/img/services/formwork/formwork_07.webp")} src={url("/assets/img/services/formwork/formwork_07.webp")} alt="Cốp pha">
                     </picture>
                     <div class=overlay>
                         <div class="overlay_header section_header"><span class=subtitle>HÌNH ẢNH</span></div>
                         <h4 class=overlay_caption>Cốp pha</h4>
                     </div>
                 </a></div>
-                <div class=gallery_item><a class=media href=/assets/img/services/formwork/formwork_08.webp
+                <div class=gallery_item><a class=media href={url("/assets/img/services/formwork/formwork_08.webp")}
                     data-caption="Cốp pha" data-role=gallery-link>
                     <picture>
-                        <source data-srcset=/assets/img/services/formwork/formwork_08.webp srcset=/assets/img/services/formwork/formwork_08.webp type=image/webp><img
-                            class=lazy data-src=/assets/img/services/formwork/formwork_08.webp src=/assets/img/services/formwork/formwork_08.webp alt=@@caption>
+                        <source data-srcset={url("/assets/img/services/formwork/formwork_08.webp")} srcset={url("/assets/img/services/formwork/formwork_08.webp")} type=image/webp><img
+                            class=lazy data-src={url("/assets/img/services/formwork/formwork_08.webp")} src={url("/assets/img/services/formwork/formwork_08.webp")} alt="Cốp pha">
                     </picture>
                     <div class=overlay>
                         <div class="overlay_header section_header"><span class=subtitle>HÌNH ẢNH</span></div>
@@ -421,7 +421,7 @@ import { url } from "@utils/url";
                         giải pháp thi công và dịch vụ hỗ trợ kỹ thuật.
                     </p>
                     <div class="wrapper">
-                        <a class="btn" href="contacts.html">Liên hệ</a>
+                        <a class="btn" href={url("/contact")}>Liên hệ</a>
                     </div>
                 </div>
         

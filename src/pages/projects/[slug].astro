@@ -35,7 +35,7 @@ const project = entry.data;
   pageSubtitle="An toàn - Chất lượng - Chuyên nghiệp"
   pageTitle={project.title}
 >
-  <link slot="head" rel="stylesheet" href="/assets/css/single-project.min.css" />
+  <link slot="head" rel="stylesheet" href={url("/assets/css/single-project.min.css")} />
   <style slot="head">
     /* Responsive auto-fit gallery */
     .presentation {
@@ -69,11 +69,11 @@ const project = entry.data;
         <article class="about_article">
           <div class="media">
             <picture>
-              <source data-srcset={project.mainImage} srcset={project.mainImage} type="image/webp" />
+              <source data-srcset={url(project.mainImage)} srcset={url(project.mainImage)} type="image/webp" />
               <img
                 class="lazy"
-                data-src={project.mainImage}
-                src={project.mainImage}
+                data-src={url(project.mainImage)}
+                src={url(project.mainImage)}
                 alt={project.title}
               />
             </picture>
@@ -137,7 +137,7 @@ const project = entry.data;
               </div>
 
               {/* ✅ theme demo: href="#" */}
-              <a class="link link-arrow" href="#">
+              <a class="link link-arrow" href={url("/contact")}>
                 Nhận báo giá ngay <i class="icon-arrow_right icon"></i>
               </a>
             </div>
@@ -155,13 +155,13 @@ const project = entry.data;
                 <li class="contact-info_group">
                   <span class="name">Email</span>
                   <span class="content d-inline-flex flex-column">
-                    <a class="link" href="mailto:example.com">contact@dongduongvn.com</a>
+                    <a class="link" href="mailto:contact@dongduongvn.com">contact@dongduongvn.com</a>
                   </span>
                 </li>
                 <li class="contact-info_group">
                   <span class="name">Điện thoại</span>
                   <span class="content d-inline-flex flex-column">
-                    <a class="link" href="tel:+842838552151">+84.28 3855 2151</a>
+                    <a class="link" href="tel:+842838552151">(+84) 28 3855 2151</a>
                   </span>
                 </li>
               </ul>
@@ -177,9 +177,9 @@ const project = entry.data;
   <div class="gallery presentation" data-role="gallery">
     {project.gallery.map((img) => (
       <div class="gallery_item">
-        <a class="media" href={img} data-caption={project.title} data-role="gallery-link">
+        <a class="media" href={url(img)} data-caption={project.title} data-role="gallery-link">
           <picture>
-            <img src={img} alt={project.title} />
+            <img src={url(img)} alt={project.title} />
           </picture>
 
           <div class="overlay">
@@ -203,7 +203,7 @@ const project = entry.data;
         <p class="text">
           Sự ủng hộ nhiệt tình và đóng góp quý báu của Quý Công ty đã góp phần tạo nên thành công rực rỡ cho các sự kiện tầm cỡ quốc gia
         </p>
-        <a class="btn" href="/about">XEM HỒ SƠ NĂNG LỰC</a>
+        <a class="btn" href={url("/about")}>XEM HỒ SƠ NĂNG LỰC</a>
       </div>
       <div class="feedback_slider swiper">
         <div class="swiper-wrapper">
@@ -216,8 +216,8 @@ const project = entry.data;
                 <picture>
                   <img
                     class="lazy"
-                    data-src="/assets/img/avatars/lehoitra.webp"
-                    src="/assets/img/avatars/lehoitra.webp"
+                    data-src={url("/assets/img/avatars/lehoitra.webp")}
+                    src={url("/assets/img/avatars/lehoitra.webp")}
                     alt="UBND tỉnh Lâm Đồng"
                   />
                 </picture>
@@ -238,8 +238,8 @@ const project = entry.data;
                 <picture>
                   <img
                     class="lazy"
-                    data-src="/assets/img/avatars/robocon2005.webp"
-                    src="/assets/img/avatars/robocon2005.webp"
+                    data-src={url("/assets/img/avatars/robocon2005.webp")}
+                    src={url("/assets/img/avatars/robocon2005.webp")}
                     alt="Robocon 2005"
                   />
                 </picture>
@@ -260,8 +260,8 @@ const project = entry.data;
                 <picture>
                   <img
                     class="lazy"
-                    data-src="/assets/img/avatars/vungtautourist.webp"
-                    src="/assets/img/avatars/vungtautourist.webp"
+                    data-src={url("/assets/img/avatars/vungtautourist.webp")}
+                    src={url("/assets/img/avatars/vungtautourist.webp")}
                     alt="Vungtau Tourist"
                   />
                 </picture>
@@ -282,8 +282,8 @@ const project = entry.data;
                 <picture>
                   <img
                     class="lazy"
-                    data-src="/assets/img/avatars/tinhbentre.webp"
-                    src="/assets/img/avatars/tinhbentre.webp"
+                    data-src={url("/assets/img/avatars/tinhbentre.webp")} 
+                    src={url("/assets/img/avatars/tinhbentre.webp")}
                     alt="UBND Bến Tre"
                   />
                 </picture>

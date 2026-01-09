@@ -2,13 +2,12 @@
 import PageLayout from "@layouts/PageLayout.astro";
 import { getCollection, type CollectionEntry } from "astro:content";
 import { CATEGORY_LABELS } from "../../utils/categoryLabels";
+import { url } from "@utils/url";
 
+// Kiểu project
 type ProjectEntry = CollectionEntry<"projects">;
 
-// Lấy toàn bộ dự án
 const entries = await getCollection("projects");
-
-// Chuẩn hoá + sort (mới nhất trước)
 const allProjects = (entries as ProjectEntry[])
   .map((entry) => ({
     slug: entry.slug,
@@ -17,16 +16,12 @@ const allProjects = (entries as ProjectEntry[])
   }))
   .sort((a, b) => b.startDate.localeCompare(a.startDate));
 
-// Pagination 4 dự án / trang
 const PAGE_SIZE = 4;
 const pageCount = Math.ceil(allProjects.length / PAGE_SIZE);
 const visibleProjects = allProjects.slice(0, PAGE_SIZE);
 
-// Filter lists (thiết bị + năm)
 const allCategories = [...new Set(allProjects.flatMap((p) => p.categories))];
-const allYears = [...new Set(allProjects.map((p) => p.year))].sort(
-  (a, b) => Number(b) - Number(a)
-);
+const allYears = [...new Set(allProjects.map((p) => p.year))].sort((a, b) => Number(b) - Number(a));
 ---
 
 <PageLayout
@@ -34,139 +29,91 @@ const allYears = [...new Set(allProjects.map((p) => p.year))].sort(
   pageSubtitle="An toàn - Chất lượng - Chuyên nghiệp"
   pageTitle="Các dự án đã tham gia"
 >
-  <link slot="head" rel="stylesheet" href="/assets/css/projects.min.css" />
-  <style slot="head">
-    /* Re-use palette color already defined (#0da574) */
-    /* Center filter groups + reduce bottom gap  */
-    .projects_filters .container{display:flex;flex-direction:column;align-items:center;}
-    .projects_filters .filter_group{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:center;margin-bottom:10px;}
-    .filter-btn{width:auto;}
-    .filter-btn.active{background:#0da574;color:#fff;}
+  <link slot="head" rel="stylesheet" href={url("/assets/css/projects.min.css")} />
 
-    /* tighten spacing trước danh sách dự án */
-    .projects.section{padding-top:40px;}
-
-    /* PAGINATION DOTS */
-    .pagination{margin-top:40px;text-align:center;}
-    .pagination_list{display:inline-flex;gap:10px;list-style:none;padding:0;margin:0;}
-    .pagination_link{display:inline-block;width:12px;height:12px;border-radius:50%;background:#c8c8c8;text-indent:-9999px;}
-    .pagination_link:hover{background:#ffc631;}
-    .pagination_link.current{background:#ffc631;}
-  </style>
 
   <!-- FILTER -->
   <section class="projects_filters section-nopb">
     <div class="container">
-      <div class="filter_group">
-        <strong>Thiết bị:</strong>
-        <button type="button" class="btn filter-btn" data-filter-category="all">Tất cả</button>
+      <!-- desktop buttons -->
+      <div class="filter_group" data-role="cat-buttons">
+        <button type="button" class="btn filter-btn active" data-filter-category="all">Tất cả</button>
         {allCategories.map((cat) => (
-          <button type="button" class="btn filter-btn" data-filter-category={cat}>
-            {CATEGORY_LABELS[cat] ?? cat}
-          </button>
+          <button type="button" class="btn filter-btn" data-filter-category={cat}>{CATEGORY_LABELS[cat] ?? cat}</button>
         ))}
       </div>
-
-      <div class="filter_group">
-        <strong>Năm:</strong>
-        <button type="button" class="btn filter-btn" data-filter-year="all">Tất cả</button>
-        {allYears.map((yr) => (
-          <button type="button" class="btn filter-btn" data-filter-year={yr}>
-            {yr}
-          </button>
-        ))}
-      </div>
+      <select class="filter_select filter_select--full" id="yearSelect" aria-label="Năm">
+        <option value="all">Tất cả năm</option>
+        {allYears.map((yr)=> (<option value={yr}>{yr}</option>))}
+      </select>
     </div>
   </section>
 
-  <!-- DANH SÁCH DỰ ÁN (page 1) -->
+  <!-- PROJECT LIST -->
   <section class="projects section">
     <div class="container">
       <ul class="projects_list">
         {visibleProjects.map((project) => (
-          <li
-            class="projects_list-item"
-            data-categories={project.categories.join(",")}
-            data-year={project.year}
-          >
+          <li class="projects_list-item" data-categories={project.categories.join(',')} data-year={project.year}>
             <div class="media">
               <picture>
-                <img src={project.thumbnail} alt={project.title} />
+                <img src={url(project.thumbnail)} alt={project.title} />
               </picture>
             </div>
             <div class="main">
-              <h3 class="main_title">
-                <span class="text">{project.title}</span>
-                <span class="divider divider--line"></span>
-              </h3>
+              <h3 class="main_title"><span class="text">{project.title}</span><span class="divider divider--line"></span></h3>
               <div class="main_info">
-                <span class="location">
-                  <i class="icon-location icon"></i>
-                  {project.location}
-                </span>
-                <a class="link link-arrow" href={`/projects/${project.slug}`}>
-                  Chi tiết <i class="icon-arrow_right icon"></i>
-                </a>
+                <span class="location"><i class="icon-location icon"></i>{project.location}</span>
+                <a class="link link-arrow" href={url(`/projects/${project.slug}`)}>Chi tiết <i class="icon-arrow_right icon"></i></a>
               </div>
             </div>
           </li>
         ))}
       </ul>
 
-      <!-- PAGINATION -->
-      {pageCount > 1 && (
-        <nav class="pagination">
-          <ul class="pagination_list">
-            {Array.from({ length: pageCount }).map((_, i) => (
-              <li>
-                <a
-                  href={i === 0 ? "/projects/" : `/projects/page/${i + 1}/`}
-                  class={`pagination_link ${i === 0 ? "current" : ""}`}
-                >
-                  {i + 1}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </nav>
-      )}
+      {pageCount>1 && (<nav class="pagination"><ul class="pagination_list">{Array.from({length:pageCount}).map((_,i)=>(<li><a href={url(i===0?'/projects/':`/projects/page/${i+1}/`)} class={`pagination_link ${i===0?'current':''}`}>{i+1}</a></li>))}</ul></nav>)}
     </div>
   </section>
 
-  <!-- SCRIPT FILTER (giữ nguyên) -->
+  <!-- SCRIPT FILTER -->
   <script>
     // @ts-nocheck
-    document.addEventListener("DOMContentLoaded", () => {
-      const items = Array.from(document.querySelectorAll(".projects_list-item"));
-      let currentCategory = "all";
-      let currentYear = "all";
-      const applyFilters = () => {
-        items.forEach((el) => {
-          const cats = (el.dataset.categories || "").split(",");
-          const year = el.dataset.year || "";
-          const matchCategory = currentCategory === "all" || cats.includes(currentCategory);
-          const matchYear = currentYear === "all" || year === currentYear;
-          el.style.display = matchCategory && matchYear ? "" : "none";
+    document.addEventListener('DOMContentLoaded',()=>{
+      const items=[...document.querySelectorAll('.projects_list-item')];
+      let cat='all',year='all';
+      const apply=()=>{
+        items.forEach(el=>{
+          const cats=(el.dataset.categories||'').split(',');
+          const yr=el.dataset.year||'';
+          const okCat=cat==='all'||cats.includes(cat);
+          const okYr=year==='all'||year===yr;
+          el.style.display= okCat && okYr ? '' : 'none';
         });
       };
-      const catButtons = document.querySelectorAll("[data-filter-category]");
-      catButtons.forEach((btn) => {
-        btn.addEventListener("click", () => {
-          catButtons.forEach((b) => b.classList.remove("active"));
-          btn.classList.add("active");
-          currentCategory = btn.dataset.filterCategory || "all";
-          applyFilters();
+
+      // category buttons
+      document.querySelectorAll('[data-filter-category]').forEach(btn=>{
+        btn.addEventListener('click',()=>{
+          document.querySelectorAll('[data-filter-category]').forEach(b=>b.classList.remove('active'));
+          btn.classList.add('active');
+          cat=btn.dataset.filterCategory||'all';
+          apply();
         });
       });
-      const yearButtons = document.querySelectorAll("[data-filter-year]");
-      yearButtons.forEach((btn) => {
-        btn.addEventListener("click", () => {
-          yearButtons.forEach((b) => b.classList.remove("active"));
-          btn.classList.add("active");
-          currentYear = btn.dataset.filterYear || "all";
-          applyFilters();
+      document.querySelectorAll('[data-filter-year]').forEach(btn=>{
+        btn.addEventListener('click',()=>{
+          document.querySelectorAll('[data-filter-year]').forEach(b=>b.classList.remove('active'));
+          btn.classList.add('active');
+          year=btn.dataset.filterYear||'all';
+          apply();
         });
       });
+
+      // dropdown year only
+      const yearSelect=document.getElementById('yearSelect');
+      yearSelect?.addEventListener('change',e=>{year=e.target.value;yearSelect.classList.toggle('is-active',year!=='all');apply();});
+// set initial active
+yearSelect?.classList.toggle('is-active',yearSelect.value!=='all');
     });
   </script>
 </PageLayout>

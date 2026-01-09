@@ -2,7 +2,7 @@
 import BaseLayout from "@layouts/BaseLayout.astro";
 import Header from "@components/Header.astro";
 import Footer from "@components/Footer.astro";
-
+import { url } from "@utils/url";
 interface Props {
   title: string;
   description?: string;
@@ -59,11 +59,11 @@ const finalBreadcrumbs = breadcrumbs.length > 0
     </div>
     <div class="media">
       <picture>
-        <source data-srcset={headerImage} srcset={headerImage} type="image/webp" />
+        <source data-srcset={url(headerImage)} srcset={url(headerImage)} type="image/webp" />
         <img 
           class="lazy" 
-          data-src={headerImage} 
-          src={headerImage} 
+          data-src={url(headerImage)} 
+          src={url(headerImage)} 
           alt="media" 
         />
       </picture>

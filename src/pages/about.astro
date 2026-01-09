@@ -8,7 +8,7 @@ import { url } from "@utils/url";
   pageSubtitle="An toàn - Chất lượng - Chuyên nghiệp"
   pageTitle="Giới thiệu"
 >
-  <link slot="head" rel="stylesheet" href="/assets/css/about.css" />
+  <link slot="head" rel="stylesheet" href={url("/assets/css/about.css")} />
 
   <section class="about section">
     <div class="container">
@@ -51,7 +51,7 @@ import { url } from "@utils/url";
             </ul>
 
             <div class="wrapper" data-aos="fade-up">
-                <a class="btn" href="#">
+                <a class="btn" href="https://zalo.me/84901234567">
                     NHẬN BÁO GIÁ THIẾT BỊ
                 </a>
             </div>
@@ -60,14 +60,14 @@ import { url } from "@utils/url";
         <div class="media" data-aos="zoom-in" data-aos-duration="700">
             <picture>
                 <source
-                    data-srcset="/assets/img/about/about.webp"
-                    srcset="/assets/img/about/about.webp"
+                    data-srcset={url("/assets/img/about/about.webp")}
+                    srcset={url("/assets/img/about/about.webp")}
                     type="image/webp"
                 >
                 <img
                     class="lazy"
-                    data-src="/assets/img/about/about.webp"
-                    src="/assets/img/about/about.webp"
+                    data-src={url("/assets/img/about/about.webp")}
+                    src={url("/assets/img/about/about.webp")}
                     alt="Giới thiệu công ty Đông Dương"
                 >
             </picture>
@@ -118,8 +118,8 @@ import { url } from "@utils/url";
                             <div class="services_slider-slide swiper-slide">
                                 <div class="media">
                                     <picture>
-                                        <source srcset="/assets/img/tabs/tab_crane.webp" type="image/webp">
-                                        <img src="/assets/img/tabs/tab_crane.webp" alt="Cẩu tháp">
+                                        <source srcset={url("/assets/img/tabs/tab_crane.webp")} type="image/webp">
+                                        <img src={url("/assets/img/tabs/tab_crane.webp")} alt="Cẩu tháp">
                                     </picture>
                                 </div>
                                 <div class="main">
@@ -133,7 +133,7 @@ import { url } from "@utils/url";
                                         <li class="checklist_item"><i class="icon-arrow_right icon"></i> Đáp ứng tiêu chuẩn an toàn</li>
                                         <li class="checklist_item"><i class="icon-arrow_right icon"></i> Hỗ trợ lắp dựng & vận hành</li>
                                     </ul>
-                                    <a class="btn" href="single-service.html">Chi tiết dịch vụ</a>
+                                    <a class="btn" href={url("/services/tower-crane")}>Chi tiết dịch vụ</a>
                                 </div>
                             </div>
         
@@ -141,8 +141,8 @@ import { url } from "@utils/url";
                             <div class="services_slider-slide swiper-slide">
                                 <div class="media">
                                     <picture>
-                                        <source srcset="/assets/img/tabs/tab_hoist.webp" type="image/webp">
-                                        <img src="/assets/img/tabs/tab_hoist.webp" alt="Vận thăng">
+                                        <source srcset={url("/assets/img/tabs/tab_hoist.webp")} type="image/webp">
+                                        <img src={url("/assets/img/tabs/tab_hoist.webp")} alt="Vận thăng">
                                     </picture>
                                 </div>
                                 <div class="main">
@@ -156,7 +156,7 @@ import { url } from "@utils/url";
                                         <li class="checklist_item"><i class="icon-arrow_right icon"></i> Vận hành ổn định</li>
                                         <li class="checklist_item"><i class="icon-arrow_right icon"></i> Phù hợp công trình cao tầng</li>
                                     </ul>
-                                    <a class="btn" href="single-service.html">Chi tiết dịch vụ</a>
+                                    <a class="btn" href={url("/services/hoist")}>Chi tiết dịch vụ</a>
                                 </div>
                             </div>
         
@@ -164,8 +164,8 @@ import { url } from "@utils/url";
                             <div class="services_slider-slide swiper-slide">
                                 <div class="media">
                                     <picture>
-                                        <source srcset="/assets/img/tabs/tab_scaffolding.webp" type="image/webp">
-                                        <img src="/assets/img/tabs/tab_scaffolding.webp" alt="Giàn giáo">
+                                        <source srcset={url("/assets/img/tabs/tab_scaffolding.webp")} type="image/webp">
+                                        <img src={url("/assets/img/tabs/tab_scaffolding.webp")} alt="Giàn giáo">
                                     </picture>
                                 </div>
                                 <div class="main">
@@ -179,7 +179,7 @@ import { url } from "@utils/url";
                                         <li class="checklist_item"><i class="icon-arrow_right icon"></i> Kết cấu chắc chắn</li>
                                         <li class="checklist_item"><i class="icon-arrow_right icon"></i> Đảm bảo an toàn thi công</li>
                                     </ul>
-                                    <a class="btn" href="single-service.html">Chi tiết dịch vụ</a>
+                                    <a class="btn" href={url("/services/scaffolding")}>Chi tiết dịch vụ</a>
                                 </div>
                             </div>
         
@@ -187,8 +187,8 @@ import { url } from "@utils/url";
                             <div class="services_slider-slide swiper-slide">
                                 <div class="media">
                                     <picture>
-                                        <source srcset="/assets/img/tabs/tab_formwork.webp" type="image/webp">
-                                        <img src="/assets/img/tabs/tab_formwork.webp" alt="Cốp pha">
+                                        <source srcset={url("/assets/img/tabs/tab_formwork.webp")} type="image/webp">
+                                        <img src={url("/assets/img/tabs/tab_formwork.webp")} alt="Cốp pha">
                                     </picture>
                                 </div>
                                 <div class="main">
@@ -202,7 +202,7 @@ import { url } from "@utils/url";
                                         <li class="checklist_item"><i class="icon-arrow_right icon"></i> Chịu lực tốt</li>
                                         <li class="checklist_item"><i class="icon-arrow_right icon"></i> Tái sử dụng hiệu quả</li>
                                     </ul>
-                                    <a class="btn" href="single-service.html">Chi tiết dịch vụ</a>
+                                    <a class="btn" href={url("/services/formwork")}>Chi tiết dịch vụ</a>
                                 </div>
                             </div>
         
@@ -210,8 +210,8 @@ import { url } from "@utils/url";
                             <div class="services_slider-slide swiper-slide">
                                 <div class="media">
                                     <picture>
-                                        <source srcset="/assets/img/tabs/tab_installation.webp" type="image/webp">
-                                        <img src="/assets/img/tabs/tab_installation.webp" alt="Vận chuyển và lắp dựng">
+                                        <source srcset={url("/assets/img/tabs/tab_installation.webp")} type="image/webp">
+                                        <img src={url("/assets/img/tabs/tab_installation.webp")} alt="Vận chuyển và lắp dựng">
                                     </picture>
                                 </div>
                                 <div class="main">
@@ -225,7 +225,7 @@ import { url } from "@utils/url";
                                         <li class="checklist_item"><i class="icon-arrow_right icon"></i> Quy trình thi công rõ ràng</li>
                                         <li class="checklist_item"><i class="icon-arrow_right icon"></i> Hỗ trợ nhanh chóng</li>
                                     </ul>
-                                    <a class="btn" href="single-service.html">Chi tiết dịch vụ</a>
+                                    <a class="btn" href={url("/services")}>Chi tiết dịch vụ</a>
                                 </div>
                             </div>
         
@@ -233,8 +233,8 @@ import { url } from "@utils/url";
                             <div class="services_slider-slide swiper-slide">
                                 <div class="media">
                                     <picture>
-                                        <source srcset="/assets/img/tabs/tab_khandai.webp" type="image/webp">
-                                        <img src="/assets/img/tabs/tab_khandai.webp" alt="Giải pháp thi công tổng thể">
+                                        <source srcset={url("/assets/img/tabs/tab_khandai.webp")} type="image/webp">
+                                        <img src={url("/assets/img/tabs/tab_khandai.webp")} alt="Giải pháp thi công tổng thể">
                                     </picture>
                                 </div>
                                 <div class="main">
@@ -261,44 +261,44 @@ import { url } from "@utils/url";
         </section>
         
         <div class="gallery presentation" data-role=gallery>
-            <div class=gallery_item><a class=media href=/assets/img/gallery/crane.webp
+            <div class=gallery_item><a class=media href={url("/assets/img/gallery/crane.webp")}
                     data-caption="Cẩu tháp" data-role=gallery-link>
                     <picture>
-                        <source data-srcset=/assets/img/gallery/crane.webp srcset=//assets/img/gallery/crane.webp type=image/webp><img
-                            class=lazy data-src=/assets/img/gallery/crane.webp src=/assets/img/gallery/crane.webp alt=@@caption>
+                        <source data-srcset={url("/assets/img/gallery/crane.webp")} srcset={url("/assets/img/gallery/crane.webp")} type=image/webp><img
+                            class=lazy data-src={url("/assets/img/gallery/crane.webp")} src={url("/assets/img/gallery/crane.webp")} alt="Cẩu tháp">
                     </picture>
                     <div class=overlay>
                         <div class="overlay_header section_header"><span class=subtitle>HÌNH ẢNH</span></div>
                         <h4 class=overlay_caption>Cẩu tháp</h4>
                     </div>
                 </a></div>
-                <div class=gallery_item><a class=media href=/assets/img/gallery/hoist.webp
+                <div class=gallery_item><a class=media href={url("/assets/img/gallery/hoist.webp")}
                     data-caption="Vận thăng" data-role=gallery-link>
                     <picture>
-                        <source data-srcset=/assets/img/gallery/hoist.webp srcset=/assets/img/gallery/hoist.webp type=image/webp><img
-                            class=lazy data-src=/assets/img/gallery/hoist.webp src=/assets/img/gallery/hoist.webp alt=@@caption>
+                        <source data-srcset={url("/assets/img/gallery/hoist.webp")} srcset={url("/assets/img/gallery/hoist.webp")} type=image/webp><img
+                            class=lazy data-src={url("/assets/img/gallery/hoist.webp")} src={url("/assets/img/gallery/hoist.webp")} alt="Vận thăng">
                     </picture>
                     <div class=overlay>
                         <div class="overlay_header section_header"><span class=subtitle>HÌNH ẢNH</span></div>
                         <h4 class=overlay_caption>Vặn thăng</h4>
                     </div>
                 </a></div>
-                <div class=gallery_item><a class=media href=/assets/img/gallery/scaffoding.webp
+                <div class=gallery_item><a class=media href={url("/assets/img/gallery/scaffoding.webp")}
                     data-caption="Giàn giáo" data-role=gallery-link>
                     <picture>
-                        <source data-srcset=/assets/img/gallery/scaffoding.webp srcset=//assets/img/gallery/scaffoding.webp type=image/webp><img
-                            class=lazy data-src=/assets/img/gallery/scaffoding.webp src=/assets/img/gallery/scaffoding.webp alt=@@caption>
+                        <source data-srcset={url("/assets/img/gallery/scaffoding.webp")} srcset={url("/assets/img/gallery/scaffoding.webp")} type=image/webp><img
+                            class=lazy data-src={url("/assets/img/gallery/scaffoding.webp")} src={url("/assets/img/gallery/scaffoding.webp")} alt="Giàn giáo">
                     </picture>
                     <div class=overlay>
                         <div class="overlay_header section_header"><span class=subtitle>HÌNH ẢNH</span></div>
                         <h4 class=overlay_caption>Giàn giáo</h4>
                     </div>
                 </a></div>
-                <div class=gallery_item><a class=media href=/assets/img/gallery/formwork.webp
+                <div class=gallery_item><a class=media href={url("/assets/img/gallery/formwork.webp")}
                     data-caption="Cốp pha" data-role=gallery-link>
                     <picture>
-                        <source data-srcset=/assets/img/gallery/formwork.webp srcset=//assets/img/gallery/formwork.webp type=image/webp><img
-                            class=lazy data-src=/assets/img/gallery/formwork.webp src=/assets/img/gallery/formwork.webp alt=@@caption>
+                        <source data-srcset={url("/assets/img/gallery/formwork.webp")} srcset={url("/assets/img/gallery/formwork.webp")} type=image/webp><img
+                            class=lazy data-src={url("/assets/img/gallery/formwork.webp")} src={url("/assets/img/gallery/formwork.webp")} alt="Cốp pha">
                     </picture>
                     <div class=overlay>
                         <div class="overlay_header section_header"><span class=subtitle>HÌNH ẢNH</span></div>
@@ -457,11 +457,11 @@ import { url } from "@utils/url";
                 <div class=video data-aos=zoom-in data-aos-duration=600>
                     <div class=video_cover>
                         <picture>
-                            <source data-srcset=/assets/img/about/video_cover.webp srcset=/assets/img/about/video_cover.webp type=image/webp>
-                            <img class=lazy data-src=/assets/img/about/video_cover.webp src=/assets/img/about/video_cover.webp alt=thumbnail>
+                            <source data-srcset={url("/assets/img/about/video_cover.webp")} srcset={url("/assets/img/about/video_cover.webp")} type=image/webp>
+                            <img class=lazy data-src={url("/assets/img/about/video_cover.webp")} src={url("/assets/img/about/video_cover.webp")} alt="thumbnail">
                         </picture>
                     </div><a class=video_btn href=#><i class=icon-play></i> <i class=icon-pause></i></a><video
-                        class=video_content src=/assets/video/crane1.mp4 preload=auto></video>
+                        class=video_content src={url("/assets/video/crane1.mp4")} preload=auto></video>
                 </div>
             </div>
         </section>
