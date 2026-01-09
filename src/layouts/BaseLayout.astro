@@ -45,16 +45,18 @@ const {
   <!-- JS chung -->
   <script src={url("/assets/js/common.min.js")} defer></script>
   <script is:inline>
-    // Thêm dòng này để TypeScript không báo lỗi
-    const netlifyIdentity = window.netlifyIdentity;
+    // Sử dụng is:inline để tránh lỗi TypeScript và đảm bảo script chạy ngay
     if (window.netlifyIdentity) {
+      // Sự kiện 'init' kiểm tra trạng thái khi trang vừa load
       window.netlifyIdentity.on("init", (user) => {
         if (!user) {
-          // Nếu user nhấn vào link xác nhận email, widget sẽ tự mở
+          // Nếu user chưa login (đang xác nhận email), đợi sự kiện login thành công
           window.netlifyIdentity.on("login", () => {
-            // Sau khi login/xác nhận thành công, đẩy về trang admin
             document.location.href = "/admin/";
           });
+        } else {
+          // Nếu user đã login rồi mà lỡ vào trang chủ, có thể chuyển hướng luôn (tùy chọn)
+          // document.location.href = "/admin/";
         }
       });
     }
