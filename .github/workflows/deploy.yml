@@ -34,4 +34,4 @@ jobs:
           server-dir: public_html
           port: 21
           dry-run: false
-          delete: false
+
