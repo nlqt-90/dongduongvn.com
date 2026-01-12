@@ -13,6 +13,7 @@
     "astro": "^5.16.6"
   },
   "devDependencies": {
+    "decap-cms-app": "^3.10.0",
     "ftp-deploy": "^2.4.7"
   }
 }

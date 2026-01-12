@@ -2,9 +2,30 @@
 // Props: popup is a CollectionEntry<'popups'> | null | undefined
 const { popup } = Astro.props as { popup: any | null };
 
-// If nothing to show, short-circuit (Astro 4 supports returning nothing)
-if (!popup) {
-  return null;
+// Guard: thiếu popup -> không render
+if (!popup) return null;
+
+// Kiểm tra thời gian hiệu lực
+const today = new Date(); today.setHours(0,0,0,0);
+function parseDate(val?: string | Date): Date | null {
+  if (!val) return null;
+  if (val instanceof Date) {
+    const d = new Date(val);
+    d.setHours(0, 0, 0, 0);
+    return d;
+  }
+  if (val.includes('/')) {
+    const [dd, mm, yyyy] = val.split('/').map(Number);
+    return new Date(yyyy, mm - 1, dd);
+  }
+  return new Date(val); // ISO fallback
+}
+
+const start: Date | null = parseDate(popup.startDate);
+const end: Date | null = parseDate(popup.endDate);
+
+if ((start && today < start) || (end && today > end)) {
+  return null; // ngoài khoảng thời gian, không hiển thị
 }
 
 import { url } from "@utils/url";

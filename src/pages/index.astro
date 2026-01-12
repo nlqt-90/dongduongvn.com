@@ -20,8 +20,23 @@ const now = new Date();
 const isActive = (p: any) => {
   const d = p.data;
   if (!d.active) return false;
-  if (d.startDate && new Date(d.startDate) > now) return false;
-  if (d.endDate && new Date(d.endDate) < now) return false;
+
+  const toMid = (s?: string) => {
+    if (!s) return null;
+    const dt = new Date(s);
+    // Đưa về 00:00 theo múi giờ local
+    dt.setHours(0, 0, 0, 0);
+    return dt;
+  };
+
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  const start = toMid(d.startDate);
+  const end = toMid(d.endDate);
+
+  if (start && today < start) return false;
+  if (end && today > end) return false;
   return true;
 };
 const activePopup = popups.find(isActive)?.data ?? null;

@@ -4,6 +4,7 @@ backend:
 
 media_folder: "static/uploads"
 public_folder: "/uploads"
+local_backend: true
 
 slug:
   clean_accents: true
@@ -24,8 +25,8 @@ collections:
     fields:
       - { label: "Tiêu đề", name: "title", widget: "string" }
       - { label: "Kích hoạt", name: "active", widget: "boolean", default: true }
-      - { label: "Ngày bắt đầu", name: "startDate", widget: "string" }
-      - { label: "Ngày kết thúc", name: "endDate", widget: "string" }
+      - { label: "Ngày bắt đầu", name: "startDate", widget: "datetime", format: "YYYY-MM-DD", time_format: false }
+      - { label: "Ngày kết thúc", name: "endDate", widget: "datetime", format: "YYYY-MM-DD", time_format: false }
       - { label: "Ảnh (path)", name: "image", widget: "string" }
 
 
