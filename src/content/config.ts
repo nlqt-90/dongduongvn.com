@@ -32,8 +32,8 @@ const popups = defineCollection({
   schema: z.object({
     title: z.string(),
     active: z.boolean().default(true),
-    startDate: z.string().optional(), // YYYY-MM-DD (ISO) – optional
-    endDate: z.string().optional(),   // YYYY-MM-DD (ISO) – optional
+    startDate: z.date().optional(), // Date object parsed automatically
+    endDate: z.date().optional(),   // Date object parsed automatically
     image: z.string(),               // path to image in /assets/
   }),
 });
