@@ -47,11 +47,15 @@ collections:
 
       - label: "Danh mục thiết bị"
         name: "categories"
-        widget: "list"
-        field:
-          label: "Slug"
-          name: "category"
-          widget: "string"
+        widget: "select"
+        multiple: true
+        options:
+          - { label: "Cẩu tháp", value: "cau-thap" }
+          - { label: "Vận thăng", value: "van-thang" }
+          - { label: "Giàn giáo", value: "gian-giao" }
+          - { label: "Cốp pha", value: "cop-pha" }
+          - { label: "Cột chống", value: "cot-chong" }
+          - { label: "Tấm sàn thép", value: "tam-san-thep" }
 
       - { label: "Thumbnail (path)", name: "thumbnail", widget: "string" }
       - { label: "Ảnh chính (path)", name: "mainImage", widget: "string" }
