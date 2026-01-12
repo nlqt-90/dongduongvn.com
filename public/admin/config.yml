@@ -2,15 +2,26 @@ backend:
   name: git-gateway
   branch: main
 
-media_folder: "static/uploads"
-public_folder: "/uploads"
-local_backend: true
+# ---- Cloudinary media library cấu hình ----
+media_library:
+  name: cloudinary
+  config:
+    cloud_name: "dwh5aujt4"   # 👉 thay bằng cloud_name thực tế
+    api_key: "551385925435162"         # 👉 thay bằng API Key Cloudinary (public)
+    media_folder: "uploads"
+    integration: "static"
+    default_transformations:
+      - width: 1200
+        crop: scale
+        fetch_format: auto
+        quality: auto
+
+# --- local_backend: true ---
 
 slug:
   clean_accents: true
 
 collections:
-
   # ===========================
   # POPUP COLLECTION
   # ===========================
@@ -27,8 +38,11 @@ collections:
       - { label: "Kích hoạt", name: "active", widget: "boolean", default: true }
       - { label: "Ngày bắt đầu", name: "startDate", widget: "datetime", format: "YYYY-MM-DD", time_format: false }
       - { label: "Ngày kết thúc", name: "endDate", widget: "datetime", format: "YYYY-MM-DD", time_format: false }
-      - { label: "Ảnh (path)", name: "image", widget: "string" }
-
+      - label: "Ảnh popup"
+        name: "image"
+        widget: "image"
+        choose_url: false
+        hint: "Upload ảnh (tự lưu Cloudinary)"
 
   # ===========================
   # PROJECT COLLECTION
@@ -58,8 +72,8 @@ collections:
           - { label: "Cột chống", value: "cot-chong" }
           - { label: "Tấm sàn thép", value: "tam-san-thep" }
 
-      - { label: "Thumbnail (path)", name: "thumbnail", widget: "string" }
-      - { label: "Ảnh chính (path)", name: "mainImage", widget: "string" }
+      - { label: "Thumbnail", name: "thumbnail", widget: "image", choose_url: false }
+      - { label: "Ảnh chính", name: "mainImage", widget: "image", choose_url: false }
 
       - label: "Mô tả dự án"
         name: "description"
@@ -80,6 +94,7 @@ collections:
         name: "gallery"
         widget: "list"
         field:
-          label: "Ảnh (path)"
+          label: "Ảnh"
           name: "image"
-          widget: "string"
+          widget: "image"
+          choose_url: false

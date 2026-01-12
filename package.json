@@ -14,6 +14,7 @@
   },
   "devDependencies": {
     "decap-cms-app": "^3.10.0",
-    "ftp-deploy": "^2.4.7"
+    "ftp-deploy": "^2.4.7",
+    "netlify-cms-media-library-cloudinary": "^1.3.10"
   }
 }
