@@ -47,6 +47,8 @@ collections:
     label: "Popups"
     folder: "src/content/popups"
     create: true
+    media_folder: "public/uploads/popups"
+    public_folder: "/uploads/popups"
     format: "frontmatter"
     extension: "md"
     slug: "{{fields.title}}"
