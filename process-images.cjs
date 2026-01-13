@@ -37,12 +37,12 @@ async function processImages() {
         
         if (directory.includes('popups')) {
           // 1. POPUP: Resize 1200 + Convert WebP
-          img = img.resize(1200, null, {维护Enlargement: true});
+          img = img.resize(1200, null, {withoutEnlargement: true});
           console.log(`-> Đang nén Popup: ${item}`);
         } 
         else if (directory.includes('gallery')) {
           // 2. GALLERY DỰ ÁN: Resize 1200 + Convert WebP + Watermark
-          img = img.resize(1200, null, {维护Enlargement: true});
+          img = img.resize(1200, null, {withoutEnlargement: true});
           if (await fs.pathExists(WATERMARK_PATH)) {
             img = img.composite([{ input: WATERMARK_PATH, gravity: 'southeast' }]);
           }
@@ -71,7 +71,8 @@ async function processImages() {
       } else if (item.endsWith('.md')) {
         let content = await fs.readFile(p, 'utf8');
         // Tìm các đường dẫn ảnh gốc (.jpg, .png...) và đổi thành .webp
-        const newContent = content.replace(/\.(jpg|jpeg|png)/g, '.webp');
+        let newContent = content.replace(/\/uploads\/originals\//g, '/uploads/processed/');
+        newContent = content.replace(/\.(jpg|jpeg|png)/g, '.webp');
         await fs.writeFile(p, newContent);
         console.log(`-> Đã cập nhật link trong: ${item}`);
       }
