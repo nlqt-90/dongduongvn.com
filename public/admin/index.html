@@ -5,6 +5,13 @@
   <title>CMS Admin</title>
 </head>
 <body>
+  <script>
+    // Override detectProxyServer TRƯỚC KHI load Decap CMS
+    // Để tắt auto-detect Netlify proxy
+    window.CMS_CONFIG = window.CMS_CONFIG || {};
+    window.CMS_CONFIG.disableProxyDetection = true;
+  </script>
+  
   <!-- Cloudinary media library -->
   <script src="https://cdn.jsdelivr.net/npm/netlify-cms-media-library-cloudinary@1/dist/cloudinary.js"></script>
   <!-- Decap core -->
@@ -17,6 +24,17 @@
       localStorage.removeItem("netlify-cms-backend");
       sessionStorage.removeItem("netlify-cms-user");
       sessionStorage.removeItem("netlify-cms-backend");
+    }
+    
+    // Override detectProxyServer function sau khi CMS load
+    if (window.CMS && window.CMS.backends && window.CMS.backends.github) {
+      // Force disable proxy detection
+      const originalDetectProxy = window.CMS.backends.github.detectProxyServer;
+      if (originalDetectProxy) {
+        window.CMS.backends.github.detectProxyServer = function() {
+          return Promise.resolve(null);
+        };
+      }
     }
     
     // Đăng ký Cloudinary media library
