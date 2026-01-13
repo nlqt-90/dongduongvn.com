@@ -23,7 +23,7 @@ site_url: https://giangiao.com.vn
 
 # === Required media settings ===
 media_folder: "public/uploads/originals" 
-public_folder: "/uploads/originals/popups"
+public_folder: "/uploads/originals/"
 # --- local_backend: true ---
 
 slug:
