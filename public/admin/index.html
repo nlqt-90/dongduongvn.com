@@ -11,6 +11,14 @@
   <script src="https://cdn.jsdelivr.net/npm/decap-cms@^3/dist/decap-cms.js"></script>
 
   <script>
+    // Clear Decap CMS cache để đảm bảo load config mới
+    if (typeof Storage !== "undefined") {
+      localStorage.removeItem("netlify-cms-user");
+      localStorage.removeItem("netlify-cms-backend");
+      sessionStorage.removeItem("netlify-cms-user");
+      sessionStorage.removeItem("netlify-cms-backend");
+    }
+    
     // Đăng ký Cloudinary media library
     if (window.cloudinaryMediaLibrary && window.CMS) {
       window.CMS.registerMediaLibrary(window.cloudinaryMediaLibrary);
