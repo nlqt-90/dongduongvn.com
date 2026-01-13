@@ -4,7 +4,9 @@ backend:
   branch: main  # 👉 Thay bằng branch chính của bạn (main hoặc master)
   auth_type: pkce  # Sử dụng PKCE flow (không cần proxy server)
   app_id: Ov23li8A8PnDSGOPmhAa  # 👉 Thay bằng Client ID từ GitHub OAuth App
-  base_url: https://api.github.com
+
+# Tắt hoàn toàn Netlify Identity widget
+disable_identity_widget: true
 # ---- Cloudinary media library cấu hình ----
 media_library:
   name: cloudinary
