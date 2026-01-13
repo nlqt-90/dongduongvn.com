@@ -27,7 +27,6 @@ media_library:
     cloud_name: "dwh5aujt4"   # 👉 thay bằng cloud_name thực tế
     api_key: "551385925435162"         # 👉 thay bằng API Key Cloudinary (public)
     media_folder: "uploads"
-    integration: "static"
     default_transformations:
       - width: 1200
         crop: scale
