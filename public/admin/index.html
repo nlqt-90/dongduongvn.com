@@ -13,6 +13,50 @@
   <script src="https://cdn.jsdelivr.net/npm/decap-cms@^3/dist/decap-cms.js"></script>
 
   <script>
+    // Force disable proxy detection - chạy ngay sau khi Decap CMS load
+    (function() {
+      function disableProxy() {
+        try {
+          // Method 1: Patch detectProxyServer
+          if (window.CMS && window.CMS.backends && window.CMS.backends.github) {
+            const backend = window.CMS.backends.github;
+            if (backend && backend.detectProxyServer) {
+              backend.detectProxyServer = function() {
+                console.log('[Decap CMS] Proxy detection disabled - returning null');
+                return Promise.resolve(null);
+              };
+              console.log('[Decap CMS] Successfully disabled proxy detection');
+              return true;
+            }
+          }
+          
+          // Method 2: Patch qua config
+          if (window.CMS && window.CMS.getConfig) {
+            const config = window.CMS.getConfig();
+            if (config && config.backend) {
+              config.backend.proxy_url = null;
+              config.backend.base_url = null;
+            }
+          }
+        } catch (e) {
+          console.error('[Decap CMS] Error disabling proxy:', e);
+        }
+        return false;
+      }
+      
+      // Thử disable ngay
+      if (!disableProxy()) {
+        // Nếu chưa được, thử lại với interval
+        let attempts = 0;
+        const interval = setInterval(function() {
+          attempts++;
+          if (disableProxy() || attempts > 100) {
+            clearInterval(interval);
+          }
+        }, 50);
+      }
+    })();
+    
     // Đăng ký Cloudinary media library
     if (window.cloudinaryMediaLibrary && window.CMS) {
       window.CMS.registerMediaLibrary(window.cloudinaryMediaLibrary);
