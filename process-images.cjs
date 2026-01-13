@@ -9,11 +9,10 @@
 
 
 // Chỉ chạy khi CI (GitHub Action) bật
-if (process.env.CI !== "true") {
-  console.log("⚠️ Skip image processing (not on CI)");
+if (!process.env.CI) {
+  console.log("⚠️ Skip (not running in CI)");
   process.exit(0);
 }
-
 const fs = require("fs");
 const path = require("path");
 const crypto = require("crypto");
