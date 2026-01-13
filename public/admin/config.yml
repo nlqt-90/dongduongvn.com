@@ -22,7 +22,7 @@ logo_url: https://decapbridge.com/decapcms-with-bridge.svg
 site_url: https://giangiao.com.vn
 
 # === Required media settings ===
-media_folder: "public/uploads/originals" 
+media_folder: "/public/uploads/originals" 
 public_folder: "/uploads/originals/popups"
 # --- local_backend: true ---
 
@@ -36,7 +36,7 @@ collections:
   - name: "popups"
     label: "Popups"
     folder: "src/content/popups"
-    media_folder: "public/uploads/originals/popups"
+    media_folder: "/public/uploads/originals/popups"
     public_folder: "/uploads/originals/popups"
     create: true
     format: "frontmatter"
@@ -60,8 +60,8 @@ collections:
   - name: "projects"
     label: "Projects"
     folder: "src/content/projects"
-    media_folder: "public/uploads/originals/projects/{{slug}}"
-    public_folder: "/uploads/processed/projects/{{slug}}"
+    media_folder: "/public/uploads/originals/projects/{{slug}}"
+    public_folder: "/uploads/originals/projects/{{slug}}"
     create: true
     format: "frontmatter"
     extension: "md"
@@ -109,6 +109,6 @@ collections:
           label: "Ảnh"
           name: "image"
           widget: "image"
-          media_folder: "public/uploads/originals/projects/{{slug}}/gallery"
+          media_folder: "/public/uploads/originals/projects/{{slug}}/gallery"
           public_folder: "/uploads/originals/projects/{{slug}}/gallery"
           choose_url: false
