@@ -6,35 +6,6 @@
 </head>
 <body>
   <script>
-    // Override detectProxyServer TRƯỚC KHI load Decap CMS
-    // Patch vào prototype của GitHub backend ngay từ đầu
-    (function() {
-      // Lưu lại hàm gốc của Promise để có thể patch
-      const originalPromise = window.Promise;
-      
-      // Intercept khi Decap CMS load và patch detectProxyServer
-      Object.defineProperty(window, 'CMS', {
-        set: function(value) {
-          // Khi CMS được set, patch ngay lập tức
-          if (value && value.backends && value.backends.github) {
-            const githubBackend = value.backends.github;
-            if (githubBackend.detectProxyServer) {
-              githubBackend.detectProxyServer = function() {
-                return Promise.resolve(null);
-              };
-            }
-          }
-          // Set giá trị gốc
-          Object.defineProperty(window, 'CMS', {
-            value: value,
-            writable: true,
-            configurable: true
-          });
-        },
-        configurable: true
-      });
-    })();
-    
     // Clear Decap CMS cache
     if (typeof Storage !== "undefined") {
       localStorage.removeItem("netlify-cms-user");
@@ -50,18 +21,50 @@
   <script src="https://cdn.jsdelivr.net/npm/decap-cms@^3/dist/decap-cms.js"></script>
 
   <script>
-    // Patch lại sau khi CMS load (backup method)
-    (function patchDetectProxy() {
-      if (window.CMS && window.CMS.backends && window.CMS.backends.github) {
-        const githubBackend = window.CMS.backends.github;
-        if (githubBackend && typeof githubBackend.detectProxyServer === 'function') {
-          githubBackend.detectProxyServer = function() {
-            return Promise.resolve(null);
-          };
+    // Patch detectProxyServer ngay sau khi script load
+    // Sử dụng multiple methods để đảm bảo patch được
+    (function() {
+      function patchProxy() {
+        try {
+          // Method 1: Patch qua window.CMS
+          if (window.CMS && window.CMS.backends && window.CMS.backends.github) {
+            const backend = window.CMS.backends.github;
+            if (backend && backend.detectProxyServer) {
+              backend.detectProxyServer = function() {
+                console.log('[Decap CMS] Proxy detection disabled');
+                return Promise.resolve(null);
+              };
+              console.log('[Decap CMS] Successfully patched detectProxyServer');
+              return true;
+            }
+          }
+          
+          // Method 2: Patch qua module system nếu có
+          if (window.__DECAP_CMS__) {
+            const cms = window.__DECAP_CMS__;
+            if (cms.backends && cms.backends.github) {
+              cms.backends.github.detectProxyServer = function() {
+                return Promise.resolve(null);
+              };
+              return true;
+            }
+          }
+        } catch (e) {
+          console.error('[Decap CMS] Error patching:', e);
         }
-      } else {
-        // Nếu chưa load, thử lại sau
-        setTimeout(patchDetectProxy, 100);
+        return false;
+      }
+      
+      // Thử patch ngay
+      if (!patchProxy()) {
+        // Nếu chưa được, thử lại với interval
+        let attempts = 0;
+        const interval = setInterval(function() {
+          attempts++;
+          if (patchProxy() || attempts > 50) {
+            clearInterval(interval);
+          }
+        }, 50);
       }
     })();
     
