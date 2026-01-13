@@ -1,6 +1,6 @@
 # Use DecapBridge classic auth (required)
 backend:
-  name: decap-bridge
+  name: git-gateway
   repo: nlqt-90/dongduongvn.com
   branch: main
   identity_url: https://auth.decapbridge.com/sites/7ce0857c-f0a9-4f04-a460-ebfb29f08867
