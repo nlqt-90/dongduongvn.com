@@ -60,7 +60,13 @@ function parseFrontmatter($content) {
   <td>
       <img src="<?= $fm['thumbnail'] ?? '' ?>" width="80">
   </td>
-  <td><a href="project_edit.php?file=<?= $filename ?>">Sửa</a></td>
+  <td>
+    <a href="project_edit.php?file=<?= $filename ?>">Sửa</a>
+    <a href="project_delete.php?file=<?= $filename ?>" onclick="return confirm('Xóa dự án này?')">Xóa</a>
+  </td>
+
+</td>
+  
 </tr>
 <?php endforeach; ?>
 

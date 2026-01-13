@@ -59,8 +59,10 @@ function parseFrontmatter($content) {
     <td><?= $fm['title'] ?? '(không có)' ?></td>
     <td><img src="<?= $fm['image'] ?? '' ?>" width="80" /></td>
     <td>
-      <a href="popup_edit.php?file=<?= $filename ?>">Sửa</a>
+        <a href="popup_edit.php?file=<?= $filename ?>">Sửa</a> |
+        <a href="popup_delete.php?file=<?= $filename ?>" onclick="return confirm('Xóa popup này?')">Xóa</a>
     </td>
+
   </tr>
 <?php endforeach; ?>
 
