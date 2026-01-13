@@ -79,6 +79,11 @@ $markdown =
 $fullPath = POPUP_DIR . $slug . ".md";
 file_put_contents($fullPath, $markdown);
 
+require_once __DIR__ . "/github_commit.php";
+
+$remotePath = "src/content/popups/" . $slug . ".md";
+github_commit_file($remotePath, $markdown, "cms: update popup $slug");
+
 // Quay lại danh sách
 header("Location: popups.php");
 exit;

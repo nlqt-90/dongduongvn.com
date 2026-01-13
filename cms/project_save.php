@@ -153,6 +153,11 @@ $markdown =
 $fullPath = PROJECT_DIR . $slug . ".md";
 file_put_contents($fullPath, $markdown);
 
+require_once __DIR__ . "/github_commit.php";
+
+$remotePath = "src/content/projects/" . $slug . ".md";
+github_commit_file($remotePath, $markdown, "cms: update project $slug");
+
 // Redirect
 header("Location: projects.php");
 exit;
