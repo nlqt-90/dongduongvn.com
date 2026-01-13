@@ -5,35 +5,65 @@
   <title>CMS Admin</title>
 </head>
 <body>
-  <!-- Cloudinary media library -->
-  <script src="https://cdn.jsdelivr.net/npm/netlify-cms-media-library-cloudinary@1/dist/cloudinary.js"></script>
-  <!-- Decap core -->
-  <script src="https://cdn.jsdelivr.net/npm/decap-cms@^3/dist/decap-cms.js"></script>
-
   <script>
-    // Clear Decap CMS cache để đảm bảo load config mới
+    // Override detectProxyServer TRƯỚC KHI load Decap CMS
+    // Patch vào prototype của GitHub backend ngay từ đầu
+    (function() {
+      // Lưu lại hàm gốc của Promise để có thể patch
+      const originalPromise = window.Promise;
+      
+      // Intercept khi Decap CMS load và patch detectProxyServer
+      Object.defineProperty(window, 'CMS', {
+        set: function(value) {
+          // Khi CMS được set, patch ngay lập tức
+          if (value && value.backends && value.backends.github) {
+            const githubBackend = value.backends.github;
+            if (githubBackend.detectProxyServer) {
+              githubBackend.detectProxyServer = function() {
+                return Promise.resolve(null);
+              };
+            }
+          }
+          // Set giá trị gốc
+          Object.defineProperty(window, 'CMS', {
+            value: value,
+            writable: true,
+            configurable: true
+          });
+        },
+        configurable: true
+      });
+    })();
+    
+    // Clear Decap CMS cache
     if (typeof Storage !== "undefined") {
       localStorage.removeItem("netlify-cms-user");
       localStorage.removeItem("netlify-cms-backend");
       sessionStorage.removeItem("netlify-cms-user");
       sessionStorage.removeItem("netlify-cms-backend");
     }
-    
-    // Đợi Decap CMS load xong rồi mới override detectProxyServer
-    document.addEventListener('DOMContentLoaded', function() {
-      // Đợi thêm một chút để đảm bảo CMS đã khởi tạo
-      setTimeout(function() {
-        // Override detectProxyServer function để tắt auto-detect Netlify proxy
-        if (window.CMS && window.CMS.backends && window.CMS.backends.github) {
-          const githubBackend = window.CMS.backends.github;
-          if (githubBackend && typeof githubBackend.detectProxyServer === 'function') {
-            githubBackend.detectProxyServer = function() {
-              return Promise.resolve(null);
-            };
-          }
+  </script>
+  
+  <!-- Cloudinary media library -->
+  <script src="https://cdn.jsdelivr.net/npm/netlify-cms-media-library-cloudinary@1/dist/cloudinary.js"></script>
+  <!-- Decap core -->
+  <script src="https://cdn.jsdelivr.net/npm/decap-cms@^3/dist/decap-cms.js"></script>
+
+  <script>
+    // Patch lại sau khi CMS load (backup method)
+    (function patchDetectProxy() {
+      if (window.CMS && window.CMS.backends && window.CMS.backends.github) {
+        const githubBackend = window.CMS.backends.github;
+        if (githubBackend && typeof githubBackend.detectProxyServer === 'function') {
+          githubBackend.detectProxyServer = function() {
+            return Promise.resolve(null);
+          };
         }
-      }, 1000);
-    });
+      } else {
+        // Nếu chưa load, thử lại sau
+        setTimeout(patchDetectProxy, 100);
+      }
+    })();
     
     // Đăng ký Cloudinary media library
     if (window.cloudinaryMediaLibrary && window.CMS) {
