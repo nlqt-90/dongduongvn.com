@@ -20,20 +20,6 @@ logo_url: https://decapbridge.com/decapcms-with-bridge.svg
 
 # Add site links in Decap CMS (optional)
 site_url: https://giangiao.com.vn
-# ---- Cloudinary media library cấu hình ----
-media_library:
-  name: cloudinary
-  config:
-    cloud_name: "dwh5aujt4"   # 👉 thay bằng cloud_name thực tế
-    api_key: "551385925435162"         # 👉 thay bằng API Key Cloudinary (public)
-    media_folder: "uploads"
-    output_filename_only: true 
-    default_transformations:
-      - width: 1200
-        crop: scale
-        fetch_format: auto
-        quality: auto
-
 # --- local_backend: true ---
 
 slug:
@@ -47,8 +33,6 @@ collections:
     label: "Popups"
     folder: "src/content/popups"
     create: true
-    media_folder: "public/uploads/popups"
-    public_folder: "/uploads/popups"
     format: "frontmatter"
     extension: "md"
     slug: "{{fields.title}}"
