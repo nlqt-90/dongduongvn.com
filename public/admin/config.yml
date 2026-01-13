@@ -20,6 +20,10 @@ logo_url: https://decapbridge.com/decapcms-with-bridge.svg
 
 # Add site links in Decap CMS (optional)
 site_url: https://giangiao.com.vn
+
+# === Required media settings ===
+media_folder: "public/uploads/originals"   # file path in repo
+public_folder: "/uploads/originals"       # URL after build
 # --- local_backend: true ---
 
 slug:
