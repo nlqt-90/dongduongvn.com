@@ -29,19 +29,6 @@ jobs:
       - name: Build project
         run: npm run build
 
-      # Copy thư mục uploads từ repo GIT sang thư mục dist
-      # (đề phòng build không copy được)
-      - name: Copy uploads to dist
-         run: |
-          echo "Copying uploads..."
-          mkdir -p dist/uploads
-          if [ -d "public/uploads" ] && [ "$(ls -A public/uploads)" ]; then
-              cp -r public/uploads/* dist/uploads/
-               echo "Uploads copied."
-         else
-          echo "No uploads to copy."
-         fi
-
 
 
       - name: FTP Deploy to DirectAdmin
