@@ -24,7 +24,7 @@ jobs:
       - name: Build project
         run: npm run build
 
-      - name: FTP Deploy to DirectAdmin
+      - name: FTP Deploy to DirectAdmin (dist)
         uses: SamKirkland/FTP-Deploy-Action@v4.3.2
         with:
           server: ${{ secrets.FTP_HOST }}
@@ -37,3 +37,14 @@ jobs:
           exclude: |
             cms/**
             uploads/**
+
+      - name: FTP Deploy CMS
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.2
+        with:
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USER }}
+          password: ${{ secrets.FTP_PASS }}
+          protocol: ftp
+          local-dir: cms/
+          server-dir: /public_html/cms/
+          dangerous-clean-slate: false
