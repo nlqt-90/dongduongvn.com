@@ -20,8 +20,12 @@ $data = [
 if ($file && file_exists(POPUP_DIR . $file)) {
     $content = file_get_contents(POPUP_DIR . $file);
 
-    if (preg_match('/^---(.*?)---/s', $content, $m)) {
-        $lines = explode("\n", trim($m[1]));
+    // Regex improved
+    if (preg_match('/^---\s*(.*?)\s*---/s', $content, $m)) {
+
+        $front = trim($m[1]);
+        $lines = explode("\n", $front);
+
         foreach ($lines as $line) {
             if (strpos($line, ":") !== false) {
                 list($k, $v) = explode(":", $line, 2);
@@ -47,7 +51,31 @@ if ($file && file_exists(POPUP_DIR . $file)) {
   <?php endif; ?>
 
   <label>Tiêu đề:</label><br>
-  <input type="text" name="title" value="<?= $data['title'] ?>"><br><br>
+  <input type="text" name="title" value="<?= htmlspecialchars($data['title']) ?>"><br><br>
 
   <label>Kích hoạt:</label>
-  <input type="checkbox" name="active" <?= $data[']()
+  <input type="checkbox" name="active" <?= ($data['active'] == "true") ? "checked" : "" ?>>
+  <br><br>
+
+  <label>Ngày bắt đầu:</label><br>
+  <input type="date" name="startDate" value="<?= htmlspecialchars($data['startDate']) ?>"><br><br>
+
+  <label>Ngày kết thúc:</label><br>
+  <input type="date" name="endDate" value="<?= htmlspecialchars($data['endDate']) ?>"><br><br>
+
+  <label>Ảnh Popup:</label><br>
+  <?php if (!empty($data['image'])): ?>
+      <img src="<?= $data['image'] ?>" width="120"><br>
+  <?php endif; ?>
+
+  <input type="text" name="image" value="<?= htmlspecialchars($data['image']) ?>" readonly><br>
+  <input type="file" name="image_upload" accept="image/*"><br><br>
+
+  <button type="submit">Lưu</button>
+</form>
+
+<br>
+<a href="popups.php">← Quay lại danh sách popup</a>
+
+</body>
+</html>

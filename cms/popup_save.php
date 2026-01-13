@@ -18,7 +18,7 @@ function slugify($text) {
 $title      = $_POST['title'] ?? "";
 $active     = isset($_POST['active']) ? "true" : "false";
 $startDate  = $_POST['startDate'] ?? "";
-@endDate    = $_POST['endDate'] ?? "";
+$endDate    = $_POST['endDate'] ?? "";   // ← FIX LỖI 500 TẠI ĐÂY
 $imagePath  = $_POST['image'] ?? "";
 
 // Kiểm tra chế độ edit (có file cũ hay không)
@@ -29,18 +29,15 @@ if ($file) {
     $slug = basename($file, ".md");
 } else {
     // NEW MODE → tự tạo slug mới
-    $slug = slugify($title) . "-" . time(); // thêm time tránh trùng
+    $slug = slugify($title) . "-" . time();
 }
 
 // Xử lý upload ảnh (nếu có)
 if (!empty($_FILES['image_upload']['tmp_name'])) {
-    // Chuẩn bị form data gửi sang upload.php
-    $tmpFile = $_FILES['image_upload']['tmp_name'];
 
-    // upload.php cần biết thư mục loại popup
+    $tmpFile = $_FILES['image_upload']['tmp_name'];
     $uploadUrl = "upload.php?type=popup";
 
-    // CURL upload sang upload.php
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $uploadUrl);
     curl_setopt($ch, CURLOPT_POST, true);
@@ -53,15 +50,15 @@ if (!empty($_FILES['image_upload']['tmp_name'])) {
             $_FILES['image_upload']['name']
         ),
     ];
-    curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
 
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
     $resp = curl_exec($ch);
     curl_close($ch);
 
     $json = json_decode($resp, true);
 
     if (!empty($json["path"])) {
-        $imagePath = $json["path"]; // path trả về để ghi vào markdown
+        $imagePath = $json["path"];
     }
 }
 
@@ -79,11 +76,12 @@ $markdown =
 $fullPath = POPUP_DIR . $slug . ".md";
 file_put_contents($fullPath, $markdown);
 
+// Commit lên GitHub
 require_once __DIR__ . "/github_commit.php";
 
 $remotePath = "src/content/popups/" . $slug . ".md";
 github_commit_file($remotePath, $markdown, "cms: update popup $slug");
 
-// Quay lại danh sách
+// Redirect
 header("Location: popups.php");
 exit;
