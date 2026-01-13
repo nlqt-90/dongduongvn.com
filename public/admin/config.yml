@@ -2,9 +2,8 @@ backend:
   name: github
   repo: nlqt-90/dongduongvn.com  # 👉 Thay bằng username và tên repo GitHub của bạn
   branch: main  # 👉 Thay bằng branch chính của bạn (main hoặc master)
-
-# Tắt hoàn toàn Netlify Identity widget
-disable_identity_widget: true
+  base_url: https://decapbridge.com  # DecapBridge OAuth proxy
+  auth_endpoint: auth
 # ---- Cloudinary media library cấu hình ----
 media_library:
   name: cloudinary
