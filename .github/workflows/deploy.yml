@@ -18,6 +18,14 @@ jobs:
         with:
           node-version: '18'
 
+      # BỔ SUNG: Cài đặt thư viện xử lý ảnh
+      - name: Install Image Processing Deps
+        run: npm install sharp fs-extra
+
+      # BỔ SUNG: Chạy script xử lý ảnh (Resize, WebP, Watermark, Sửa .md)
+      - name: Process Images & Update MD
+        run: node process-images.js
+
       - name: Install deps & build
         run: |
           npm ci
