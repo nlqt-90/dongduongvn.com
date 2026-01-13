@@ -48,3 +48,17 @@ jobs:
           local-dir: cms/
           server-dir: /public_html/cms/
           dangerous-clean-slate: false
+
+          
+          
+      - name: Deploy content
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.2
+        with:
+         server: ${{ secrets.FTP_HOST }}
+         username: ${{ secrets.FTP_USER }}
+         password: ${{ secrets.FTP_PASS }}
+         protocol: ftp
+         local-dir: src/content/
+         server-dir: /public_html/src/content/
+         dangerous-clean-slate: false
+      
