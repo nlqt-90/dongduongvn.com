@@ -24,7 +24,7 @@ jobs:
 
       # BỔ SUNG: Chạy script xử lý ảnh (Resize, WebP, Watermark, Sửa .md)
       - name: Process Images & Update MD
-        run: node process-images.js
+        run: node process-images.cjs
 
       - name: Install deps & build
         run: |
