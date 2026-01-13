@@ -22,7 +22,7 @@ logo_url: https://decapbridge.com/decapcms-with-bridge.svg
 site_url: https://giangiao.com.vn
 
 # === Required media settings ===
-media_folder: "/public/uploads/originals" 
+media_folder: "public/uploads/originals" 
 public_folder: "/uploads/originals/popups"
 # --- local_backend: true ---
 
