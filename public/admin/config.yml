@@ -1,6 +1,10 @@
 backend:
-  name: git-gateway
-  branch: main
+  name: github
+  repo: YOUR_USERNAME/YOUR_REPO_NAME  # 👉 Thay bằng username và tên repo GitHub của bạn
+  branch: main  # 👉 Thay bằng branch chính của bạn (main hoặc master)
+  base_url: https://api.github.com
+  auth_type: pkce  # Sử dụng PKCE flow (khuyến nghị)
+  auth_scope: repo  # Quyền truy cập repo
 
 # ---- Cloudinary media library cấu hình ----
 media_library:
