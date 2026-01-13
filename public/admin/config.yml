@@ -1,6 +1,6 @@
 # Use DecapBridge classic auth (required)
 backend:
-  name: git-gateway
+  name: decap-bridge
   repo: nlqt-90/dongduongvn.com
   branch: main
   identity_url: https://auth.decapbridge.com/sites/7ce0857c-f0a9-4f04-a460-ebfb29f08867
@@ -36,7 +36,7 @@ collections:
   - name: "popups"
     label: "Popups"
     folder: "src/content/popups"
-    media_folder: "/public/uploads/originals/popups"
+    media_folder: "public/uploads/originals/popups"
     public_folder: "/uploads/originals/popups"
     create: true
     format: "frontmatter"
@@ -60,7 +60,7 @@ collections:
   - name: "projects"
     label: "Projects"
     folder: "src/content/projects"
-    media_folder: "/public/uploads/originals/projects/{{slug}}"
+    media_folder: "public/uploads/originals/projects/{{slug}}"
     public_folder: "/uploads/originals/projects/{{slug}}"
     create: true
     format: "frontmatter"
@@ -109,6 +109,6 @@ collections:
           label: "Ảnh"
           name: "image"
           widget: "image"
-          media_folder: "/public/uploads/originals/projects/{{slug}}/gallery"
+          media_folder: "public/uploads/originals/projects/{{slug}}/gallery"
           public_folder: "/uploads/originals/projects/{{slug}}/gallery"
           choose_url: false
