@@ -4,6 +4,7 @@ backend:
   branch: main  # 👉 Thay bằng branch chính của bạn (main hoặc master)
   auth_type: pkce  # Sử dụng PKCE flow (không cần proxy server)
   app_id: Ov23li8A8PnDSGOPmhAa  # 👉 Thay bằng Client ID từ GitHub OAuth App
+  proxy_url: false  # Tắt auto-detect proxy server
 
 # ---- Cloudinary media library cấu hình ----
 media_library:
