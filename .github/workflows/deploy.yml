@@ -1,45 +1,49 @@
-name: build-and-deploy
+name: Deploy to DirectAdmin via FTP
 
 on:
   push:
     branches:
       - main
+      - media   # khi DecapCMS upload ảnh sẽ commit vào nhánh này
   workflow_dispatch:
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout repo
+      - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Setup Node 18
+      - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18'
+          node-version: 20
 
-      # BỔ SUNG: Cài đặt thư viện xử lý ảnh
-      - name: Install Image Processing Deps
-        run: npm install sharp fs-extra
+      - name: Install dependencies
+        run: npm install
 
-      # BỔ SUNG: Chạy script xử lý ảnh (Resize, WebP, Watermark, Sửa .md)
-      - name: Process Images & Update MD
-        run: node process-images.cjs
+      - name: Build project
+        run: npm run build
 
-      - name: Install deps & build
+      # Copy thư mục uploads từ repo GIT sang thư mục dist
+      # (đề phòng build không copy được)
+      - name: Copy uploads to dist
         run: |
-          npm ci
-          npm run build
+          if [ -d "public/uploads" ]; then
+            mkdir -p dist/uploads
+            cp -r public/uploads/* dist/uploads/
+          fi
 
-      - name: Deploy via FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      - name: FTP Deploy to DirectAdmin
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.2
         with:
           server: ${{ secrets.FTP_HOST }}
           username: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASS }}
           protocol: ftp
-          local-dir: dist/
-          server-dir: public_html/
-          port: 21
-          dry-run: false
-
+          local-dir: dist
+          server-dir: /public_html/
+          dangerous-clean-slate: false
+          exclude: |
+            uploads/**

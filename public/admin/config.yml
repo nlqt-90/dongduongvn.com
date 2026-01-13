@@ -1,4 +1,6 @@
-# Use DecapBridge classic auth (required)
+# ===============================
+# BACKEND CONFIG (DecapBridge + Git Gateway)
+# ===============================
 backend:
   name: git-gateway
   repo: nlqt-90/dongduongvn.com
@@ -6,38 +8,29 @@ backend:
   identity_url: https://auth.decapbridge.com/sites/7ce0857c-f0a9-4f04-a460-ebfb29f08867
   gateway_url: https://gateway.decapbridge.com
 
-  # See who did what (optional)
-  commit_messages:
-    create: Create {{collection}} “{{slug}}” - {{author-name}} <{{author-login}}> via DecapBridge
-    update: Update {{collection}} “{{slug}}” - {{author-name}} <{{author-login}}> via DecapBridge
-    delete: Delete {{collection}} “{{slug}}” - {{author-name}} <{{author-login}}> via DecapBridge
-    uploadMedia: Upload “{{path}}” - {{author-name}} <{{author-login}}> via DecapBridge
-    deleteMedia: Delete “{{path}}” - {{author-name}} <{{author-login}}> via DecapBridge
-    openAuthoring: Message {{message}} - {{author-name}} <{{author-login}}> via DecapBridge
+publish_mode: editorial_workflow
 
-# Better Decap + Bridge logo (optional)
-logo_url: https://decapbridge.com/decapcms-with-bridge.svg
-
-# Add site links in Decap CMS (optional)
-site_url: https://giangiao.com.vn
-
-# === Required media settings ===
-media_folder: "public/uploads/originals" 
-public_folder: "/uploads/originals/"
-# --- local_backend: true ---
+# ===============================
+# MEDIA CONFIG (DÙNG 1 THƯ MỤC DUY NHẤT)
+# ===============================
+media_folder: "public/uploads"    # folder trong repo Git
+public_folder: "/uploads"         # folder khi lên host
 
 slug:
   clean_accents: true
 
+# ===============================
+# COLLECTIONS
+# ===============================
+
 collections:
-  # ===========================
-  # POPUP COLLECTION
-  # ===========================
+
+  # ------------------------------
+  # POPUPS COLLECTION
+  # ------------------------------
   - name: "popups"
     label: "Popups"
     folder: "src/content/popups"
-    media_folder: "public/uploads/originals/popups"
-    public_folder: "/uploads/originals/popups"
     create: true
     format: "frontmatter"
     extension: "md"
@@ -46,22 +39,21 @@ collections:
     fields:
       - { label: "Tiêu đề", name: "title", widget: "string" }
       - { label: "Kích hoạt", name: "active", widget: "boolean", default: true }
-      - { label: "Ngày bắt đầu", name: "startDate", widget: "datetime", format: "YYYY-MM-DD", time_format: false }
-      - { label: "Ngày kết thúc", name: "endDate", widget: "datetime", format: "YYYY-MM-DD", time_format: false }
-      - label: "Ảnh popup"
-        name: "image"
-        widget: "image"
-        choose_url: false
+      - { label: "Ngày bắt đầu", name: "startDate", widget: "datetime", format: "DD/MM/YYYY" }
+      - { label: "Ngày kết thúc", name: "endDate", widget: "datetime", format: "DD/MM/YYYY" }
+      - { 
+          label: "Ảnh Popup", 
+          name: "image", 
+          widget: "image", 
+          choose_url: false 
+        }
 
-
-  # ===========================
-  # PROJECT COLLECTION
-  # ===========================
+  # ------------------------------
+  # PROJECTS COLLECTION
+  # ------------------------------
   - name: "projects"
     label: "Projects"
     folder: "src/content/projects"
-    media_folder: "public/uploads/originals/projects/{{slug}}"
-    public_folder: "/uploads/originals/projects/{{slug}}"
     create: true
     format: "frontmatter"
     extension: "md"
@@ -89,11 +81,7 @@ collections:
 
       - label: "Mô tả dự án"
         name: "description"
-        widget: "list"
-        field:
-          label: "Đoạn mô tả"
-          name: "text"
-          widget: "text"
+        widget: "text"
 
       - label: "Thông tin thêm"
         name: "info"
@@ -109,6 +97,4 @@ collections:
           label: "Ảnh"
           name: "image"
           widget: "image"
-          media_folder: "public/uploads/originals/projects/{{slug}}/gallery"
-          public_folder: "/uploads/originals/projects/{{slug}}/gallery"
           choose_url: false
