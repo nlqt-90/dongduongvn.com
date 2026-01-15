@@ -1,13 +1,14 @@
 ---
 title: "Bệnh Viện Đa Khoa Bến Tre"
-location: "Bình Phú, Bến Tre"
+location: "An Giang"
 startDate: "2026-01-17"
 categories:
   - cau-thap
+  - van-thang
 thumbnail: /assets/img/projects/benhvienbentre/benhvienbentre_cover.webp
 mainImage: /assets/img/projects/benhvienbentre/benhvienbentre_main.webp
 description:
-  - Bệnh viện đa khoa tỉnh Bến Tre xây dựng có diện tích gần 10 ha tại xã Bình Phú, thành phố Bến Tre. Dự án có quy mô 1.000 giường bệnh với tổng mức đầu tư hơn 1.658 tỷ đồng, trong đó nguồn vốn vay tín dụng ưu đãi hỗ trợ phát triển của Chính phủ Hàn Quốc cho dự án là hơn 1.331 tỷ đồng.
+  - "Bệnh viện đa khoa tỉnh Bến Tre xây dựng có diện tích gần 10 ha tại xã Bình Phú, thành phố Bến Tre. Dự án có quy mô 1.000 giường bệnh với tổng mức đầu tư hơn 1.658 tỷ đồng, trong đó nguồn vốn vay tín dụng ưu đãi hỗ trợ phát triển của Chính phủ Hàn Quốc cho dự án là hơn 1.331 tỷ đồng."
 info:
   location: "Bến Tre"
   scope: "1.000 giường"
