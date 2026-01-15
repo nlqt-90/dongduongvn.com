@@ -41,7 +41,7 @@ $_POST['project_slug'] = $cleanSlug;
 // hàm upload gọn
 function up(string $field, string $suffix): ?string {
     if (empty($_FILES[$field]['tmp_name'])) return null;
-    return cms_upload_image('project_gallery', $_FILES[$field]['tmp_name'], $_FILES[$field]['name'], $_FILES[$field]['type'], $suffix)['path'] ?? null;
+    return cms_upload_image('project', $_FILES[$field]['tmp_name'], $_FILES[$field]['name'], $_FILES[$field]['type'], $suffix)['path'] ?? null;
 }
 
 if ($p = up('thumbnail_upload', $cleanSlug . '_cover')) $thumbnail = $p;

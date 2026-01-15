@@ -7,6 +7,24 @@ if (!function_exists('cms_upload_image')) {
     /** Path tới file watermark PNG (nền trong suốt) */
     define('CMS_WATERMARK_PNG', realpath(__DIR__ . '/../public/assets/img/watermark.png'));
 
+    /** Làm mờ watermark: giảm opacity chung */
+    function wm_set_opacity(&$img, float $opacity): void {
+        if($opacity>=1) return;
+        $w=imagesx($img); $h=imagesy($img);
+        for($y=0;$y<$h;$y++){
+            for($x=0;$x<$w;$x++){
+                $idx = imagecolorat($img,$x,$y);
+                $rgba = imagecolorsforindex($img,$idx);
+                // skip fully transparent
+                if($rgba['alpha']===127) continue;
+                $origAlpha = $rgba['alpha'];
+                $newAlpha = min(127, (int)($origAlpha + (127-$origAlpha)*(1-$opacity)));
+                $color = imagecolorallocatealpha($img,$rgba['red'],$rgba['green'],$rgba['blue'],$newAlpha);
+                imagesetpixel($img,$x,$y,$color);
+            }
+        }
+    }
+
     /**
      * Thêm watermark (GD) đặt giữa ảnh, giữ tỷ lệ 30% chiều rộng ảnh.
      */
@@ -25,11 +43,17 @@ if (!function_exists('cms_upload_image')) {
         $wmResized = imagecreatetruecolor($targetW, $targetH);
         imagealphablending($wmResized, false);
         imagesavealpha($wmResized, true);
+        $transparent = imagecolorallocatealpha($wmResized, 0, 0, 0, 127);
+        imagefill($wmResized, 0, 0, $transparent);
         imagecopyresampled($wmResized, $wmSrc, 0,0,0,0, $targetW,$targetH, $wmW,$wmH);
+        // giảm opacity (ví dụ 60% hiển thị)
+        wm_set_opacity($wmResized, 0.6);
         // vị trí center
         $dstX = (int)(($dstW - $targetW)/2);
         $dstY = (int)(($dstH - $targetH)/2);
+        imagealphablending($dstImg, true);
         imagecopy($dstImg, $wmResized, $dstX, $dstY, 0,0, $targetW,$targetH);
+        imagealphablending($dstImg, false);
         imagedestroy($wmSrc);
         imagedestroy($wmResized);
     }
@@ -37,7 +61,7 @@ if (!function_exists('cms_upload_image')) {
     function cms_upload_image(string $type, string $tmpFile, string $originalName, string $mimeType, string $forcedName = null): array {
         require_once __DIR__ . "/config.php";
 
-        if ($type === 'project') {
+        if (str_starts_with($type, 'project')) {
             $baseDir  = UPLOAD_PROJECT_DIR;
             $baseUrl  = UPLOAD_PROJECT_URL;
             if (!empty($_POST['project_slug'])) {
