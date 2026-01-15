@@ -1,163 +1,183 @@
 <?php
 require_once __DIR__ . "/config.php";
+require_once __DIR__ . '/slug_util.php';
 
 if (empty($_SESSION['logged_in'])) {
     header("Location: login.php");
     exit;
 }
 
-// Tạo slug từ title
-function slugify($text) {
-    $text = strtolower(trim($text));
-    $text = preg_replace('/[^a-z0-9-]+/', '-', $text);
-    $text = preg_replace('/-+/', '-', $text);
-    return trim($text, '-');
-}
+$title      = $_POST['title'] ?? '';
+$location   = $_POST['location'] ?? '';
+$startDate  = $_POST['startDate'] ?? '';
+$categories = $_POST['categories'] ?? [];
+$thumbnail  = $_POST['thumbnail'] ?? '';
+$mainImage  = $_POST['mainImage'] ?? '';
+$descRaw    = $_POST['description'] ?? '';
+$infoLoc    = $_POST['info_location'] ?? '';
+$infoScope  = $_POST['info_scope'] ?? '';
 
-// Lấy dữ liệu POST
-$title      = $_POST["title"] ?? "";
-$location   = $_POST["location"] ?? "";
-$startDate  = $_POST["startDate"] ?? "";
-$categories = $_POST["categories"] ?? "";
-$thumbnail  = $_POST["thumbnail"] ?? "";
-$mainImage  = $_POST["mainImage"] ?? "";
-$descRaw    = $_POST["description"] ?? "";
-$infoLoc    = $_POST["info_location"] ?? "";
-$infoScope  = $_POST["info_scope"] ?? "";
+$file = $_POST['file'] ?? null;
 
-$gallery = []; // chứa URL gallery cuối cùng
+// Tạo slug cơ bản
+$baseSlug = vi_slug($title);
 
-// File edit hay new?
-$file = $_POST["file"] ?? null;
-
-if ($file) {
-    $slug = basename($file, ".md");
+// Nếu là tạo mới → đảm bảo slug duy nhất
+if (!$file) {
+    $slug = $baseSlug;
+    $i = 2;
+    while (file_exists(PROJECT_DIR . $slug . '.md')) {
+        $slug = $baseSlug . '-' . $i;
+        $i++;
+    }
 } else {
-    $slug = slugify($title) . "-" . time();
+    $slug = basename($file, '.md');
 }
 
-// Hàm gọi upload.php
-function uploadImage($fieldName, $type = "project") {
-    if (empty($_FILES[$fieldName]["tmp_name"])) return null;
+require_once __DIR__ . '/upload.php';
+$cleanSlug = $slug;               // thư mục ảnh dự án
+$_POST['project_slug'] = $cleanSlug;
 
-    $tmp = $_FILES[$fieldName]["tmp_name"];
-
-    $url = "upload.php?type=" . $type;
-
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $url);
-    curl_setopt($ch, CURLOPT_POST, true);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, [
-        "image" => new CURLFile(
-            $tmp,
-            $_FILES[$fieldName]["type"],
-            $_FILES[$fieldName]["name"]
-        )
-    ]);
-
-    $resp = curl_exec($ch);
-    curl_close($ch);
-
-    $json = json_decode($resp, true);
-    return $json["path"] ?? null;
+// hàm upload gọn
+function up(string $field, string $suffix): ?string {
+    if (empty($_FILES[$field]['tmp_name'])) return null;
+    return cms_upload_image('project', $_FILES[$field]['tmp_name'], $_FILES[$field]['name'], $_FILES[$field]['type'], $suffix)['path'] ?? null;
 }
 
-// Upload Thumbnail
-$thumbUploaded = uploadImage("thumbnail_upload", "project");
-if ($thumbUploaded) {
-    $thumbnail = $thumbUploaded;
+if ($p = up('thumbnail_upload', $cleanSlug . '_cover')) $thumbnail = $p;
+if ($p = up('mainImage_upload', $cleanSlug . '_main'))   $mainImage = $p;
+
+// ----- GALLERY HANDLING (unique filenames, no ordering) -----
+
+// 1. Gallery cũ (để biết ảnh nào sẽ xoá)
+$oldGallery = [];
+if ($file && file_exists(PROJECT_DIR . $file)) {
+    $lines = file(PROJECT_DIR . $file);
+    $cur = null;
+    foreach ($lines as $ln) {
+        $t = trim($ln);
+        if ($cur==='gallery') {
+            if (preg_match('/^-\s*(.+)$/',$t,$m)) { $oldGallery[] = trim($m[1]); continue; }
+            if ($t==='' || preg_match('/^[A-Za-z0-9_]+:/',$t)) $cur=null;
+        }
+        if ($t==='gallery:') $cur='gallery';
+    }
 }
 
-// Upload Main Image
-$mainUploaded = uploadImage("mainImage_upload", "project");
-if ($mainUploaded) {
-    $mainImage = $mainUploaded;
+// 2. Gallery giữ lại do người dùng không xoá
+$gallery = [];
+if (!empty($_POST['gallery']) && is_array($_POST['gallery'])) {
+    foreach ($_POST['gallery'] as $p) {
+        $p = trim($p);
+        if ($p!=='') $gallery[] = $p;
+    }
 }
 
-// Upload Gallery (nhiều ảnh)
-if (!empty($_FILES["gallery_upload"]["tmp_name"][0])) {
-    $files = $_FILES["gallery_upload"];
+// 3. Xoá file thật với link bị loại bỏ
+if ($file) {
+    $removed = array_diff($oldGallery, $gallery);
+    foreach ($removed as $url) {
+        if (strpos($url, UPLOAD_PROJECT_URL)!==0) continue; // an toàn
+        $rel = substr($url, strlen(UPLOAD_PROJECT_URL));
+        $full = rtrim(UPLOAD_PROJECT_DIR,'/\\').DIRECTORY_SEPARATOR.str_replace(['/', '\\'], DIRECTORY_SEPARATOR, $rel);
+        if (is_file($full)) @unlink($full);
+    }
+}
 
-    for ($i = 0; $i < count($files["tmp_name"]); $i++) {
-        if (empty($files["tmp_name"][$i])) continue;
+// 4. Upload ảnh mới → tên duy nhất, thêm vào cuối
+if (!empty($_FILES['gallery_upload']['tmp_name'][0])) {
+    for ($i=0,$n=count($_FILES['gallery_upload']['tmp_name']);$i<$n;$i++) {
+        if (!$_FILES['gallery_upload']['tmp_name'][$i]) continue;
+        $unique = uniqid($cleanSlug.'_');
+        $path = cms_upload_image('project', $_FILES['gallery_upload']['tmp_name'][$i], $_FILES['gallery_upload']['name'][$i], $_FILES['gallery_upload']['type'][$i], $unique)['path'] ?? null;
+        if ($path) $gallery[] = $path;
+    }
+}
+// đảm bảo không trùng link
+$gallery = array_values(array_unique($gallery));
 
-        $tmpFile = $files["tmp_name"][$i];
+// fallback cho dữ liệu legacy nếu gallery rỗng
+if (empty($gallery) && !empty($_POST['gallery_old'])) {
+    $gallery = array_values(array_filter(explode("\n", trim($_POST['gallery_old']))));
+}
 
-        // CURL từng ảnh
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, "upload.php?type=project");
-        curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
-        curl_setopt($ch, CURLOPT_POSTFIELDS, [
-            "image" => new CURLFile(
-                $tmpFile,
-                $files["type"][$i],
-                $files["name"][$i]
-            )
-        ]);
+// Nếu là sửa project: xóa file ảnh đã bị remove khỏi gallery
+if ($file) {
+    $removed = array_values(array_diff($oldGallery, $gallery));
+    foreach ($removed as $url) {
+        $url = trim($url);
+        if ($url === '') continue;
+        // chỉ cho phép xóa trong thư mục uploads/projects/
+        if (strpos($url, UPLOAD_PROJECT_URL) !== 0) continue;
 
-        $resp = curl_exec($ch);
-        curl_close($ch);
+        $rel = substr($url, strlen(UPLOAD_PROJECT_URL)); // ví dụ: kiem-tra/kiem-tra-1.webp
+        $full = rtrim(UPLOAD_PROJECT_DIR, '/\\') . DIRECTORY_SEPARATOR . str_replace(['/', '\\'], DIRECTORY_SEPARATOR, $rel);
 
-        $json = json_decode($resp, true);
-        if (!empty($json["path"])) {
-            $gallery[] = $json["path"];
+        if (is_file($full)) {
+            @unlink($full);
         }
     }
 }
 
-// Nếu không upload mới, lấy gallery cũ
-if (empty($gallery) && !empty($_POST["gallery_old"])) {
-    $gallery = explode("\n", trim($_POST["gallery_old"]));
+// xử lý categories array → YAML
+if (!is_array($categories)) $categories = array_map('trim', explode(',', $categories));
+if (empty($categories)) {
+    echo "<script>alert('Vui lòng chọn ít nhất một danh mục');history.back();</script>";
+    exit;
 }
-
-// format categories thành YAML list
-$catsArray = array_map('trim', explode(",", $categories));
 $catsYaml = "";
-foreach ($catsArray as $c) {
-    if ($c !== "") $catsYaml .= "  - $c\n";
+foreach ($categories as $c) {
+    $c = trim($c);
+    if ($c !== '') $catsYaml .= "  - $c\n";
 }
 
-// format description thành YAML list
-$descArray = array_filter(array_map("trim", explode("\n", $descRaw)));
+// description YAML
 $descYaml = "";
-foreach ($descArray as $d) {
-    $descYaml .= "  - \"" . addslashes($d) . "\"\n";
+foreach (array_filter(array_map('trim', explode("\n", $descRaw))) as $d) {
+    $descYaml .= "  - \"$d\"\n";
 }
 
-// format gallery list YAML
+// gallery YAML
 $galleryYaml = "";
 foreach ($gallery as $g) {
     $galleryYaml .= "  - $g\n";
 }
 
-// tạo Markdown
-$markdown =
-"---\n" .
-"title: $title\n" .
-"location: \"$location\"\n" .
-"startDate: \"$startDate\"\n" .
-"categories:\n$catsYaml" .
-"thumbnail: $thumbnail\n" .
-"mainImage: $mainImage\n" .
-"description:\n$descYaml" .
-"info:\n" .
-"  location: \"$infoLoc\"\n" .
-"  scope: \"$infoScope\"\n" .
-"gallery:\n$galleryYaml" .
-"---\n";
+// ----- VALIDATION BẮT BUỘC KHI THÊM MỚI -----
+if (!$file) {                                // chỉ khi thêm dự án
+    $miss = [];
+    if ($title==='')      $miss[]='Tiêu đề';
+    if ($location==='')   $miss[]='Vị trí';
+    if ($startDate==='')  $miss[]='Ngày bắt đầu';
+    if (empty($categories)) $miss[]='Danh mục';
+    if ($thumbnail==='')  $miss[]='Thumbnail';
+    if ($mainImage==='')  $miss[]='Main image';
+    if ($descRaw==='')    $miss[]='Mô tả';
+    if ($infoLoc==='' || $infoScope==='') $miss[]='Thông tin dự án';
 
-// Ghi file
-$fullPath = PROJECT_DIR . $slug . ".md";
-file_put_contents($fullPath, $markdown);
+    if ($miss) {
+        echo "<script>alert('Vui lòng nhập: ".implode(', ',$miss)."');history.back();</script>";
+        exit;
+    }
+}
 
-require_once __DIR__ . "/github_commit.php";
 
-$remotePath = "src/content/projects/" . $slug . ".md";
-github_commit_file($remotePath, $markdown, "cms: update project $slug");
 
-// Redirect
-header("Location: projects.php");
+$markdown = "---\n" .
+           "title: \"$title\"\n" .
+           "location: \"$location\"\n" .
+           "startDate: \"$startDate\"\n" .
+           "categories:\n$catsYaml" .
+           "thumbnail: $thumbnail\n" .
+           "mainImage: $mainImage\n" .
+           "description:\n$descYaml" .
+           "info:\n  location: \"$infoLoc\"\n  scope: \"$infoScope\"\n" .
+           "gallery:\n$galleryYaml" .
+           "---\n";
+
+file_put_contents(PROJECT_DIR . $slug . '.md', $markdown);
+require_once __DIR__ . '/github_commit.php';
+github_commit_file('src/content/projects/' . $slug . '.md', $markdown, 'cms: update project ' . $slug);
+header('Location: projects.php');
 exit;

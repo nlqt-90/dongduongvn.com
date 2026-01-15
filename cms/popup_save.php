@@ -1,87 +1,58 @@
 <?php
 require_once __DIR__ . "/config.php";
+require_once __DIR__ . '/slug_util.php';  // dùng hàm vi_slug
 
 if (empty($_SESSION['logged_in'])) {
     header("Location: login.php");
     exit;
 }
 
-// Helper tạo slug từ title
-function slugify($text) {
-    $text = strtolower(trim($text));
-    $text = preg_replace('/[^a-z0-9-]+/', '-', $text);
-    $text = preg_replace('/-+/', '-', $text);
-    return trim($text, '-');
-}
-
 // Lấy dữ liệu POST
-$title      = $_POST['title'] ?? "";
-$active     = isset($_POST['active']) ? "true" : "false";
-$startDate  = $_POST['startDate'] ?? "";
-$endDate    = $_POST['endDate'] ?? "";   // ← FIX LỖI 500 TẠI ĐÂY
-$imagePath  = $_POST['image'] ?? "";
+$title      = $_POST['title'] ?? '';
+$active     = isset($_POST['active']) ? 'true' : 'false';
+$startDate  = $_POST['startDate'] ?? '';
+$endDate    = $_POST['endDate'] ?? '';
+$imagePath  = $_POST['image'] ?? '';
+$file       = $_POST['file'] ?? null;
 
-// Kiểm tra chế độ edit (có file cũ hay không)
-$file = $_POST['file'] ?? null;
+// Validation cơ bản
+if ($title==='') { echo "<script>alert('Tiêu đề thông báo không được trống');history.back();</script>"; exit; }
+if ($startDate==='' || $endDate==='') { echo "<script>alert('Ngày hiển thị và ngày tắt hiển thị không được trống');history.back();</script>"; exit; }
+if (strtotime($startDate) > strtotime($endDate)) { echo "<script>alert('Ngày hiển thị không được lớn hơn ngày tắt hiển thị');history.back();</script>"; exit; }
 
+// Tạo slug (duy nhất cho popup)
 if ($file) {
-    // EDIT MODE
-    $slug = basename($file, ".md");
+    $slug = basename($file, '.md');
 } else {
-    // NEW MODE → tự tạo slug mới
-    $slug = slugify($title) . "-" . time();
-}
-
-// Xử lý upload ảnh (nếu có)
-if (!empty($_FILES['image_upload']['tmp_name'])) {
-
-    $tmpFile = $_FILES['image_upload']['tmp_name'];
-    $uploadUrl = "upload.php?type=popup";
-
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $uploadUrl);
-    curl_setopt($ch, CURLOPT_POST, true);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-
-    $data = [
-        'image' => new CURLFile(
-            $tmpFile,
-            $_FILES['image_upload']['type'],
-            $_FILES['image_upload']['name']
-        ),
-    ];
-
-    curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-    $resp = curl_exec($ch);
-    curl_close($ch);
-
-    $json = json_decode($resp, true);
-
-    if (!empty($json["path"])) {
-        $imagePath = $json["path"];
+    $base = vi_slug($title);
+    $slug = $base;
+    $i    = 2;
+    while (file_exists(POPUP_DIR . $slug . '.md')) {
+        $slug = $base . '-' . $i;
+        $i++;
     }
 }
 
-// Tạo Markdown frontmatter
-$markdown =
-"---\n" .
-"title: " . $title . "\n" .
-"active: " . $active . "\n" .
-"startDate: " . $startDate . "\n" .
-"endDate: " . $endDate . "\n" .
-"image: " . $imagePath . "\n" .
-"---\n";
+// Upload ảnh nếu có
+if (!empty($_FILES['image_upload']['tmp_name'])) {
+    require_once __DIR__ . '/upload.php';
+    $_POST['slug'] = $slug;
+    $res = cms_upload_image('popup', $_FILES['image_upload']['tmp_name'], $_FILES['image_upload']['name'], $_FILES['image_upload']['type'], $slug);
+    if (!empty($res['path'])) $imagePath = $res['path'];
+}
 
-// Ghi file Markdown
-$fullPath = POPUP_DIR . $slug . ".md";
-file_put_contents($fullPath, $markdown);
+if ($imagePath==='') { echo "<script>alert('Vui lòng chọn ảnh popup');history.back();</script>"; exit; }
 
-// Commit lên GitHub
-require_once __DIR__ . "/github_commit.php";
+$markdown = "---\n".
+            "title: $title\n".
+            "active: $active\n".
+            "startDate: $startDate\n".
+            "endDate: $endDate\n".
+            "image: $imagePath\n".
+            "---\n";
 
-$remotePath = "src/content/popups/" . $slug . ".md";
-github_commit_file($remotePath, $markdown, "cms: update popup $slug");
-
-// Redirect
-header("Location: popups.php");
+file_put_contents(POPUP_DIR.$slug.'.md', $markdown);
+require_once __DIR__ . '/github_commit.php';
+github_commit_file('src/content/popups/'.$slug.'.md', $markdown, 'cms: update popup '.$slug);
+header('Location: popups.php');
 exit;

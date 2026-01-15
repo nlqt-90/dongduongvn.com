@@ -1,91 +1,62 @@
 <?php
-require_once __DIR__ . "/config.php";
 
-if (empty($_SESSION['logged_in'])) {
-    http_response_code(403);
-    echo json_encode(["error" => "Not authorized"]);
-    exit;
+// --- CORE FUNCTION (used internally by CMS or via HTTP) ---
+if (!function_exists('cms_upload_image')) {
+    function slugify_simple($t){$t=iconv('UTF-8','ASCII//TRANSLIT//IGNORE',$t);$t=strtolower(trim($t));$t=preg_replace('/[^a-z0-9]+/','-',$t);$t=preg_replace('/-+/','-',$t);return trim($t,'-');}
+
+    function cms_upload_image(string $type, string $tmpFile, string $originalName, string $mimeType, string $forcedName = null): array {
+        require_once __DIR__ . "/config.php";
+
+        if ($type === 'project') {
+            $baseDir  = UPLOAD_PROJECT_DIR;
+            $baseUrl  = UPLOAD_PROJECT_URL;
+            // nếu truyền slug dự án → tạo thư mục con
+            if (!empty($_POST['project_slug'])) {
+                $sub = slugify_simple($_POST['project_slug']);
+                $baseDir .= $sub . '/';
+                $baseUrl .= $sub . '/';
+            }
+        } else {
+            $baseDir = UPLOAD_POPUP_DIR;
+            $baseUrl = UPLOAD_POPUP_URL;
+        }
+
+        // đảm bảo thư mục tồn tại
+        if (!is_dir($baseDir) && !mkdir($baseDir, 0775, true)) {
+            return ["error" => "cannot create upload dir"];
+        }
+
+        list($width,$height,$imageType)=getimagesize($tmpFile);
+        $maxWidth=1200;
+        if($width>$maxWidth){$ratio=$maxWidth/$width;$newWidth=$maxWidth;$newHeight=(int)($height*$ratio);}else{$newWidth=$width;$newHeight=$height;}
+
+        switch($imageType){
+            case IMAGETYPE_JPEG:$source=imagecreatefromjpeg($tmpFile);break;
+            case IMAGETYPE_PNG:$source=imagecreatefrompng($tmpFile);break;
+            case IMAGETYPE_WEBP:$source=imagecreatefromwebp($tmpFile);break;
+            default:return["error"=>"unsupported format"];
+        }
+
+        $resized=imagecreatetruecolor($newWidth,$newHeight);
+        imagealphablending($resized,false);imagesavealpha($resized,true);
+        imagecopyresampled($resized,$source,0,0,0,0,$newWidth,$newHeight,$width,$height);
+
+        $safeName=$forcedName??($_POST['slug']??pathinfo($originalName,PATHINFO_FILENAME));
+        $safeName=slugify_simple($safeName);
+        if($safeName==='')$safeName=uniqid();
+        $filename=$safeName.'.webp';
+        imagewebp($resized,$baseDir.$filename,80);
+        imagedestroy($source);imagedestroy($resized);
+
+        return ["status"=>"ok","path"=>$baseUrl.$filename];
+    }
 }
 
-// Kiểm tra loại upload: popup hay project
-$type = $_GET['type'] ?? 'popup';
+// ---------------------------------------------------------
 
-if ($type === 'project') {
-    $targetDir = UPLOAD_PROJECT_DIR;
-    $publicUrl = UPLOAD_PROJECT_URL;
-} else {
-    $targetDir = UPLOAD_POPUP_DIR;
-    $publicUrl = UPLOAD_POPUP_URL;
+// Trả về ngay nếu file được include để tránh chạy logic HTTP bên dưới
+if (realpath(__FILE__) !== realpath($_SERVER['SCRIPT_FILENAME'])) {
+    return;
 }
 
-// kiểm tra có file upload không
-if (!isset($_FILES['image'])) {
-    echo json_encode(["error" => "No file uploaded"]);
-    exit;
-}
-
-// file tạm
-$tmpFile = $_FILES['image']['tmp_name'];
-
-list($width, $height, $imageType) = getimagesize($tmpFile);
-
-// max width
-$maxWidth = 1200;
-
-// nếu ảnh lớn hơn 1200px → resize
-if ($width > $maxWidth) {
-    $ratio = $maxWidth / $width;
-    $newWidth = $maxWidth;
-    $newHeight = (int)($height * $ratio);
-} else {
-    $newWidth = $width;
-    $newHeight = $height;
-}
-
-// tạo ảnh nguồn
-switch ($imageType) {
-    case IMAGETYPE_JPEG:
-        $source = imagecreatefromjpeg($tmpFile);
-        break;
-    case IMAGETYPE_PNG:
-        $source = imagecreatefrompng($tmpFile);
-        break;
-    case IMAGETYPE_WEBP:
-        $source = imagecreatefromwebp($tmpFile);
-        break;
-    default:
-        echo json_encode(["error" => "unsupported format"]);
-        exit;
-}
-
-// tạo ảnh mới resize
-$resized = imagecreatetruecolor($newWidth, $newHeight);
-
-// giữ nền trong suốt nếu PNG
-imagealphablending($resized, false);
-imagesavealpha($resized, true);
-
-imagecopyresampled(
-    $resized,
-    $source,
-    0, 0,
-    0, 0,
-    $newWidth, $newHeight,
-    $width, $height
-);
-
-// tạo tên file
-$filename = uniqid() . ".webp";
-$savePath = $targetDir . $filename;
-
-// lưu file webp
-imagewebp($resized, $savePath, 80);
-
-imagedestroy($source);
-imagedestroy($resized);
-
-// trả URL public để ghi vào Markdown
-echo json_encode([
-    "status" => "ok",
-    "path" => $publicUrl . $filename
-]);
+// phần còn lại giữ nguyên (HTTP upload)...
