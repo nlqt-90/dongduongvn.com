@@ -176,8 +176,19 @@ $markdown = "---\n" .
            "gallery:\n$galleryYaml" .
            "---\n";
 
-file_put_contents(PROJECT_DIR . $slug . '.md', $markdown);
-require_once __DIR__ . '/github_commit.php';
-github_commit_file('src/content/projects/' . $slug . '.md', $markdown, 'cms: update project ' . $slug);
+$targetPath = PROJECT_DIR . $slug . '.md';
+$needCommit = true;
+if (file_exists($targetPath)) {
+    $prev = file_get_contents($targetPath);
+    if ($prev === $markdown) {
+        $needCommit = false; // không thay đổi
+    }
+}
+file_put_contents($targetPath, $markdown);
+if ($needCommit) {
+    require_once __DIR__ . '/github_commit.php';
+    $action = $file ? 'update' : 'add';
+    github_commit_file('src/content/projects/' . $slug . '.md', $markdown, "cms: $action project $slug");
+}
 header('Location: projects.php');
 exit;

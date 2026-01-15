@@ -51,8 +51,18 @@ $markdown = "---\n".
             "image: $imagePath\n".
             "---\n";
 
-file_put_contents(POPUP_DIR.$slug.'.md', $markdown);
-require_once __DIR__ . '/github_commit.php';
-github_commit_file('src/content/popups/'.$slug.'.md', $markdown, 'cms: update popup '.$slug);
+$target = POPUP_DIR.$slug.'.md';
+$needCommit = true;
+if (file_exists($target)) {
+    if (file_get_contents($target) === $markdown) {
+        $needCommit = false; // không thay đổi
+    }
+}
+file_put_contents($target, $markdown);
+if ($needCommit) {
+    require_once __DIR__ . '/github_commit.php';
+    $action = $file ? 'update' : 'add';
+    github_commit_file('src/content/popups/'.$slug.'.md', $markdown, "cms: $action popup $slug");
+}
 header('Location: popups.php');
 exit;
