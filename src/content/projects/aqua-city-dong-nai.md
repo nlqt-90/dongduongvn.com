@@ -4,6 +4,7 @@ location: "Hồ Chí Minh"
 startDate: "2026-01-17"
 categories:
   - cau-thap
+  - gian-giao
 thumbnail: /assets/img/projects/aquacity/aquacity_cover.webp
 mainImage: /assets/img/projects/aquacity/aquacity_main.webp
 description:
