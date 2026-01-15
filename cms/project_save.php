@@ -41,7 +41,7 @@ $_POST['project_slug'] = $cleanSlug;
 // hàm upload gọn
 function up(string $field, string $suffix): ?string {
     if (empty($_FILES[$field]['tmp_name'])) return null;
-    return cms_upload_image('project', $_FILES[$field]['tmp_name'], $_FILES[$field]['name'], $_FILES[$field]['type'], $suffix)['path'] ?? null;
+    return cms_upload_image('project_gallery', $_FILES[$field]['tmp_name'], $_FILES[$field]['name'], $_FILES[$field]['type'], $suffix)['path'] ?? null;
 }
 
 if ($p = up('thumbnail_upload', $cleanSlug . '_cover')) $thumbnail = $p;
@@ -89,7 +89,7 @@ if (!empty($_FILES['gallery_upload']['tmp_name'][0])) {
     for ($i=0,$n=count($_FILES['gallery_upload']['tmp_name']);$i<$n;$i++) {
         if (!$_FILES['gallery_upload']['tmp_name'][$i]) continue;
         $unique = uniqid($cleanSlug.'_');
-        $path = cms_upload_image('project', $_FILES['gallery_upload']['tmp_name'][$i], $_FILES['gallery_upload']['name'][$i], $_FILES['gallery_upload']['type'][$i], $unique)['path'] ?? null;
+        $path = cms_upload_image('project_gallery', $_FILES['gallery_upload']['tmp_name'][$i], $_FILES['gallery_upload']['name'][$i], $_FILES['gallery_upload']['type'][$i], $unique)['path'] ?? null;
         if ($path) $gallery[] = $path;
     }
 }
