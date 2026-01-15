@@ -1,5 +1,5 @@
 ---
-title: Thông báo nghỉ lễ đầu năm 2026
+title: Thông báo tết tây năm 2026
 active: true
 startDate: 2025-12-31
 endDate: 2026-01-31
