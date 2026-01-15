@@ -21,28 +21,39 @@ if (!defined('GITHUB_BRANCH')) define('GITHUB_BRANCH', $branch);
 
 /**
  * Commit (hoặc tạo mới) 1 file vào repo.
+ * Tự động bỏ qua nếu nội dung không thay đổi.
  *
  * @param string $pathInRepo  Đường dẫn file trong repo (ví dụ: "src/content/popups/foo.md")
  * @param string $content     Nội dung file thuần text
  * @param string $message     Thông điệp commit
- * @return array              JSON trả về từ GitHub API hoặc ['skipped' => true]
+ * @return array              Thông tin từ GH hoặc ['skipped'=>true]
  */
 function github_commit_file(string $pathInRepo, string $content, string $message): array
 {
-    // ‑- BỎ QUA KHI LOCAL / thiếu token ‑-
+    // -- BỎ QUA KHI LOCAL / thiếu token --
     if (empty(GITHUB_TOKEN) || GITHUB_TOKEN === 'dummy') {
-        error_log("[github_commit] SKIPPED $pathInRepo – lý do: token rỗng hoặc dummy");
+        error_log("[github_commit] SKIPPED $pathInRepo – token rỗng hoặc dummy");
         return ['skipped' => true];
     }
 
     $apiUrl = "https://api.github.com/repos/" . GITHUB_REPO . "/contents/" . $pathInRepo;
 
-    // 1) Kiểm tra file tồn tại để lấy 'sha'
+    // 1) Kiểm tra file tồn tại
     $sha = null;
+    $existingBody = null;
     $existing = curl_request('GET', $apiUrl);
     if ($existing['http_code'] === 200) {
-        $body = json_decode($existing['body'], true);
-        $sha  = $body['sha'] ?? null;
+        $bodyArr = json_decode($existing['body'], true);
+        $sha     = $bodyArr['sha'] ?? null;
+        $existingBody = $bodyArr['content'] ?? null;
+        if ($existingBody) {
+            $decoded = base64_decode(str_replace("\n", '', $existingBody));
+            if ($decoded === $content) {
+                // Nội dung không đổi, bỏ commit
+                error_log("[github_commit] NO-CHANGES $pathInRepo – skip push");
+                return ['skipped' => true, 'reason' => 'no changes'];
+            }
+        }
     }
 
     // 2) Gửi PUT
