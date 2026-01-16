@@ -139,6 +139,11 @@ $provinces=$provinces = [
 <script>
   document.addEventListener('click',function(e){
     if(e.target.classList.contains('remove-btn')){
+      const thumbs=document.querySelectorAll('.thumb');
+      if(thumbs.length<=1){
+        alert('Phải giữ lại ít nhất 1 ảnh thư viện');
+        return;
+      }
       const thumb=e.target.closest('.thumb');
       if(thumb) thumb.remove();
     }
