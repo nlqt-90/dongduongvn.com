@@ -4,7 +4,7 @@ location: "An Giang"
 startDate: "2026-01-17"
 categories:
   - cau-thap
-thumbnail: /assets/img/projects/capitalsquare/capitalsquare_cover.webp
+thumbnail: /uploads/projects/capital-square-da-nang/capital-square-da-nang-cover.webp
 mainImage: /uploads/projects/capital-square-da-nang/capital-square-da-nang-main.webp
 description:
   - "Capital Square Đà Nẵng được xây dựng trên diện tích 61.368m2 chia thành 2 phân khu Capital Square 2 và Capital Square 3 bao gồm 14 tòa căn hộ cao từ 24 – 29 tầng với 3.391 căn hộ. Dự án được ví như biểu tượng sống mới dành cho giới tinh hoa, kiến tạo nên một cộng đồng cư dân văn minh, thịnh vượng và đẳng cấp."
