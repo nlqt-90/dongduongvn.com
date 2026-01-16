@@ -12,7 +12,6 @@ info:
   location: "Đà Nẵng"
   scope: "61.368 m2"
 gallery:
-  - /assets/img/projects/capitalsquare/capitalsquare_1.webp
   - /uploads/projects/capital-square-da-nang/capital-square-da-nang-6969e8b201cf4.webp
   - /uploads/projects/capital-square-da-nang/capital-square-da-nang-6969e8b23a131.webp
   - /uploads/projects/capital-square-da-nang/capital-square-da-nang-6969e8b2665ba.webp
