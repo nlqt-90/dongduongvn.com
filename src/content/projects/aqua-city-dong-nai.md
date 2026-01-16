@@ -13,7 +13,6 @@ info:
   location: "Đồng Nai"
   scope: "1000 Ha"
 gallery:
-  - /assets/img/projects/aquacity/aquacity_1.webp
   - /uploads/projects/aqua-city-dong-nai/aqua-city-dong-nai-6969e86b97ea9.webp
   - /uploads/projects/aqua-city-dong-nai/aqua-city-dong-nai-6969e86bd074d.webp
   - /uploads/projects/aqua-city-dong-nai/aqua-city-dong-nai-6969e86c112de.webp
