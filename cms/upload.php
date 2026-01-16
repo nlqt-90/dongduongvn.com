@@ -4,8 +4,14 @@
 if (!function_exists('cms_upload_image')) {
     function slugify_simple($t){$t=iconv('UTF-8','ASCII//TRANSLIT//IGNORE',$t);$t=strtolower(trim($t));$t=preg_replace('/[^a-z0-9]+/','-',$t);$t=preg_replace('/-+/','-',$t);return trim($t,'-');}
 
-    /** Path tới file watermark PNG (nền trong suốt) */
-    define('CMS_WATERMARK_PNG', realpath(__DIR__ . '/../public/assets/img/watermark.png'));
+    // Tự động tìm watermark trong public/ hoặc public_html/
+    $root = dirname(__DIR__, 2); // Lên 2 cấp từ /cms để ra thư mục gốc dự án
+    $wmPath = null;
+    foreach (['public/assets/img/watermark.png', 'public_html/assets/img/watermark.png'] as $rel) {
+        $p = $root . DIRECTORY_SEPARATOR . str_replace('/', DIRECTORY_SEPARATOR, $rel);
+        if (is_file($p)) { $wmPath = realpath($p); break; }
+    }
+    define('CMS_WATERMARK_PNG', $wmPath);  // null nếu không tìm thấy
 
     /** Làm mờ watermark: giảm opacity chung */
     function wm_set_opacity(&$img, float $opacity): void {
@@ -29,9 +35,15 @@ if (!function_exists('cms_upload_image')) {
      * Thêm watermark (GD) đặt giữa ảnh, giữ tỷ lệ 30% chiều rộng ảnh.
      */
     function gd_add_watermark(&$dstImg, int $dstW, int $dstH): void {
-        if (!CMS_WATERMARK_PNG || !is_file(CMS_WATERMARK_PNG)) return; // không có watermark
+        if (!CMS_WATERMARK_PNG || !is_file(CMS_WATERMARK_PNG)) {
+            error_log('[wm] file not found: ' . CMS_WATERMARK_PNG);
+            return;
+        }
         $wmSrc = imagecreatefrompng(CMS_WATERMARK_PNG);
-        if (!$wmSrc) return;
+        if (!$wmSrc) {
+            error_log('[wm] cannot create from png');
+            return;
+        }
         imagesavealpha($wmSrc, true);
         $wmW = imagesx($wmSrc);
         $wmH = imagesy($wmSrc);
@@ -115,4 +127,4 @@ if (realpath(__FILE__) !== realpath($_SERVER['SCRIPT_FILENAME'])) {
     return;
 }
 
-// HTTP upload handler (giữ nguyên)...
+// HTTP upload handler (giữ nguyên)... 
