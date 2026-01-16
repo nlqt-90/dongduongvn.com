@@ -13,7 +13,6 @@ info:
   location: "TP.HCM"
   scope: "480.000 m³/ngày đêm"
 gallery:
-  - /assets/img/projects/xulynuocthainltn/xulynuocthainltn_1.webp
   - /uploads/projects/xu-ly-nuoc-thai-nhieu-loc-thi-nghe/xu-ly-nuoc-thai-nhieu-loc-thi-nghe-6969e8d6cfb9e.webp
   - /uploads/projects/xu-ly-nuoc-thai-nhieu-loc-thi-nghe/xu-ly-nuoc-thai-nhieu-loc-thi-nghe-6969e8d71dedc.webp
   - /uploads/projects/xu-ly-nuoc-thai-nhieu-loc-thi-nghe/xu-ly-nuoc-thai-nhieu-loc-thi-nghe-6969e8d7597e9.webp
