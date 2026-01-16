@@ -10,7 +10,7 @@ if (empty($_SESSION['logged_in'])) {
 $file = $_GET["file"] ?? null;
 
 if ($file && file_exists(PROJECT_DIR . $file)) {
-    // Xoá file markdown
+    // Xoá file markdown local
     unlink(PROJECT_DIR . $file);
 
     // Xoá thư mục ảnh liên quan
@@ -21,10 +21,9 @@ if ($file && file_exists(PROJECT_DIR . $file)) {
         @rmdir($dir);
     }
 
-    // commit xoá trên GitHub
-    require_once __DIR__ . "/github_commit.php";
-    $remotePath = "src/content/projects/" . $file;
-    github_commit_file($remotePath, "", "cms: delete project $file");
+    // commit xoá file trên GitHub
+    require_once __DIR__ . '/github_commit.php';
+    github_delete_file('src/content/projects/' . $file, 'cms: delete project ' . $slug);
 }
 
 header("Location: projects.php");

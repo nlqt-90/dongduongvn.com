@@ -60,7 +60,7 @@ if (file_exists($target)) {
 }
 file_put_contents($target, $markdown);
 if ($needCommit) {
-    require_once __DIR__ . '/github_commit.php';
+require_once __DIR__ . '/github_commit.php';
     $action = $file ? 'update' : 'add';
     github_commit_file('src/content/popups/'.$slug.'.md', $markdown, "cms: $action popup $slug");
 }

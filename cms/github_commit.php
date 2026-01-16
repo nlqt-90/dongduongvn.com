@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/config.php';
 
-// --- Nạp biến môi trường hoặc fallback .env.php (chỉ dùng khi DEV) ---
+// --- Load env or fallback .env.php ---
 $envArr = [];
 $envPath = __DIR__ . '/.env.php';
 if (file_exists($envPath)) {
@@ -20,61 +20,7 @@ if (!defined('GITHUB_TOKEN'))  define('GITHUB_TOKEN', $token);
 if (!defined('GITHUB_BRANCH')) define('GITHUB_BRANCH', $branch);
 
 /**
- * Commit (hoặc tạo mới) 1 file vào repo.
- * Tự động bỏ qua nếu nội dung không thay đổi.
- *
- * @param string $pathInRepo  Đường dẫn file trong repo (ví dụ: "src/content/popups/foo.md")
- * @param string $content     Nội dung file thuần text
- * @param string $message     Thông điệp commit
- * @return array              Thông tin từ GH hoặc ['skipped'=>true]
- */
-function github_commit_file(string $pathInRepo, string $content, string $message): array
-{
-    // -- BỎ QUA KHI LOCAL / thiếu token --
-    if (empty(GITHUB_TOKEN) || GITHUB_TOKEN === 'dummy') {
-        error_log("[github_commit] SKIPPED $pathInRepo – token rỗng hoặc dummy");
-        return ['skipped' => true];
-    }
-
-    $apiUrl = "https://api.github.com/repos/" . GITHUB_REPO . "/contents/" . $pathInRepo;
-
-    // 1) Kiểm tra file tồn tại
-    $sha = null;
-    $existingBody = null;
-    $existing = curl_request('GET', $apiUrl);
-    if ($existing['http_code'] === 200) {
-        $bodyArr = json_decode($existing['body'], true);
-        $sha     = $bodyArr['sha'] ?? null;
-        $existingBody = $bodyArr['content'] ?? null;
-        if ($existingBody) {
-            $decoded = base64_decode(str_replace("\n", '', $existingBody));
-            if ($decoded === $content) {
-                // Nội dung không đổi, bỏ commit
-                error_log("[github_commit] NO-CHANGES $pathInRepo – skip push");
-                return ['skipped' => true, 'reason' => 'no changes'];
-            }
-        }
-    }
-
-    // 2) Gửi PUT
-    $payload = [
-        'message' => $message,
-        'content' => base64_encode($content),
-        'branch'  => GITHUB_BRANCH,
-    ];
-    if ($sha) $payload['sha'] = $sha;
-
-    $put = curl_request('PUT', $apiUrl, json_encode($payload));
-
-    if ($put['http_code'] >= 400) {
-        throw new RuntimeException("GitHub commit thất bại: {$put['http_code']} – {$put['body']}");
-    }
-
-    return json_decode($put['body'], true);
-}
-
-/**
- * Hàm wrapper cho curl với header mặc định.
+ * Call GitHub API via cURL
  */
 function curl_request(string $method, string $url, string $body = null): array
 {
@@ -88,12 +34,59 @@ function curl_request(string $method, string $url, string $body = null): array
         ],
         CURLOPT_CUSTOMREQUEST  => $method,
     ]);
-    if ($body !== null) {
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $body);
-    }
+    if ($body !== null) curl_setopt($ch, CURLOPT_POSTFIELDS, $body);
     $responseBody = curl_exec($ch);
     $httpCode     = curl_getinfo($ch, CURLINFO_RESPONSE_CODE);
     curl_close($ch);
+    return ['body'=>$responseBody,'http_code'=>$httpCode];
+}
 
-    return ['body' => $responseBody, 'http_code' => $httpCode];
+/**
+ * Add / update file content (skips if identical)
+ */
+function github_commit_file(string $path, string $content, string $message): array
+{
+    if (empty(GITHUB_TOKEN) || GITHUB_TOKEN==='dummy') return ['skipped'=>true];
+    $api = "https://api.github.com/repos/".GITHUB_REPO."/contents/".$path;
+
+    // fetch existing to get sha & compare
+    $sha=null; $identical=false;
+    $get = curl_request('GET',$api);
+    if($get['http_code']==200){
+        $data=json_decode($get['body'],true);
+        $sha=$data['sha']??null;
+        $cur=base64_decode(str_replace("\n","",$data['content']??''));
+        $identical=($cur===$content);
+    }
+    if($identical) return ['skipped'=>true,'reason'=>'no changes'];
+
+    $payload=[
+        'message'=>$message,
+        'content'=>base64_encode($content),
+        'branch'=>GITHUB_BRANCH,
+    ];
+    if($sha) $payload['sha']=$sha;
+    $put=curl_request('PUT',$api,json_encode($payload));
+    if($put['http_code']>=400) throw new RuntimeException('GitHub commit failed '.$put['http_code']);
+    return json_decode($put['body'],true);
+}
+
+/**
+ * Delete a file from repo
+ */
+function github_delete_file(string $path,string $message):array{
+    if (empty(GITHUB_TOKEN)||GITHUB_TOKEN==='dummy') return ['skipped'=>true];
+    $api="https://api.github.com/repos/".GITHUB_REPO."/contents/".$path;
+    $get=curl_request('GET',$api);
+    if($get['http_code']!==200) return ['skipped'=>true,'reason'=>'not found'];
+    $sha=json_decode($get['body'],true)['sha']??null;
+    if(!$sha) return ['error'=>'sha missing'];
+    $payload=[
+        'message'=>$message,
+        'sha'=>$sha,
+        'branch'=>GITHUB_BRANCH
+    ];
+    $del=curl_request('DELETE',$api,json_encode($payload));
+    if($del['http_code']>=400) throw new RuntimeException('GitHub delete failed '.$del['http_code']);
+    return json_decode($del['body'],true);
 }

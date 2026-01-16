@@ -10,7 +10,7 @@ if (empty($_SESSION['logged_in'])) {
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Dashboard CMS</title>
+  <title>Bảng điều khiển CMS Đông Dương</title>
   <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@1.*/css/pico.min.css" />
   <style>
     body{min-height:100vh;display:flex;justify-content:center;align-items:center;background:var(--pico-background-color);padding:1rem;}
