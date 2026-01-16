@@ -14,6 +14,6 @@ info:
 gallery:
   - /uploads/projects/test/test-6969dee56259b.webp
   - /uploads/projects/test/test-6969dee593d2c.webp
-  - /uploads/projects/test/test-6969dee5b0cc5.webp
   - /uploads/projects/test/test-6969dee5d068f.webp
+  - /uploads/projects/test/test-6969df61238ba.webp
 ---
