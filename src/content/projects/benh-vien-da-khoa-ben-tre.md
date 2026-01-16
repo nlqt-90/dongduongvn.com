@@ -13,7 +13,6 @@ info:
   location: "Bến Tre"
   scope: "1.000 giường"
 gallery:
-  - /assets/img/projects/benhvienbentre/benhvienbentre_1.webp
   - /uploads/projects/benh-vien-da-khoa-ben-tre/benh-vien-da-khoa-ben-tre-6969e88f72086.webp
   - /uploads/projects/benh-vien-da-khoa-ben-tre/benh-vien-da-khoa-ben-tre-6969e88fa273b.webp
   - /uploads/projects/benh-vien-da-khoa-ben-tre/benh-vien-da-khoa-ben-tre-6969e88fdb4ef.webp
