@@ -13,8 +13,7 @@ info:
   location: "ABC"
   scope: "1000"
 gallery:
-  - /uploads/popups/kiem-tra-lai-code-6969a9ddb011a.webp
-  - /uploads/popups/kiem-tra-lai-code-6969a9ddd87d6.webp
-  - /uploads/popups/kiem-tra-lai-code-6969a9ddf275c.webp
-  - /uploads/popups/kiem-tra-lai-code-6969a9de1b8d6.webp
+  - /uploads/projects/kiem-tra-lai-code/kiem-tra-lai-code-6969ab7f4d06a.webp
+  - /uploads/projects/kiem-tra-lai-code/kiem-tra-lai-code-6969ab7f731a6.webp
+  - /uploads/projects/kiem-tra-lai-code/kiem-tra-lai-code-6969ab7fb05fc.webp
 ---
