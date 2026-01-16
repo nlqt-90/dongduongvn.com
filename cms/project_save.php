@@ -191,4 +191,4 @@ if ($needCommit) {
     github_commit_file('src/content/projects/' . $slug . '.md', $markdown, "cms: $action project $slug");
 }
 header('Location: projects.php');
-exit;
+exit; 
