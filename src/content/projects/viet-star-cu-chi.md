@@ -13,8 +13,6 @@ info:
   location: "TP.HCM"
   scope: "2.000 tấn/ngày"
 gallery:
-  - /assets/img/projects/vietstar/vietstar_1.webp
-  - /assets/img/projects/vietstar/vietstar_2.webp
   - /uploads/projects/viet-star-cu-chi/viet-star-cu-chi-6969e83e7d7af.webp
   - /uploads/projects/viet-star-cu-chi/viet-star-cu-chi-6969e83ed62b0.webp
 ---
