@@ -12,4 +12,5 @@ info:
   location: "test"
   scope: "test"
 gallery:
+  - /uploads/projects/test/test-6969bf1b788f8.webp
 ---
